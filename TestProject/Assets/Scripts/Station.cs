@@ -15,4 +15,8 @@ public abstract class Station : MonoBehaviour
     {
         
     }
+
+    public abstract void onInteract();
+    
+
 }
