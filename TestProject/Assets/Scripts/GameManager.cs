@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    private float cash; 
+
+    public float Cash
+    {
+        get { return cash; }
+        set { cash = value; }
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
