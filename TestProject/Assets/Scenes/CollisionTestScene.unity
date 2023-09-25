@@ -229,11 +229,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 727021026149302238, guid: dcc95d013ba0ca944b0511d8600f5d2b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.45
+      value: 4.54
       objectReference: {fileID: 0}
     - target: {fileID: 727021026149302238, guid: dcc95d013ba0ca944b0511d8600f5d2b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.66
+      value: -3.64
       objectReference: {fileID: 0}
     - target: {fileID: 727021026149302238, guid: dcc95d013ba0ca944b0511d8600f5d2b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -267,9 +267,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1506897756672774821, guid: dcc95d013ba0ca944b0511d8600f5d2b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1506897756672774821, guid: dcc95d013ba0ca944b0511d8600f5d2b, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1506897756672774821, guid: dcc95d013ba0ca944b0511d8600f5d2b, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 2112529356831042858, guid: dcc95d013ba0ca944b0511d8600f5d2b, type: 3}
       propertyPath: m_Name
       value: CounterStation
+      objectReference: {fileID: 0}
+    - target: {fileID: 8870863994975394851, guid: dcc95d013ba0ca944b0511d8600f5d2b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8870863994975394851, guid: dcc95d013ba0ca944b0511d8600f5d2b, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -310,7 +330,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
