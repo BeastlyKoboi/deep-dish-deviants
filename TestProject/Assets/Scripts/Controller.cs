@@ -39,6 +39,7 @@ public class Controller : MonoBehaviour
 
         vehiclePosition += velocity;
         //transform.position = vehiclePosition;
+        transform.rotation = Quaternion.identity;
 
         // top and bottom are screen wrapping, while left and right are hard walls
         if (vehiclePosition.x <= cam.transform.position.x - width / 2)
