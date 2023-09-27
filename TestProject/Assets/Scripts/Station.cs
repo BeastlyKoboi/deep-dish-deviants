@@ -4,6 +4,9 @@ using UnityEngine;
 
 public abstract class Station : MonoBehaviour
 {
+    [SerializeField]
+    protected Player player;
+
     public bool isInteractable;
     // Start is called before the first frame update
     void Start()

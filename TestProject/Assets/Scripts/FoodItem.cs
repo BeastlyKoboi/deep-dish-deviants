@@ -23,4 +23,9 @@ public class FoodItem : MonoBehaviour
     {
         
     }
+
+    public CoreIngredient generateIngredient(FoodId id)
+    {
+        return new CoreIngredient(id);
+    }
 }

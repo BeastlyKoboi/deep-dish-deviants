@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -73,6 +74,10 @@ public class Controller : MonoBehaviour
         //transform.rotation = Quaternion.LookRotation(Vector3.forward, direction);
     }
 
+    public void OnFire(InputAction.CallbackContext context)
+    {
+
+    }
 
 
 }

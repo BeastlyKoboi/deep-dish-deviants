@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PickUpStation : Station
 {
+    [SerializeField]
+    FoodId despenserType;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +27,9 @@ public class PickUpStation : Station
 
     public override void onInteract()
     {
-        
+        if (player.playerInventory[0] == null)
+        {
+            player.playerInventory[0] = new CoreIngredient(despenserType);
+        }
     }
 }
