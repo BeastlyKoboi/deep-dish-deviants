@@ -16,6 +16,10 @@ public class Counter : Station
     // Update is called once per frame
     void Update()
     {
+        if(inventory != null)
+        {
+            GetComponent<SpriteRenderer>().color = Color.black;
+        }
         if (!isInteractable)
         {
             GetComponent<SpriteRenderer>().color = Color.blue;
