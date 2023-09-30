@@ -9,18 +9,32 @@ public class CoreIngredientStation : Station
 
     [SerializeField]
     CoreIngredient despenserType;
+
+    [SerializeField]
+    Color stationColor;
     // Start is called before the first frame update
     void Start()
     {
-        
+        if(id == FoodId.dough)
+        {
+            stationColor = Color.cyan;
+        }
+        if(id == FoodId.cheese) {
+            stationColor = Color.yellow;
+        }
+        if(id == FoodId.sauce)
+        {
+            stationColor = Color.red;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+
         if (!isInteractable)
         {
-            GetComponent<SpriteRenderer>().color = Color.red;
+            GetComponent<SpriteRenderer>().color = stationColor;
         }
         else
         {

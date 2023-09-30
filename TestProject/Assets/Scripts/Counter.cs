@@ -28,8 +28,21 @@ public class Counter : Station
         }
         if (inventory[0] != null)
         {
-            GetComponent<SpriteRenderer>().color = Color.black;
+            if (inventory[0].id == FoodId.dough)
+            {
+                GetComponent<SpriteRenderer>().color = Color.cyan;
+            }
+            if (inventory[0].id == FoodId.cheese)
+            {
+                GetComponent<SpriteRenderer>().color = Color.yellow;
+            }
+            if (inventory[0].id == FoodId.sauce)
+            {
+                GetComponent<SpriteRenderer>().color = Color.red;
+            }
+            //GetComponent<SpriteRenderer>().color = Color.black;
         }
+
     }
     
     public override void onInteract()

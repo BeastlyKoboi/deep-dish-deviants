@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Register registerScript;
     [SerializeField] private List<Counter> counterScripts;
     [SerializeField] private List<GarbageCan> garbageScripts;
-    [SerializeField] private CoreIngredientStation coreStation;
+    [SerializeField] private List<CoreIngredientStation> coreStation;
 
     // UI Elements
     [SerializeField] private TextMeshProUGUI cashUI;
@@ -105,13 +105,13 @@ public class GameManager : MonoBehaviour
 
 
         }
-
-        if (coreStation.isInteractable && player.isInteracting)
+        for(int i = 0; i < coreStation.Count; i++)
         {
-            coreStation.onInteract();
-            player.isInteracting = false;
+            if (coreStation[i].isInteractable && player.isInteracting)
+            {
+                coreStation[i].onInteract();
+                player.isInteracting = false;
+            }
         }
-
-        
     }
 }
