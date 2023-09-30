@@ -28,10 +28,6 @@ public class CoreIngredientStation : Station
         }
     }
 
-    public override void onInteract()
-    {
-        
-    }
 
     public override void onInteract()
     {

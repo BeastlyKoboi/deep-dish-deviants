@@ -182,7 +182,7 @@ MonoBehaviour:
   player: {fileID: 419690893}
   isInteractable: 0
   id: 0
-  despenserType: {fileID: 205993595}
+  despenserType: {fileID: 0}
 --- !u!1 &171499701
 GameObject:
   m_ObjectHideFlags: 0
