@@ -89,7 +89,8 @@ public class GameManager : MonoBehaviour
                 counterScripts[i].onInteract();
                 player.isInteracting = false;
             }
-            
+           
+
         }
     }
 }

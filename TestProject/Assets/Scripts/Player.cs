@@ -35,9 +35,9 @@ public class Player : MonoBehaviour
 
             }
         }
-        if (!isInteracting)
+         else
         {
-           // GetComponent<SpriteRenderer>().color = Color.white;
+           GetComponent<SpriteRenderer>().color = Color.white;
 
         }
     }
