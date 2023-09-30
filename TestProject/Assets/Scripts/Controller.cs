@@ -76,7 +76,7 @@ public class Controller : MonoBehaviour
 
     public void OnFire(InputAction.CallbackContext context)
     {
-
+       GetComponent<Player>().isInteracting= true;
     }
 
 
