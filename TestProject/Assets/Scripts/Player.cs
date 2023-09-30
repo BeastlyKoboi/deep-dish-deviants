@@ -6,10 +6,13 @@ public class Player : MonoBehaviour
 {
 
     public FoodItem[] playerInventory;
+    // is true when player fires aka presses E or right click
+    public bool isInteracting;
     // Start is called before the first frame update
     void Start()
     {
         playerInventory = new FoodItem[1];
+        isInteracting= false;
     }
 
     // Update is called once per frame
@@ -31,6 +34,11 @@ public class Player : MonoBehaviour
          
 
             }
+        }
+         else
+        {
+           GetComponent<SpriteRenderer>().color = Color.white;
+
         }
     }
 }
