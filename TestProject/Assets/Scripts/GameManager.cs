@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Register registerScript;
     [SerializeField] private List<Counter> counterScripts;
     [SerializeField] private List<GarbageCan> garbageScripts;
+    [SerializeField] private CoreIngredientStation coreStation;
 
     // UI Elements
     [SerializeField] private TextMeshProUGUI cashUI;
@@ -92,5 +93,25 @@ public class GameManager : MonoBehaviour
            
 
         }
+        for (int i = 0; i < garbageScripts.Count; i++)
+        {
+            if (garbageScripts[i].isInteractable && player.isInteracting)
+            {
+                //Debug.Log("interacting");
+                //player.GetComponent<SpriteRenderer>().color= Color.red;
+                garbageScripts[i].onInteract();
+                player.isInteracting = false;
+            }
+
+
+        }
+
+        if (coreStation.isInteractable && player.isInteracting)
+        {
+            coreStation.onInteract();
+            player.isInteracting = false;
+        }
+
+        
     }
 }
