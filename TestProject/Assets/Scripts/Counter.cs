@@ -16,13 +16,14 @@ public class Counter : Station
     // Update is called once per frame
     void Update()
     {
-        if(inventory != null)
+        if (inventory[0] != null)
         {
             GetComponent<SpriteRenderer>().color = Color.black;
         }
+       
         if (!isInteractable)
         {
-            GetComponent<SpriteRenderer>().color = Color.blue;
+            //GetComponent<SpriteRenderer>().color = Color.blue;
         }
         else
         {
@@ -32,6 +33,16 @@ public class Counter : Station
     
     public override void onInteract()
     {
+        if (inventory[0] != null && player.playerInventory[0] == null)
+        {
+            player.playerInventory[0] = inventory[0];
+            inventory[0] = null;
+        }
+        else if (inventory[0] == null && player.playerInventory[0] != null)
+        {
+            inventory[0] = player.playerInventory[0];
+            player.playerInventory[0] = null;
+        }
 
     }
  

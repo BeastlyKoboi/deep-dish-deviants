@@ -85,7 +85,8 @@ public class GameManager : MonoBehaviour
             if (counterScripts[i].isInteractable && player.isInteracting)
             {
                 //Debug.Log("interacting");
-                player.GetComponent<SpriteRenderer>().color= Color.red;
+                //player.GetComponent<SpriteRenderer>().color= Color.red;
+                counterScripts[i].onInteract();
                 player.isInteracting = false;
             }
             
