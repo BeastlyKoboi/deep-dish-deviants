@@ -5,6 +5,13 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    // Player
+    [SerializeField] private Player player;
+
+    // Stations
+    [SerializeField] private Register registerScript;
+    [SerializeField] private List<Counter> counterScripts;
+    [SerializeField] private List<GarbageCan> garbageScripts;
 
     // UI Elements
     [SerializeField] private TextMeshProUGUI cashUI;
