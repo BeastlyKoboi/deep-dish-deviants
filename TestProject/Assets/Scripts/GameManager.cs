@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<Counter> counterScripts;
     [SerializeField] private List<GarbageCan> garbageScripts;
     [SerializeField] private List<CoreIngredientStation> coreStation;
-
+    [SerializeField] private PlateDespenser plateDespenser;
     // UI Elements
     [SerializeField] private TextMeshProUGUI cashUI;
     [SerializeField] private TextMeshProUGUI clockUI;
@@ -113,5 +113,11 @@ public class GameManager : MonoBehaviour
                 player.isInteracting = false;
             }
         }
+        if (plateDespenser.isInteractable && player.isInteracting)
+        {
+            plateDespenser.onInteract();
+            player.isInteracting = false;
+        }
+
     }
 }

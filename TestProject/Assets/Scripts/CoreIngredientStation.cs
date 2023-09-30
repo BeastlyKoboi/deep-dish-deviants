@@ -8,10 +8,10 @@ public class CoreIngredientStation : Station
     FoodId id;
 
     [SerializeField]
-    CoreIngredient despenserType;
+    FoodItem despenserType;
 
-    [SerializeField]
-    Color stationColor;
+    
+    private Color stationColor;
     // Start is called before the first frame update
     void Start()
     {

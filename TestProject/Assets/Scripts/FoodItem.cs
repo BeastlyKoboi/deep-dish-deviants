@@ -7,6 +7,7 @@ public enum FoodId
     dough = 0,
     cheese = 1,
     sauce = 2,
+    plate = 3,
 }
 public class FoodItem : MonoBehaviour
 {
@@ -24,8 +25,5 @@ public class FoodItem : MonoBehaviour
         
     }
 
-    public CoreIngredient generateIngredient(FoodId id)
-    {
-        return new CoreIngredient(id);
-    }
+ 
 }

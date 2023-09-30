@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 public class Counter : Station
 {
@@ -40,6 +42,10 @@ public class Counter : Station
             {
                 GetComponent<SpriteRenderer>().color = Color.red;
             }
+            if (inventory[0].id == FoodId.plate)
+            {
+                GetComponent<SpriteRenderer>().color = Color.black;
+            }
             //GetComponent<SpriteRenderer>().color = Color.black;
         }
 
@@ -47,7 +53,16 @@ public class Counter : Station
     
     public override void onInteract()
     {
-        if (inventory[0] != null && player.playerInventory[0] == null)
+        if (inventory[0] != null && inventory[0].id == FoodId.plate && player.playerInventory[0] != null) 
+        {
+            Plate tempPlate = (Plate)inventory[0];
+            tempPlate.AddToPlate(player.playerInventory[0]);
+            
+            inventory[0] = tempPlate;
+            player.playerInventory[0] = null;
+            
+        }
+        else if (inventory[0] != null && player.playerInventory[0] == null)
         {
             player.playerInventory[0] = inventory[0];
             inventory[0] = null;
@@ -57,6 +72,13 @@ public class Counter : Station
             inventory[0] = player.playerInventory[0];
             player.playerInventory[0] = null;
         }
+        else if(inventory[0] != null && player.playerInventory[0] != null)
+        {
+            CoreIngredient tempIngredient = (CoreIngredient) inventory[0];
+            inventory[0] = player.playerInventory[0];
+            player.playerInventory[0] = tempIngredient;
+        }
+
 
     }
  

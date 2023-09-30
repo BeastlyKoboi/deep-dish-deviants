@@ -31,11 +31,13 @@ public class Player : MonoBehaviour
                  case FoodId.sauce:
                     GetComponent<SpriteRenderer>().color = Color.red;
                     break;
-         
-
+                case FoodId.plate:
+                    GetComponent<SpriteRenderer>().color = Color.black;
+                    break;
             }
         }
-         else
+        
+        else
         {
            GetComponent<SpriteRenderer>().color = Color.white;
 
