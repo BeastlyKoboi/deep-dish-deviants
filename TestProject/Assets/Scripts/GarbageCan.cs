@@ -25,6 +25,9 @@ public class GarbageCan : Station
   
     public override void onInteract()
     {
-
+        if (player.playerInventory[0] != null)
+        {
+            player.playerInventory[0] = null;
+        }
     }
 }
