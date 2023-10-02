@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,7 +13,7 @@ public class Controller : MonoBehaviour
     public Camera cam;
     static float height;
     float width;
-    private Rigidbody2D playerRigidBody;
+    public Rigidbody2D playerRigidBody;
     Vector3 vehiclePosition = new Vector3(0, 0, 0);
 
 
@@ -38,8 +39,8 @@ public class Controller : MonoBehaviour
         velocity = direction * speed * Time.deltaTime;
 
         vehiclePosition += velocity;
-        transform.position = vehiclePosition;
-        //playerRigidBody.MovePosition(vehiclePosition + (direction * speed * Time.deltaTime));
+        //transform.position = vehiclePosition;
+        transform.rotation = Quaternion.identity;
 
         // top and bottom are screen wrapping, while left and right are hard walls
         if (vehiclePosition.x <= cam.transform.position.x - width / 2)
@@ -64,15 +65,19 @@ public class Controller : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        //playerRigidBody.MovePosition(transform.position + direction * speed * Time.deltaTime);
+        playerRigidBody.MovePosition(transform.position + direction * speed * Time.deltaTime);
     }
     public void OnMove(InputAction.CallbackContext context)
     {
         direction = context.ReadValue<Vector2>();
 
-        transform.rotation = Quaternion.LookRotation(Vector3.forward, direction);
+        //transform.rotation = Quaternion.LookRotation(Vector3.forward, direction);
     }
 
+    public void OnFire(InputAction.CallbackContext context)
+    {
+
+    }
 
 
 }

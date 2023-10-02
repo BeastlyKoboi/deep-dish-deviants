@@ -16,6 +16,10 @@ public class Counter : Station
     // Update is called once per frame
     void Update()
     {
+        if(inventory != null)
+        {
+            GetComponent<SpriteRenderer>().color = Color.black;
+        }
         if (!isInteractable)
         {
             GetComponent<SpriteRenderer>().color = Color.blue;
@@ -25,15 +29,7 @@ public class Counter : Station
             GetComponent<SpriteRenderer>().color = Color.red;
         }
     }
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        isInteractable = true;
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        isInteractable = false;
-    }
+    
     public override void onInteract()
     {
 

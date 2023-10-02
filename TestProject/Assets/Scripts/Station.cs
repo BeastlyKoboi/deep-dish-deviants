@@ -4,6 +4,9 @@ using UnityEngine;
 
 public abstract class Station : MonoBehaviour
 {
+    [SerializeField]
+    protected Player player;
+
     public bool isInteractable;
     // Start is called before the first frame update
     void Start()
@@ -16,7 +19,15 @@ public abstract class Station : MonoBehaviour
     {
         
     }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        isInteractable = true;
+    }
 
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        isInteractable = false;
+    }
     public abstract void onInteract();
     
 
