@@ -5,7 +5,15 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    // Player
+    [SerializeField] private Player player;
 
+    // Stations
+    [SerializeField] private Register registerScript;
+    [SerializeField] private List<Counter> counterScripts;
+    [SerializeField] private List<GarbageCan> garbageScripts;
+    [SerializeField] private List<CoreIngredientStation> coreStation;
+    [SerializeField] private PlateDespenser plateDespenser;
     // UI Elements
     [SerializeField] private TextMeshProUGUI cashUI;
     [SerializeField] private TextMeshProUGUI clockUI;
@@ -41,6 +49,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        InteractWithStation();
         // Update the clock
         currentTime += Time.deltaTime;
         if (currentTime >= hourLength)
@@ -62,5 +71,53 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0.0f;
         else
             Time.timeScale = 1.0f;
+    }
+
+    // checks which stations are currently able to be interacted with
+    // if player is trying to interact with that station it will do something
+    public void InteractWithStation()
+    {
+        //if (registerScript.isInteractable)
+        //{
+
+        //}
+        for(int i = 0; i <counterScripts.Count; i++)
+        {
+            if (counterScripts[i].isInteractable && player.isInteracting)
+            {
+                //Debug.Log("interacting");
+                //player.GetComponent<SpriteRenderer>().color= Color.red;
+                counterScripts[i].onInteract();
+                player.isInteracting = false;
+            }
+           
+
+        }
+        for (int i = 0; i < garbageScripts.Count; i++)
+        {
+            if (garbageScripts[i].isInteractable && player.isInteracting)
+            {
+                //Debug.Log("interacting");
+                //player.GetComponent<SpriteRenderer>().color= Color.red;
+                garbageScripts[i].onInteract();
+                player.isInteracting = false;
+            }
+
+
+        }
+        for(int i = 0; i < coreStation.Count; i++)
+        {
+            if (coreStation[i].isInteractable && player.isInteracting)
+            {
+                coreStation[i].onInteract();
+                player.isInteracting = false;
+            }
+        }
+        if (plateDespenser.isInteractable && player.isInteracting)
+        {
+            plateDespenser.onInteract();
+            player.isInteracting = false;
+        }
+
     }
 }
