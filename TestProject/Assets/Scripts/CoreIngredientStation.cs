@@ -10,6 +10,9 @@ public class CoreIngredientStation : Station
     [SerializeField]
     FoodItem despenserType;
 
+    [SerializeField]
+    CookState cookState;
+
     
     private Color stationColor;
     // Start is called before the first frame update
