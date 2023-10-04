@@ -6,6 +6,8 @@ public class PickUpStation : Station
 {
     // pick up station can only hold plate objects
     public Plate inventory;
+
+    public Customer currentCustomer;
     // Start is called before the first frame update
     void Start()
     {

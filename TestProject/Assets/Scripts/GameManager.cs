@@ -122,6 +122,17 @@ public class GameManager : MonoBehaviour
                 player.isInteracting = false;
             }
         }
+
+
+        for (int i = 0; i < pickUpStations.Count; i++)
+        {
+            if (pickUpStations[i].isInteractable && player.isInteracting)
+            {
+                pickUpStations[i].onInteract();
+                player.isInteracting = false;
+            }
+        }
+
         if (plateDespenser.isInteractable && player.isInteracting)
         {
             plateDespenser.onInteract();
