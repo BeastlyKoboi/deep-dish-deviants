@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PickUpStation : Station
 {
-    
+    // pick up station can only hold plate objects
+    public Plate inventory;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +27,10 @@ public class PickUpStation : Station
 
     public override void onInteract()
     {
-       
+       if(player.playerInventory[0].id == FoodId.plate)
+        {
+            inventory =(Plate) player.playerInventory[0];
+            player.playerInventory[0] = null;
+        }
     }
 }
