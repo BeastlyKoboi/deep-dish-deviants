@@ -77,10 +77,11 @@ public class GameManager : MonoBehaviour
     // if player is trying to interact with that station it will do something
     public void InteractWithStation()
     {
-        //if (registerScript.isInteractable)
-        //{
-
-        //}
+        if (registerScript.isInteractable && player.isInteracting)
+        {
+            registerScript.onInteract();
+            player.isInteracting = false;
+        }
         for(int i = 0; i <counterScripts.Count; i++)
         {
             if (counterScripts[i].isInteractable && player.isInteracting)
