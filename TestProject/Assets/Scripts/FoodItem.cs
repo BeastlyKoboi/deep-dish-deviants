@@ -20,6 +20,7 @@ public class FoodItem : MonoBehaviour
 {
 
     public FoodId id;
+    public CookState foodState;
     // Start is called before the first frame update
     void Start()
     {
