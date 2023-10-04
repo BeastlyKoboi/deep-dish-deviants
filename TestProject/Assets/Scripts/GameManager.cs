@@ -12,8 +12,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Register registerScript;
     [SerializeField] private List<Counter> counterScripts;
     [SerializeField] private List<GarbageCan> garbageScripts;
-    [SerializeField] private List<CoreIngredientStation> coreStation;
+    [SerializeField] private List<CoreIngredientStation> coreStations;
     [SerializeField] private PlateDespenser plateDespenser;
+    [SerializeField] private List<PickUpStation> pickUpStations; 
     // UI Elements
     [SerializeField] private TextMeshProUGUI cashUI;
     [SerializeField] private TextMeshProUGUI clockUI;
@@ -73,6 +74,13 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 1.0f;
     }
 
+    public void QuitGame()
+    {
+        // Eventually some sort of save system maybe
+        Application.Quit();
+        Debug.Log("Game Quit");
+    }
+
     // checks which stations are currently able to be interacted with
     // if player is trying to interact with that station it will do something
     public void InteractWithStation()
@@ -106,11 +114,11 @@ public class GameManager : MonoBehaviour
 
 
         }
-        for(int i = 0; i < coreStation.Count; i++)
+        for(int i = 0; i < coreStations.Count; i++)
         {
-            if (coreStation[i].isInteractable && player.isInteracting)
+            if (coreStations[i].isInteractable && player.isInteracting)
             {
-                coreStation[i].onInteract();
+                coreStations[i].onInteract();
                 player.isInteracting = false;
             }
         }
