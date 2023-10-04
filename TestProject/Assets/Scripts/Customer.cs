@@ -104,7 +104,7 @@ public class Customer : MonoBehaviour
         }
         if (order.Count > pizza.coreFoodlist.Count)//Missing ingredients
         {
-            successPercentile -= (1 / order.Count / 2) * (order.Count - pizza.coreFoodlist.Count);
+            successPercentile -= (1 / (order.Count / 2)) * (order.Count - pizza.coreFoodlist.Count);
         }
 
         //+- 30 based on difference of patience from max patience. Value modified is based on percent of time taken with leniency based off difficulty

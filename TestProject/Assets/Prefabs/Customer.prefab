@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26cf392855d11bc46b1d1ca6ec6f6e46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  order: 000000000000000000000000
+  order: 000000000100000002000000
   customerManager: {fileID: 0}
   maxPatience: 120
   difficultyFloat: 0.2

@@ -55,12 +55,13 @@ public class Counter : Station
     {
         if (inventory[0] != null && inventory[0].id == FoodId.plate && player.playerInventory[0] != null) 
         {
+
             Plate tempPlate = (Plate)inventory[0];
-            tempPlate.AddToPlate(player.playerInventory[0]);
-            
-            inventory[0] = tempPlate;
-            player.playerInventory[0] = null;
-            
+            if (tempPlate.AddToPlate(player.playerInventory[0]))//Method adds item if can otherwise we want player to keep
+            {
+                inventory[0] = tempPlate;
+                player.playerInventory[0] = null;
+            }            
         }
         else if (inventory[0] != null && player.playerInventory[0] == null)
         {

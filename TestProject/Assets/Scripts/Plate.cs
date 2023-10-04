@@ -37,10 +37,16 @@ public class Plate : FoodItem
         return isSorted;
     }
 
-    public void AddToPlate(FoodItem itemToAdd)
+    public bool AddToPlate(FoodItem itemToAdd)
     {
-       
-        coreFoodlist.Add(itemToAdd);
-
+        if (itemToAdd.id != id)
+        {
+            coreFoodlist.Add(itemToAdd);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
