@@ -9,6 +9,13 @@ public enum FoodId
     sauce = 2,
     plate = 3,
 }
+
+public enum CookState
+{
+    raw = 0,
+    cooked = 1,
+    burnt = 2
+}
 public class FoodItem : MonoBehaviour
 {
 
