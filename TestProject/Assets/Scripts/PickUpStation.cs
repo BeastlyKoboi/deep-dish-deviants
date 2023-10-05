@@ -43,6 +43,12 @@ public class PickUpStation : Station
     //This could be importatnt later if we want the pizzas to stay on the coutner for a while then disapear
     public void ClearCounter()
     {
-        Destroy(inventory.gameObject);
+        // destroys all of the food on the plate
+       for(int i = 0; i < inventory.coreFoodlist.Count; i++)
+       {
+            Destroy(inventory.coreFoodlist[i].gameObject);
+       }
+       //destroys the plate
+       Destroy(inventory.gameObject);
     }
 }

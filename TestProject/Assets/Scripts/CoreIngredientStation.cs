@@ -8,7 +8,7 @@ public class CoreIngredientStation : Station
     FoodId id;
 
     [SerializeField]
-    FoodItem despenserType;
+    CoreIngredient despenserType;
     
     private Color stationColor;
     // Start is called before the first frame update
@@ -46,7 +46,7 @@ public class CoreIngredientStation : Station
     {
         if (player.playerInventory[0] == null)
         {
-            player.playerInventory[0] = despenserType;
+            player.playerInventory[0] = Instantiate<CoreIngredient>(despenserType);
         }
     }
 }
