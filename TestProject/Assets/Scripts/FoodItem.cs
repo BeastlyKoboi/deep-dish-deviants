@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public enum FoodId
@@ -32,6 +33,4 @@ public class FoodItem : MonoBehaviour
     {
         
     }
-
- 
 }

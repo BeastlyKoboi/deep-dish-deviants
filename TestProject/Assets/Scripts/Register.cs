@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Register : Station
 {
+    [SerializeField]
+    GameManager manager;
 
     public Customer currentCustomer;
     // Start is called before the first frame update
@@ -30,6 +32,7 @@ public class Register : Station
         if(currentCustomer != null)
         {
             List<FoodId> list = currentCustomer.getOrder();
+            manager.ChangeOrder(list);
             currentCustomer = null;
         }
     }

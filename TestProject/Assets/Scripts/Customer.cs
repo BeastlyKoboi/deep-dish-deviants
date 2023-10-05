@@ -86,6 +86,11 @@ public class Customer : MonoBehaviour
         float successPercentile = 1;
         for(int i = 0; i < pizza.coreFoodlist.Count; i++)
         {
+            //If uncooked or overcooked
+            if (pizza.coreFoodlist[i].foodState == CookState.raw || pizza.coreFoodlist[i].foodState == CookState.burnt)
+            {
+                successPercentile -= (1 / (order.Count / 2)) * (order.Count - pizza.coreFoodlist.Count);
+            }
             if (i > order.Count)//extra unexpected toping
             {
                 //Reduce percentile
@@ -127,7 +132,7 @@ public class Customer : MonoBehaviour
 
     public List<FoodId> getOrder() 
     {
-        if (customerManager.SetToPickupCounter(this))
+        if (customerManager.SetToPickupCounter(gameObject.GetComponent<Customer>()))
         {
             state = AiState.Waiting;
         }

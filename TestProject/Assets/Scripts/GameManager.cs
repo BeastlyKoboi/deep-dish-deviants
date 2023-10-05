@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     // UI Elements
     [SerializeField] private TextMeshProUGUI cashUI;
     [SerializeField] private TextMeshProUGUI clockUI;
+    [SerializeField] private TextMeshProUGUI order1;
     [SerializeField] private GameObject pausedMenu;
 
     // Gameplay Variables 
@@ -142,5 +143,35 @@ public class GameManager : MonoBehaviour
     public void addScore(int value, float mult)
     {
         _cash += value * mult;
+    }
+
+    public void ChangeOrder(List<FoodId> pizza)
+    {
+        string order = "Order 1\n";
+        for (int i = 0; i < pizza.Count; i++)
+        {
+            order += StringifyFoodId(pizza[i]) + "\n";
+        }
+    }
+
+    public string StringifyFoodId(FoodId id)
+    {
+        string type = "Error";
+        switch (id)
+        {
+            case FoodId.dough:
+                type = "Dough";
+                break;
+            case FoodId.cheese:
+                type = "Cheese";
+                break;
+            case FoodId.sauce:
+                type = "Sauce";
+                break;
+            case FoodId.plate:
+                type = "Plate";
+                break;
+        }
+        return type;
     }
 }

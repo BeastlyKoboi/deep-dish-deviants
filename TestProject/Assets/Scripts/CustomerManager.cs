@@ -70,4 +70,9 @@ public class CustomerManager : MonoBehaviour
         c.GetComponent<Customer>().customerManager = gameObject.GetComponent<CustomerManager>();
         register.currentCustomer = c;
     }
+
+    public void ChangeOrder(List<FoodId> pizza)
+    {
+        gameManager.ChangeOrder(pizza);
+    }
 }
