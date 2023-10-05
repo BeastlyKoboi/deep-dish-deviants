@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PickUpStation : Station
 {
+    [SerializeField]
+    GameManager manager;
+
     // pick up station can only hold plate objects
     public Plate inventory;
 
@@ -36,6 +39,7 @@ public class PickUpStation : Station
             player.playerInventory[0] = null;
             currentCustomer.ReviewOrder(inventory);
             currentCustomer = null;
+            manager.EmptyOrder();
             ClearCounter();
         }
     }

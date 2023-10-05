@@ -152,6 +152,12 @@ public class GameManager : MonoBehaviour
         {
             order += StringifyFoodId(pizza[i]) + "\n";
         }
+        order1.text = order;
+    }
+
+    public void EmptyOrder()
+    {
+        order1.text = "Order 1";
     }
 
     public string StringifyFoodId(FoodId id)

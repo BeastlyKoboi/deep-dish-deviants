@@ -468,8 +468,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1917,7 +1917,7 @@ MonoBehaviour:
   - {fileID: 1994727860}
   cashUI: {fileID: 171499703}
   clockUI: {fileID: 1271630401}
-  order1: {fileID: 0}
+  order1: {fileID: 317455519}
   pausedMenu: {fileID: 1788883497}
   _cash: 0
   currentDay: 0
