@@ -36,12 +36,13 @@ public class PickUpStation : Station
             player.playerInventory[0] = null;
             currentCustomer.ReviewOrder(inventory);
             currentCustomer = null;
+            ClearCounter();
         }
     }
 
     //This could be importatnt later if we want the pizzas to stay on the coutner for a while then disapear
     public void ClearCounter()
     {
-        inventory = null;
+        Destroy(inventory.gameObject);
     }
 }
