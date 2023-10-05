@@ -10,6 +10,8 @@ public class Controller : MonoBehaviour
     [SerializeField]
     float speed = 5f;
 
+    public Player player;
+
     public Camera cam;
     static float height;
     float width;
@@ -82,6 +84,13 @@ public class Controller : MonoBehaviour
 
         }
         
+    }
+    public void OnFireMagic(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            player.FireMagic();
+        }
     }
 
 
