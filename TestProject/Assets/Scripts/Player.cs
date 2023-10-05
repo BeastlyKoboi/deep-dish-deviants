@@ -23,16 +23,60 @@ public class Player : MonoBehaviour
             switch (playerInventory[0].id)
             {
                 case FoodId.dough:
-                    GetComponent<SpriteRenderer>().color = Color.cyan;
+                    if (playerInventory[0].foodState == CookState.raw)
+                    {
+                        GetComponent<SpriteRenderer>().color = Color.cyan;
+                    }
+                    else if (playerInventory[0].foodState == CookState.cooked)
+                    {
+                        GetComponent<SpriteRenderer>().color = Color.gray;
+                    }
+                    else if (playerInventory[0].foodState == CookState.burnt)
+                    {
+                        GetComponent<SpriteRenderer>().color = Color.magenta;
+                    }
                     break;
                  case FoodId.cheese:
-                    GetComponent<SpriteRenderer>().color = Color.yellow;
+                    if (playerInventory[0].foodState == CookState.raw)
+                    {
+                        GetComponent<SpriteRenderer>().color = Color.yellow;
+                    }
+                    else if (playerInventory[0].foodState == CookState.cooked)
+                    {
+                        GetComponent<SpriteRenderer>().color = Color.gray;
+                    }
+                    else if (playerInventory[0].foodState == CookState.burnt)
+                    {
+                        GetComponent<SpriteRenderer>().color = Color.magenta;
+                    }
                     break;
                  case FoodId.sauce:
-                    GetComponent<SpriteRenderer>().color = Color.red;
+                    if (playerInventory[0].foodState == CookState.raw)
+                    {
+                        GetComponent<SpriteRenderer>().color = Color.red;
+                    }
+                    else if (playerInventory[0].foodState == CookState.cooked)
+                    {
+                        GetComponent<SpriteRenderer>().color = Color.gray;
+                    }
+                    else if (playerInventory[0].foodState == CookState.burnt)
+                    {
+                        GetComponent<SpriteRenderer>().color = Color.magenta;
+                    }
                     break;
                 case FoodId.plate:
-                    GetComponent<SpriteRenderer>().color = Color.black;
+                    if (playerInventory[0].foodState == CookState.raw)
+                    {
+                        GetComponent<SpriteRenderer>().color = Color.black;
+                    }
+                    else if (playerInventory[0].foodState == CookState.cooked)
+                    {
+                        GetComponent<SpriteRenderer>().color = Color.gray;
+                    }
+                    else if (playerInventory[0].foodState == CookState.burnt)
+                    {
+                        GetComponent<SpriteRenderer>().color = Color.magenta;
+                    }
                     break;
             }
         }
@@ -41,6 +85,31 @@ public class Player : MonoBehaviour
         {
            GetComponent<SpriteRenderer>().color = Color.white;
 
+        }
+    }
+
+    /// <summary>
+    /// Fire magic cooks the ingredient the player is holding
+    /// </summary>
+    public void FireMagic()
+    {
+        //check is player is holding something
+        if (playerInventory[0] != null)
+        {
+            //if it is not plate, then it may proceed
+            if (playerInventory[0].id == FoodId.dough || playerInventory[0].id == FoodId.sauce || playerInventory[0].id == FoodId.cheese)
+            {
+                // if raw, made cooked
+                if (playerInventory[0].foodState == CookState.raw)
+                {
+                    playerInventory[0].foodState = CookState.cooked;
+                }
+                // if cooked, made burnt
+                else if (playerInventory[0].foodState == CookState.cooked)
+                {
+                    playerInventory[0].foodState = CookState.burnt;
+                }
+            }
         }
     }
 }
