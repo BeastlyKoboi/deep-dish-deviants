@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class PickUpStation : Station
 {
-    [SerializeField]
-    FoodId despenserType;
+    // pick up station can only hold plate objects
+    public Plate inventory;
+
+    public Customer currentCustomer;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        currentCustomer = null;
     }
 
     // Update is called once per frame
@@ -27,9 +30,18 @@ public class PickUpStation : Station
 
     public override void onInteract()
     {
-        if (player.playerInventory[0] == null)
+        if (player.playerInventory[0] != null && player.playerInventory[0].id == FoodId.plate && currentCustomer != null)
         {
-            player.playerInventory[0] = new CoreIngredient(despenserType);
+            inventory = (Plate) player.playerInventory[0];
+            player.playerInventory[0] = null;
+            currentCustomer.ReviewOrder(inventory);
+            currentCustomer = null;
         }
+    }
+
+    //This could be importatnt later if we want the pizzas to stay on the coutner for a while then disapear
+    public void ClearCounter()
+    {
+        inventory = null;
     }
 }

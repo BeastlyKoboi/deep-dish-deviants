@@ -2,13 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pizza : FoodItem 
+public class Plate : FoodItem
 {
-    CoreIngredient[] coreFoodlist;
+    public List<FoodItem> coreFoodlist;
+
+    public Plate()
+    {
+        coreFoodlist = new List<FoodItem>();
+    }
     // Start is called before the first frame update
     void Start()
     {
-        coreFoodlist = new CoreIngredient[3];
+        coreFoodlist = new List<FoodItem>();
+        id = FoodId.plate;
     }
 
     // Update is called once per frame
@@ -18,8 +24,10 @@ public class Pizza : FoodItem
     }
 
     // based on the ids of the ingredients. checks to see if pizza was made in the correct order
-    private bool isSorted()
+    public bool IsSorted()
     {
+        if (coreFoodlist.Count < 3)
+            return false;
         bool isSorted = true;
         for(int i = 0; i < 3; i++)
         {
@@ -29,5 +37,18 @@ public class Pizza : FoodItem
             }
         }
         return isSorted;
+    }
+
+    public bool AddToPlate(FoodItem itemToAdd)
+    {
+        if (itemToAdd.id != id && coreFoodlist.Count < 3)
+        {
+            coreFoodlist.Add(itemToAdd);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
