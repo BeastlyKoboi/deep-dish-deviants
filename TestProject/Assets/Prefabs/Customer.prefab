@@ -101,6 +101,6 @@ MonoBehaviour:
   customerManager: {fileID: 0}
   maxPatience: 120
   difficultyFloat: 0.2
-  registerPosition: {x: -2.36, y: -1.99, z: 0}
+  registerPosition: {x: -3, y: -1.99, z: 0}
   counterPositions:
   - {x: -3, y: 3, z: 0}

@@ -136,7 +136,7 @@ public class GameManager : MonoBehaviour
             plateDespenser.onInteract();
             player.isInteracting = false;
         }
-
+        player.isInteracting = false;
     }
 
     public void addScore(int value, float mult)

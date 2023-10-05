@@ -10,6 +10,8 @@ public class Controller : MonoBehaviour
     [SerializeField]
     float speed = 5f;
 
+    public Player player;
+
     public Camera cam;
     static float height;
     float width;
@@ -74,14 +76,21 @@ public class Controller : MonoBehaviour
         //transform.rotation = Quaternion.LookRotation(Vector3.forward, direction);
     }
 
-    public void OnFire(InputAction.CallbackContext context)
+    public void OnInteract(InputAction.CallbackContext context)
     {
        if(context.performed)
         {
-            GetComponent<Player>().isInteracting = true;
+            player.isInteracting = true;
 
         }
         
+    }
+    public void OnFireMagic(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            player.FireMagic();
+        }
     }
 
 
