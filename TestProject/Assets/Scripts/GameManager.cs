@@ -35,10 +35,7 @@ public class GameManager : MonoBehaviour
     {
         get { return _cash; }
         set
-        {
-            _cash = value;
-            cashUI.text = $"${_cash}"; 
-        }
+        { _cash = value; }
     }
 
     // Start is called before the first frame update
@@ -62,6 +59,7 @@ public class GameManager : MonoBehaviour
             currentTime -= hourLength;
             clockUI.text = $"{currentHour}:00 {(currentHour < 8? "PM": "AM")}";
         }
+        cashUI.text = $"${_cash - _cash % .01}";
     }
 
     public void TogglePause()
@@ -139,5 +137,10 @@ public class GameManager : MonoBehaviour
             player.isInteracting = false;
         }
 
+    }
+
+    public void addScore(int value, float mult)
+    {
+        _cash += value * mult;
     }
 }

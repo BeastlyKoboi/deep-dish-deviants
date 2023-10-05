@@ -7,7 +7,10 @@ using UnityEngine.Rendering;
 public class Counter : Station
 {
     public FoodItem[] inventory;
-    
+    private Icon icon;
+
+    [SerializeField]
+    Sprite spritesheet;
    
     // Start is called before the first frame update
     void Start()

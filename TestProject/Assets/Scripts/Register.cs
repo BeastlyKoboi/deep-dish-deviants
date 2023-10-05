@@ -27,9 +27,10 @@ public class Register : Station
 
     public override void onInteract()
     {
-      if(currentCustomer != null)
+        if(currentCustomer != null)
         {
-            List<FoodId> list = currentCustomer.getOrder(0);
+            List<FoodId> list = currentCustomer.getOrder();
+            currentCustomer = null;
         }
     }
 }

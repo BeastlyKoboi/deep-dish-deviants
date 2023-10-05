@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlateDespenser : Station
@@ -29,7 +30,7 @@ public class PlateDespenser : Station
     {
         if (player.playerInventory[0] == null)
         {
-            player.playerInventory[0] = plate;
+            player.playerInventory[0] = Instantiate<Plate>(plate);
         }
     }
 }

@@ -24,8 +24,10 @@ public class Plate : FoodItem
     }
 
     // based on the ids of the ingredients. checks to see if pizza was made in the correct order
-    private bool IsSorted()
+    public bool IsSorted()
     {
+        if (coreFoodlist.Count < 3)
+            return false;
         bool isSorted = true;
         for(int i = 0; i < 3; i++)
         {
@@ -39,7 +41,7 @@ public class Plate : FoodItem
 
     public bool AddToPlate(FoodItem itemToAdd)
     {
-        if (itemToAdd.id != id)
+        if (itemToAdd.id != id && coreFoodlist.Count < 3)
         {
             coreFoodlist.Add(itemToAdd);
             return true;

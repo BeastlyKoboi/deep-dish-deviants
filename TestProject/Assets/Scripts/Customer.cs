@@ -17,7 +17,7 @@ public class Customer : MonoBehaviour
     protected List<FoodId> order;
     
     [SerializeField]
-    protected CustomerManager customerManager;
+    public CustomerManager customerManager;
 
     //In seconds
     [SerializeField]
@@ -69,7 +69,7 @@ public class Customer : MonoBehaviour
                 //Link to counter so pizza cn be received
                 break;
             case AiState.Leaving:
-                Destroy(this);
+                Destroy(gameObject);
                 //Pathing for later
                 break;
         }
@@ -94,7 +94,7 @@ public class Customer : MonoBehaviour
             }
             for (int j = 0; j < order.Count; j++)
             {
-                if (pizza.coreFoodlist[j].id == order[i])//topping exists on pizza
+                if (pizza.coreFoodlist[i].id == order[j])//topping exists on pizza
                 {
                     continue;
                 }
@@ -110,25 +110,39 @@ public class Customer : MonoBehaviour
         //+- 30 based on difference of patience from max patience. Value modified is based on percent of time taken with leniency based off difficulty
         successPercentile += .3f * ((patience + (maxPatience / 2 * (1 - difficultyFloat))) - maxPatience) / maxPatience;
 
+        if (!pizza.IsSorted())
+            successPercentile -= .3f;
+
         if (successPercentile < 0)
             successPercentile = 0;
 
         state = AiState.Leaving;
 
+        //For now we make a new customer
+        customerManager.GenerateCustomer();
+
+        customerManager.AddMoney(successPercentile);
         return successPercentile * 100;
     }
 
-    public List<FoodId> getOrder(int openRegister) 
+    public List<FoodId> getOrder() 
     {
-        if (openRegister > counterPositions.Length)
+        if (customerManager.SetToPickupCounter(this))
         {
-            //No open counter, this will change pathing when this is more advanced
-        }
-        else
-        {
-            transform.position = counterPositions[openRegister];
             state = AiState.Waiting;
         }
+        else//We can use this null return later to signify that the order cannot be taken
+        {
+            return null;
+        }
         return order; 
+    }
+
+    public void MoveToStation(int num)
+    {
+        if (num < counterPositions.Length)
+        {
+            transform.position = counterPositions[num];
+        }
     }
 }

@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerInventory = new FoodItem[1];
+        playerInventory = new FoodItem[1] { null };
         isInteracting= false;
     }
 
