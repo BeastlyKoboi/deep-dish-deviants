@@ -76,11 +76,11 @@ public class Controller : MonoBehaviour
         //transform.rotation = Quaternion.LookRotation(Vector3.forward, direction);
     }
 
-    public void OnFire(InputAction.CallbackContext context)
+    public void OnInteract(InputAction.CallbackContext context)
     {
        if(context.performed)
         {
-            GetComponent<Player>().isInteracting = true;
+            player.isInteracting = true;
 
         }
         
