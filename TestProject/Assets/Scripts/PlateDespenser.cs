@@ -7,18 +7,23 @@ public class PlateDespenser : Station
 {
     [SerializeField]
     Plate plate;
+
+    [SerializeField]
+    Icon icon;
     // Start is called before the first frame update
     void Start()
     {
-        
+        icon = Instantiate<Icon>(icon);
+        icon.transform.position = gameObject.transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
+        icon.SetIconType(FoodId.plate);
         if (!isInteractable)
         {
-            GetComponent<SpriteRenderer>().color = Color.black;
+            GetComponent<SpriteRenderer>().color = Color.gray;
         }
         else
         {

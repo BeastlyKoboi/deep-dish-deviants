@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public enum AiState
@@ -86,40 +88,43 @@ public class Customer : MonoBehaviour
         float successPercentile = 1;
         for(int i = 0; i < pizza.coreFoodlist.Count; i++)
         {
+            bool found = false;
             //If uncooked or overcooked
             if (pizza.coreFoodlist[i].foodState == CookState.raw || pizza.coreFoodlist[i].foodState == CookState.burnt)
             {
-                successPercentile -= (1 / (order.Count / 2)) * (order.Count - pizza.coreFoodlist.Count);
+                successPercentile -= (1f / ((float)order.Count / 2f));
             }
             if (i > order.Count)//extra unexpected toping
             {
                 //Reduce percentile
-                successPercentile -= 1 / order.Count;
-                continue;
+                successPercentile -= 1f / ((float)order.Count / 2f);
+                found = true;
             }
             for (int j = 0; j < order.Count; j++)
             {
                 if (pizza.coreFoodlist[i].id == order[j])//topping exists on pizza
                 {
-                    continue;
+                    found = true;
                 }
             }
-            //This occurs if the topping does not exist
-            successPercentile -= 1 / order.Count;
+            if (!found)
+                successPercentile -= 1f / ((float)order.Count / 2f);
         }
         if (order.Count > pizza.coreFoodlist.Count)//Missing ingredients
         {
-            successPercentile -= (1 / (order.Count / 2)) * (order.Count - pizza.coreFoodlist.Count);
+            successPercentile -= (1f / (((float)order.Count / 2f)) / 2f);
         }
 
         //+- 30 based on difference of patience from max patience. Value modified is based on percent of time taken with leniency based off difficulty
-        successPercentile += .3f * ((patience + (maxPatience / 2 * (1 - difficultyFloat))) - maxPatience) / maxPatience;
+        successPercentile += .3f * ((patience + (maxPatience / 2f * (1f - difficultyFloat))) - maxPatience) / maxPatience;
 
         if (!pizza.IsSorted())
             successPercentile -= .3f;
 
         if (successPercentile < 0)
-            successPercentile = 0;
+        {
+            successPercentile += .05f;
+        }
 
         state = AiState.Leaving;
 
