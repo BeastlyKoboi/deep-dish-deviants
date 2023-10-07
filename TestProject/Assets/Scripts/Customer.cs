@@ -121,9 +121,9 @@ public class Customer : MonoBehaviour
         if (!pizza.IsSorted())
             successPercentile -= .3f;
 
-        if (successPercentile < 0)
+        if (successPercentile <= .05f)
         {
-            successPercentile += .05f;
+            successPercentile = .05f;
         }
 
         state = AiState.Leaving;
