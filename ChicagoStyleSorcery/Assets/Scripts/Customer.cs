@@ -77,7 +77,6 @@ public class Customer : MonoBehaviour
         }
     }
 
-    //TODO: integrate ingredient states once they exist
     /// <summary>
     /// Reviews a received pizza order
     /// </summary>
@@ -92,12 +91,12 @@ public class Customer : MonoBehaviour
             //If uncooked or overcooked
             if (pizza.coreFoodlist[i].foodState == CookState.raw || pizza.coreFoodlist[i].foodState == CookState.burnt)
             {
-                successPercentile -= (1f / ((float)order.Count / 2f));
+                successPercentile -= (1f / ((float)order.Count / 4f));
             }
             if (i > order.Count)//extra unexpected toping
             {
                 //Reduce percentile
-                successPercentile -= 1f / ((float)order.Count / 2f);
+                successPercentile -= 1f / ((float)order.Count / 4f);
                 found = true;
             }
             for (int j = 0; j < order.Count; j++)
@@ -112,7 +111,7 @@ public class Customer : MonoBehaviour
         }
         if (order.Count > pizza.coreFoodlist.Count)//Missing ingredients
         {
-            successPercentile -= (1f / (((float)order.Count / 2f)) / 2f);
+            successPercentile -= (1f / (((float)order.Count / 4f)));
         }
 
         //+- 30 based on difference of patience from max patience. Value modified is based on percent of time taken with leniency based off difficulty
@@ -121,7 +120,7 @@ public class Customer : MonoBehaviour
         if (!pizza.IsSorted())
             successPercentile -= .3f;
 
-        if (successPercentile <= .05f)
+        if (successPercentile < .05f)
         {
             successPercentile = .05f;
         }
