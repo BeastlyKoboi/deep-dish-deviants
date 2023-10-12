@@ -42,29 +42,6 @@ public class Counter : Station
         {
             GetComponent<SpriteRenderer>().color = normalColor;
         }
-        
-        /*
-        if (inventory[0] != null)
-        {
-            if (inventory[0].id == FoodId.dough)
-            {
-                GetComponent<SpriteRenderer>().color = Color.cyan;
-            }
-            if (inventory[0].id == FoodId.cheese)
-            {
-                GetComponent<SpriteRenderer>().color = Color.yellow;
-            }
-            if (inventory[0].id == FoodId.sauce)
-            {
-                GetComponent<SpriteRenderer>().color = Color.red;
-            }
-            if (inventory[0].id == FoodId.plate)
-            {
-                GetComponent<SpriteRenderer>().color = Color.black;
-            }
-            //GetComponent<SpriteRenderer>().color = Color.black;
-        }*/
-
     }
     
     public override void onInteract()
@@ -96,6 +73,14 @@ public class Counter : Station
             player.playerInventory[0] = tempIngredient;
         }
 
+        SetIcons();
+    }
+
+    /// <summary>
+    /// Sets the icons for the given counter, moved out of Interact method for organization and flexibility
+    /// </summary>
+    public void SetIcons()
+    {
         if (iconList.Count == 0) //Must happen here or else original icon will not have time to instantiate, unfortunately means this is hardcoded until I find a better solution
         {
             iconList.Add(icon);
@@ -127,9 +112,8 @@ public class Counter : Station
             for (int i = 0; i < tempPlate.coreFoodlist.Count; i++)
             {
                 if (i < iconList.Count)//Temp saftey net
-                    iconList[i+1].SetIconType(tempPlate.coreFoodlist[i]);
+                    iconList[i + 1].SetIconType(tempPlate.coreFoodlist[i]);
             }
         }
     }
- 
 }

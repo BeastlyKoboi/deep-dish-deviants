@@ -84,7 +84,7 @@ public class Player : MonoBehaviour
             cutCoolDownActive = false;
         }
 
-
+        //Set constructed icons to player position each frame
         icon.transform.position = gameObject.transform.position;
         icon2.transform.position = gameObject.transform.position;
         icon3.transform.position = gameObject.transform.position;
@@ -101,16 +101,16 @@ public class Player : MonoBehaviour
             iconList.Add(icon4);
         }
 
-        for (int i = 0; i < iconList.Count; i++)//Invis all before reset
+        for (int i = 0; i < iconList.Count; i++)//Make all icons invisible so they can be refilled
         {
             iconList[i].Invisible();
         }
 
-        if (playerInventory[0] == null)//all invis
+        if (playerInventory[0] == null)//Leave all icons invisible because there is nothing
         {
             //Leave invis
         }
-        else if (playerInventory[0].id != FoodId.plate)//All but 1 invis
+        else if (playerInventory[0].id != FoodId.plate)//Only bottom icon is filled
         {
             iconList[0].SetIconType(playerInventory[0]);
         }
@@ -125,75 +125,6 @@ public class Player : MonoBehaviour
             }
         }
 
-        /*
-        if (playerInventory[0] != null)
-        {
-            switch (playerInventory[0].id)
-            {
-                case FoodId.dough:
-                    if (playerInventory[0].foodState == CookState.raw)
-                    {
-                        GetComponent<SpriteRenderer>().color = Color.cyan;
-                    }
-                    else if (playerInventory[0].foodState == CookState.cooked)
-                    {
-                        GetComponent<SpriteRenderer>().color = Color.gray;
-                    }
-                    else if (playerInventory[0].foodState == CookState.burnt)
-                    {
-                        GetComponent<SpriteRenderer>().color = Color.magenta;
-                    }
-                    break;
-                 case FoodId.cheese:
-                    if (playerInventory[0].foodState == CookState.raw)
-                    {
-                        GetComponent<SpriteRenderer>().color = Color.yellow;
-                    }
-                    else if (playerInventory[0].foodState == CookState.cooked)
-                    {
-                        GetComponent<SpriteRenderer>().color = Color.gray;
-                    }
-                    else if (playerInventory[0].foodState == CookState.burnt)
-                    {
-                        GetComponent<SpriteRenderer>().color = Color.magenta;
-                    }
-                    break;
-                 case FoodId.sauce:
-                    if (playerInventory[0].foodState == CookState.raw)
-                    {
-                        GetComponent<SpriteRenderer>().color = Color.red;
-                    }
-                    else if (playerInventory[0].foodState == CookState.cooked)
-                    {
-                        GetComponent<SpriteRenderer>().color = Color.gray;
-                    }
-                    else if (playerInventory[0].foodState == CookState.burnt)
-                    {
-                        GetComponent<SpriteRenderer>().color = Color.magenta;
-                    }
-                    break;
-                case FoodId.plate:
-                    if (playerInventory[0].foodState == CookState.raw)
-                    {
-                        GetComponent<SpriteRenderer>().color = Color.black;
-                    }
-                    else if (playerInventory[0].foodState == CookState.cooked)
-                    {
-                        GetComponent<SpriteRenderer>().color = Color.gray;
-                    }
-                    else if (playerInventory[0].foodState == CookState.burnt)
-                    {
-                        GetComponent<SpriteRenderer>().color = Color.magenta;
-                    }
-                    break;
-            }
-        }
-        
-        else
-        {
-           GetComponent<SpriteRenderer>().color = Color.white;
-
-        }*/
         GetComponent<SpriteRenderer>().color = Color.white;
     }
 
@@ -225,6 +156,7 @@ public class Player : MonoBehaviour
                             f.foodState = CookState.burnt;
                         }
                         counterScripts[i].inventory[0] = tempPlate;
+                        counterScripts[i].SetIcons();
                     }
                 }
             }
