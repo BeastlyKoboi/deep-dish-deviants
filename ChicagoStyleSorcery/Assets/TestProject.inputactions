@@ -49,6 +49,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "CutMagic",
+                    "type": "Button",
+                    "id": "1ade242c-42f7-49ea-ba80-4afe7dd76ec8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "KneedMagic",
+                    "type": "Button",
+                    "id": "f88c78ff-841b-48b2-8c1a-78419c1e0c67",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -302,6 +320,28 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "FireMagic",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2dfee96e-ef39-4731-948e-dbbfa679f860",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "CutMagic",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "119ec0b8-b53a-4c69-9ee8-d6e5c134f690",
+                    "path": "<Keyboard>/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "KneedMagic",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

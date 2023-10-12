@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -7,6 +8,14 @@ public class Player : MonoBehaviour
 
     public FoodItem[] playerInventory;
     private List<Icon> iconList;
+    public float fireCoolDown;
+    public bool fireCoolDownActive;
+    public float kneedCoolDown;
+    public bool kneedCoolDownActive;
+    public float cutCoolDown;
+    public bool cutCoolDownActive;
+
+    [SerializeField] private List<Counter> counterScripts;
 
     [SerializeField]
     private Icon icon;
@@ -20,7 +29,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         playerInventory = new FoodItem[1] { null };
-        isInteracting= false;
+        isInteracting = false;
         icon4 = Instantiate(icon);
         icon3 = Instantiate(icon);
         icon2 = Instantiate(icon);
@@ -30,11 +39,52 @@ public class Player : MonoBehaviour
         icon3.transform.position = gameObject.transform.position;
         icon4.transform.position = gameObject.transform.position;
         iconList = new List<Icon>();
+        fireCoolDown = 0;
+        fireCoolDownActive = false;
+        kneedCoolDown = 0;
+        kneedCoolDownActive = false;
+        cutCoolDown = 0;
+        cutCoolDownActive = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        //updates if time if cooldown is active
+        if (fireCoolDown > 0 && fireCoolDownActive)
+        {
+            fireCoolDown -= Time.deltaTime;
+        }
+        // stops cooldown if it is below or at 0
+        if (fireCoolDown <= 0)
+        {
+            fireCoolDown = 0;
+            fireCoolDownActive = false;
+        }
+        //updates if time if cooldown is active
+        if (kneedCoolDown > 0 && kneedCoolDownActive)
+        {
+            kneedCoolDown -= Time.deltaTime;
+        }
+        // stops cooldown if it is below or at 0
+        if (kneedCoolDown <= 0)
+        {
+            kneedCoolDown = 0;
+            kneedCoolDownActive = false;
+        }
+        //updates if time if cooldown is active
+        if (cutCoolDown > 0 && cutCoolDownActive)
+        {
+            cutCoolDown -= Time.deltaTime;
+        }
+        // stops cooldown if it is below or at 0
+        if (cutCoolDown <= 0)
+        {
+            cutCoolDown = 0;
+            cutCoolDownActive = false;
+        }
+
+
         icon.transform.position = gameObject.transform.position;
         icon2.transform.position = gameObject.transform.position;
         icon3.transform.position = gameObject.transform.position;
@@ -152,41 +202,99 @@ public class Player : MonoBehaviour
     /// </summary>
     public void FireMagic()
     {
-        //check is player is holding something
-        if (playerInventory[0] != null)
+        //check if cooldown is inactive
+        if (!fireCoolDownActive)
         {
-            //if it is not plate, then it may proceed
-            if (playerInventory[0].id == FoodId.dough || playerInventory[0].id == FoodId.sauce || playerInventory[0].id == FoodId.cheese)
+            // cycle through counters and check which one player is trying to interact with
+            for (int i = 0; i < counterScripts.Count; i++)
             {
-                // if raw, made cooked
-                if (playerInventory[0].foodState == CookState.raw)
+                if (counterScripts[i].isInteractable && isInteracting && counterScripts[i].inventory[0] != null && counterScripts[i].inventory[0].id == FoodId.plate)
                 {
-                    playerInventory[0].foodState = CookState.cooked;
-                }
-                // if cooked, made burnt
-                else if (playerInventory[0].foodState == CookState.cooked)
-                {
-                    playerInventory[0].foodState = CookState.burnt;
-                }
-            }
-            else
-            {
-                Plate tempPlate = (Plate)playerInventory[0];
-                foreach (FoodItem f in tempPlate.coreFoodlist)
-                {
-                    // if raw, made cooked
-                    if (f.foodState == CookState.raw)
+                    //cycle through plate inventory and place new food items in new plate with different cooked states
+                    Plate tempPlate = (Plate)counterScripts[i].inventory[0];
+                    foreach (FoodItem f in tempPlate.coreFoodlist)
                     {
-                        f.foodState = CookState.cooked;
-                    }
-                    // if cooked, made burnt
-                    else if (f.foodState == CookState.cooked)
-                    {
-                        f.foodState = CookState.burnt;
+                        // if raw, made cooked
+                        if (f.foodState == CookState.raw)
+                        {
+                            f.foodState = CookState.cooked;
+                        }
+                        // if cooked, made burnt
+                        else if (f.foodState == CookState.cooked)
+                        {
+                            f.foodState = CookState.burnt;
+                        }
+                        counterScripts[i].inventory[0] = tempPlate;
                     }
                 }
-                playerInventory[0] = tempPlate;
             }
+            fireCoolDown = 3;
+            fireCoolDownActive = true;
+        }
+    }
+
+    /// <summary>
+    /// Cuts toppings that have the cut function
+    /// </summary>
+    public void CutMagic()
+    {
+        if (!cutCoolDownActive)
+        {
+            for (int i = 0; i < counterScripts.Count; i++)
+            {
+                if (counterScripts[i].isInteractable && counterScripts[i].inventory[0] != null && isInteracting)
+                {
+                    /*
+                    if (counterScripts[i].inventory[0].id == FoodId.mushroom || 
+                        counterScripts[i].inventory[0].id == FoodId.onion || 
+                        counterScripts[i].inventory[0].id == FoodId.olive || 
+                        counterScripts[i].inventory[0].id == FoodId.pepper  ||
+                        counterScripts[i].inventory[0].id == FoodId.pepperoni ||
+                        counterScripts[i].inventory[0].id == FoodId.bacon ||
+                        counterScripts[i].inventory[0].id == FoodId.pineapple)
+                    {
+                        // if uncut, cut
+                        if (counterScripts[i].inventory[0].cutState == CutState.uncut)
+                        {
+                            counterScripts[i].inventory[0].cutState = CutState.cut;
+                        }
+                    }
+                    */
+                }
+            }
+            cutCoolDown = 3;
+            cutCoolDownActive = true;
+        }
+    }
+
+    /// <summary>
+    /// Kneeds dough and beef
+    /// </summary>
+    public void KneedMagic()
+    {
+        if (!kneedCoolDownActive)
+        {
+            //checks if player is interacting with a counter
+            for (int i = 0; i < counterScripts.Count; i++)
+            {
+                if (counterScripts[i].isInteractable && counterScripts[i].inventory[0] != null && isInteracting)
+                {
+                    /*
+                    // checks if ID is beef or dough
+                    if (counterScripts[i].inventory[0].id == FoodId.dough ||
+                        counterScripts[i].inventory[0].id == FoodId.beef)
+                    {
+                        // if unkneeded, kneed
+                        if (counterScripts[i].inventory[0].kneedState == KneedState.unkneeded)
+                        {
+                            counterScripts[i].inventory[0].kneedState == KneedState.kneeded;
+                        }
+                    }
+                    */
+                }
+            }
+            kneedCoolDown = 3;
+            kneedCoolDownActive = true;
         }
     }
 }
