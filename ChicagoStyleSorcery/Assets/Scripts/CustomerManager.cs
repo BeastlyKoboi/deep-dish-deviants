@@ -36,7 +36,7 @@ public class CustomerManager : MonoBehaviour
     /// </summary>
     /// <param name="customer">The customer in question</param>
     /// <returns>If it is possible to find an open counter</returns>
-    public bool SetToPickupCounter(Customer customer)
+    public bool FindPickupCounter(Customer customer)
     {
         int counter = -1;
         //Find an open register, will choose last open one
@@ -54,12 +54,16 @@ public class CustomerManager : MonoBehaviour
 
         if (customer != null)
         {
-            pickUpStationList[counter].currentCustomer = customer;
             customer.MoveToStation(counter);
             
             return true;
         }
         return false;
+    }
+
+    public void SetToPickupCounter(int counter, Customer c)
+    {
+        pickUpStationList[counter].currentCustomer = c;
     }
 
     /// <summary>

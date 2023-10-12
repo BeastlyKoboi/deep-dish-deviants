@@ -100,6 +100,10 @@ public class Customer : MonoBehaviour
                     transform.position = Vector3.Lerp(lerpAnchor, pickupPositions[pickupChosen], t);//Move to destination in an interlopian curve
                     lerpTimer += Time.deltaTime;
                 }
+                else
+                {
+                    customerManager.SetToPickupCounter(pickupChosen, gameObject.GetComponent<Customer>());
+                }
                 break;
             case AiState.Leaving://Go to door and despawn
                 if (lerpTimer < lerpDurration)
@@ -176,7 +180,7 @@ public class Customer : MonoBehaviour
 
     public List<FoodId> getOrder() 
     {
-        if (customerManager.SetToPickupCounter(gameObject.GetComponent<Customer>()))
+        if (customerManager.FindPickupCounter(gameObject.GetComponent<Customer>()))
         {
             state = AiState.Waiting;
         }
