@@ -89,7 +89,28 @@ public class Controller : MonoBehaviour
     {
         if (context.performed)
         {
+            player.isInteracting = true;
             player.FireMagic();
+            player.isInteracting = false;
+
+        }
+    }
+    public void OnCutMagic(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            player.isInteracting = true;
+            player.CutMagic();
+            player.isInteracting = false;
+        }
+    }
+    public void OnKneedMagic(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            player.isInteracting = true;
+            player.KneedMagic();
+            player.isInteracting = false;
         }
     }
 
