@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using Unity.VisualScripting;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 public enum AiState
@@ -32,11 +34,18 @@ public class Customer : MonoBehaviour
     [SerializeField]
     private Vector3 registerPosition;
     [SerializeField]
-    private Vector3[] counterPositions; 
+    private Vector3[] pickupPositions;
+    [SerializeField]
+    private Vector3 doorPosition;
+
+    private Vector3 lerpAnchor= Vector3.zero;
+    private static float lerpDurration = 3f;
+    private float lerpTimer = 0;
 
     protected float patience;
     private AiState state;
     protected bool patienceFreeze;
+    public int pickupChosen;
 
     void Start()
     {
@@ -50,29 +59,58 @@ public class Customer : MonoBehaviour
     {
         if (!patienceFreeze)
             patience -= Time.deltaTime;
-        if (patience <= 0 ) 
+        if (patience <= 0 )
+        {//TODO: address issue where this can cause problems in a line if this customer is attached to the register
             state = AiState.Leaving;
+            lerpTimer = 0f;
+            lerpAnchor = transform.position;
+        }
 
         //AI
         switch ( state )
         {
-            case AiState.Entering:
-                transform.position = registerPosition;
-                state = AiState.Ordering;
-                //Pathing for later
+            case AiState.Entering://Spawn at front Door
+                transform.position = doorPosition;
+                lerpAnchor = transform.position;
+                lerpTimer = 0;
+                state = AiState.InLine;
                 break;
-            case AiState.InLine:
-                //Pathing for later
+            case AiState.InLine://Wait in line for register
+                if (lerpTimer < lerpDurration)
+                {
+                    float t = lerpTimer / lerpDurration;
+                    t = t * t * (3f - 2f * t);
+                    transform.position = Vector3.Lerp(lerpAnchor, registerPosition, t);//Move to destination in an interlopian curve
+                    lerpTimer += Time.deltaTime;
+                }
+                else
+                {
+                    state = AiState.Ordering;
+                    lerpTimer = 0;
+                    customerManager.SetToRegister(gameObject.GetComponent<Customer>());
+                }
                 break;
-            case AiState.Ordering:
-                //Link to ordering counter so order can be received
+            case AiState.Ordering://Wait at register
                 break;
-            case AiState.Waiting:
-                //Link to counter so pizza cn be received
+            case AiState.Waiting://Go to correct pickup station and wait
+                if (lerpTimer < lerpDurration)
+                {
+                    float t = lerpTimer / lerpDurration;
+                    t = t * t * (3f - 2f * t);
+                    transform.position = Vector3.Lerp(lerpAnchor, pickupPositions[pickupChosen], t);//Move to destination in an interlopian curve
+                    lerpTimer += Time.deltaTime;
+                }
                 break;
-            case AiState.Leaving:
-                Destroy(gameObject);
-                //Pathing for later
+            case AiState.Leaving://Go to door and despawn
+                if (lerpTimer < lerpDurration)
+                {
+                    float t = lerpTimer / lerpDurration;
+                    t = t * t * (3f - 2f * t);
+                    transform.position = Vector3.Lerp(lerpAnchor, doorPosition, t);//Move to destination in an interlopian curve
+                    lerpTimer += Time.deltaTime;
+                }
+                else
+                    Destroy(gameObject);
                 break;
         }
     }
@@ -126,6 +164,8 @@ public class Customer : MonoBehaviour
         }
 
         state = AiState.Leaving;
+        lerpTimer = 0f;
+        lerpAnchor = transform.position;
 
         //For now we make a new customer
         customerManager.GenerateCustomer();
@@ -149,9 +189,10 @@ public class Customer : MonoBehaviour
 
     public void MoveToStation(int num)
     {
-        if (num < counterPositions.Length)
+        if (num < pickupPositions.Length)
         {
-            transform.position = counterPositions[num];
+            pickupChosen = num;
+            lerpAnchor = transform.position;
         }
     }
 }

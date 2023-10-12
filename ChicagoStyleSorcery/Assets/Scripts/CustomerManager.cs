@@ -31,7 +31,11 @@ public class CustomerManager : MonoBehaviour
         
     }
 
-    //Will find a pickup counter for the customer, will return false if not possible
+    /// <summary>
+    /// Will find a pickup counter for the customer, will return false if not possible
+    /// </summary>
+    /// <param name="customer">The customer in question</param>
+    /// <returns>If it is possible to find an open counter</returns>
     public bool SetToPickupCounter(Customer customer)
     {
         int counter = -1;
@@ -58,19 +62,38 @@ public class CustomerManager : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// Link customer to the register
+    /// </summary>
+    /// <param name="c">The customer in question</param>
+    public void SetToRegister(Customer c)
+    {
+        register.currentCustomer = c;
+    }
+
+    /// <summary>
+    /// Add money based on order
+    /// </summary>
+    /// <param name="mult">Multiplier for money gained</param>
     public void AddMoney(float mult)
     {
         //hardcoded to $10 for now
         gameManager.addScore(10, mult);
     }
 
+    /// <summary>
+    /// Make a new cutomer
+    /// </summary>
     public void GenerateCustomer()
     {
         Customer c = Instantiate(customerDefault);
         c.GetComponent<Customer>().customerManager = gameObject.GetComponent<CustomerManager>();
-        register.currentCustomer = c;
     }
 
+    /// <summary>
+    /// Elevator method for GameManager.ChangeOrder
+    /// </summary>
+    /// <param name="pizza"></param>
     public void ChangeOrder(List<FoodId> pizza)
     {
         gameManager.ChangeOrder(pizza);

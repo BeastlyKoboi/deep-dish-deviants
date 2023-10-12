@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8876344907016882963
 SpriteRenderer:
@@ -102,5 +102,7 @@ MonoBehaviour:
   maxPatience: 120
   difficultyFloat: 0.2
   registerPosition: {x: -3, y: -1.99, z: 0}
-  counterPositions:
+  pickupPositions:
   - {x: -3, y: 3, z: 0}
+  doorPosition: {x: -8, y: 4, z: 0}
+  pickupChosen: 0
