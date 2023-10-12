@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,7 +15,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<GarbageCan> garbageScripts;
     [SerializeField] private List<CoreIngredientStation> coreStations;
     [SerializeField] private PlateDespenser plateDespenser;
-    [SerializeField] private List<PickUpStation> pickUpStations; 
+    [SerializeField] private List<PickUpStation> pickUpStations;
+    private List<Station> allStations = new List<Station>();
+
     // UI Elements
     [SerializeField] private TextMeshProUGUI cashUI;
     [SerializeField] private TextMeshProUGUI clockUI;
@@ -30,7 +33,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float hourLength = 5.0f;
 
     [SerializeField] private List<GameObject> currentCustomers = new List<GameObject>();
-
+ 
     // Properties 
     public float Cash
     {
@@ -43,11 +46,19 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         pausedMenu.SetActive(false);
+        allStations.Add(registerScript);
+        allStations.Add(plateDespenser);
+        allStations.AddRange(counterScripts);
+        allStations.AddRange(pickUpStations);
+        allStations.AddRange(garbageScripts);
+        allStations.AddRange(coreStations);
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         InteractWithStation();
         // Update the clock
         currentTime += Time.deltaTime;
@@ -84,60 +95,41 @@ public class GameManager : MonoBehaviour
     // if player is trying to interact with that station it will do something
     public void InteractWithStation()
     {
-        if (registerScript.isInteractable && player.isInteracting)
+        // gets station closest to player
+        Station closestStation = GetStationClosestToPlayer();
+        // if that station is interactable, change color
+        if(closestStation.isInteractable)
         {
-            registerScript.onInteract();
-            player.isInteracting = false;
+            closestStation.GetComponent<SpriteRenderer>().color = closestStation.triggerColor;
         }
-        for(int i = 0; i <counterScripts.Count; i++)
+      
+        // if player is trying to interact with the station, call that stations interact method
+        if (closestStation != null && closestStation.isInteractable && player.isInteracting)
         {
-            if (counterScripts[i].isInteractable && player.isInteracting)
-            {
-                //Debug.Log("interacting");
-                //player.GetComponent<SpriteRenderer>().color= Color.red;
-                counterScripts[i].onInteract();
-                player.isInteracting = false;
-            }
-           
-
-        }
-        for (int i = 0; i < garbageScripts.Count; i++)
-        {
-            if (garbageScripts[i].isInteractable && player.isInteracting)
-            {
-                //Debug.Log("interacting");
-                //player.GetComponent<SpriteRenderer>().color= Color.red;
-                garbageScripts[i].onInteract();
-                player.isInteracting = false;
-            }
-
-
-        }
-        for(int i = 0; i < coreStations.Count; i++)
-        {
-            if (coreStations[i].isInteractable && player.isInteracting)
-            {
-                coreStations[i].onInteract();
-                player.isInteracting = false;
-            }
+            closestStation.onInteract();
+            player.isInteracting = false; 
         }
 
-
-        for (int i = 0; i < pickUpStations.Count; i++)
-        {
-            if (pickUpStations[i].isInteractable && player.isInteracting)
-            {
-                pickUpStations[i].onInteract();
-                player.isInteracting = false;
-            }
-        }
-
-        if (plateDespenser.isInteractable && player.isInteracting)
-        {
-            plateDespenser.onInteract();
-            player.isInteracting = false;
-        }
+       
         player.isInteracting = false;
+    }
+
+    // returns the station closest to the player
+    public Station GetStationClosestToPlayer()
+    {
+        float closestToPlayer = float.MaxValue;
+        Station closestStation=  null;
+        // loops through all the stations and calculates distance between the station and the player
+        // when it finds the closest station it sets closestStation = that station
+        for(int i = 0; i < allStations.Count; i++)
+        {
+            if (Vector3.Distance(player.transform.position, allStations[i].transform.position) < closestToPlayer)
+            {
+                closestToPlayer = Vector3.Distance(player.transform.position, allStations[i].transform.position);
+                closestStation = allStations[i];
+            }
+        }
+        return closestStation;
     }
 
     public void addScore(int value, float mult)
@@ -179,5 +171,13 @@ public class GameManager : MonoBehaviour
                 break;
         }
         return type;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        for(int i =0; i < allStations.Count; i++)
+        {
+            Gizmos.DrawLine(player.transform.position, GetStationClosestToPlayer().transform.position);
+        }
     }
 }

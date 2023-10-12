@@ -16,6 +16,8 @@ public class PickUpStation : Station
     void Start()
     {
         currentCustomer = null;
+        normalColor = Color.gray;
+        triggerColor = Color.blue;
     }
 
     // Update is called once per frame
@@ -23,12 +25,9 @@ public class PickUpStation : Station
     {
         if (!isInteractable)
         {
-            GetComponent<SpriteRenderer>().color = Color.gray;
+            GetComponent<SpriteRenderer>().color = normalColor;
         }
-        else
-        {
-            GetComponent<SpriteRenderer>().color = Color.blue;
-        }
+        
     }
 
     public override void onInteract()

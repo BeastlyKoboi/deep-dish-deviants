@@ -30,6 +30,9 @@ public class Counter : Station
         icon3.transform.position = gameObject.transform.position;
         icon4.transform.position = gameObject.transform.position;
         iconList = new List<Icon>();
+
+        normalColor = Color.blue;
+        triggerColor = Color.red;
     }
 
     // Update is called once per frame
@@ -37,12 +40,9 @@ public class Counter : Station
     {       
         if (!isInteractable)
         {
-            GetComponent<SpriteRenderer>().color = Color.blue;
+            GetComponent<SpriteRenderer>().color = normalColor;
         }
-        else
-        {
-            GetComponent<SpriteRenderer>().color = Color.red;
-        }
+        
         /*
         if (inventory[0] != null)
         {
