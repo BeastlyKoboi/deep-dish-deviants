@@ -61,9 +61,16 @@ public class CustomerManager : MonoBehaviour
         return false;
     }
 
+
+    /// <summary>
+    /// Link customer to a given pickup counter
+    /// </summary>
+    /// <param name="counter">Counter to link to</param>
+    /// <param name="c">Customer to link</param>
     public void SetToPickupCounter(int counter, Customer c)
     {
-        pickUpStationList[counter].currentCustomer = c;
+        if (pickUpStationList[i].currentCustomer == null) //Should always be true, but just in case
+            pickUpStationList[counter].currentCustomer = c;
     }
 
     /// <summary>
