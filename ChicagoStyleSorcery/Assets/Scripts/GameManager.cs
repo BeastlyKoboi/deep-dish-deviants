@@ -128,6 +128,8 @@ public class GameManager : MonoBehaviour
                 closestToPlayer = Vector3.Distance(player.transform.position, allStations[i].transform.position);
                 closestStation = allStations[i];
             }
+            else
+                allStations[i].GetComponent<SpriteRenderer>().color = allStations[i].normalColor;
         }
         return closestStation;
     }
