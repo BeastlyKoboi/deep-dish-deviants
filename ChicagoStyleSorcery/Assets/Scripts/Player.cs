@@ -158,10 +158,10 @@ public class Player : MonoBehaviour
                         counterScripts[i].inventory[0] = tempPlate;
                         counterScripts[i].SetIcons();
                     }
+                    fireCoolDown = 3;
+                    fireCoolDownActive = true;
                 }
             }
-            fireCoolDown = 3;
-            fireCoolDownActive = true;
         }
     }
 
@@ -192,10 +192,10 @@ public class Player : MonoBehaviour
                         }
                     }
                     */
+                    cutCoolDown = 3;
+                    cutCoolDownActive = true;
                 }
             }
-            cutCoolDown = 3;
-            cutCoolDownActive = true;
         }
     }
 
@@ -223,10 +223,10 @@ public class Player : MonoBehaviour
                         }
                     }
                     */
+                    kneedCoolDown = 3;
+                    kneedCoolDownActive = true;
                 }
             }
-            kneedCoolDown = 3;
-            kneedCoolDownActive = true;
         }
     }
 }
