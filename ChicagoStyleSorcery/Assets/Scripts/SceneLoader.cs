@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// Implementation mostly draws from this source.
+// In the future, I imagine each scene will have their own scene loader. 
+// And when the scene loader is passed to the next scene, it destroys itself. 
+// https://gamedevbeginner.com/how-to-load-a-new-scene-in-unity-with-a-loading-screen/#load_vs_load_async
 public class SceneLoader : MonoBehaviour
 {
     public GameObject loadingScreen;
     public CanvasGroup canvasGroup;
     public string sceneToLoad;
 
-    // Start is called before the first frame update
     void Start()
     {
         DontDestroyOnLoad(gameObject);
