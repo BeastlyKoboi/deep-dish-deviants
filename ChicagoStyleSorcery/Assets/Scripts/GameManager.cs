@@ -33,6 +33,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float hourLength = 5.0f;
 
     [SerializeField] private List<GameObject> currentCustomers = new List<GameObject>();
+
+    [SerializeField] private OrderTag tag1;
  
     // Properties 
     public float Cash
@@ -141,17 +143,19 @@ public class GameManager : MonoBehaviour
 
     public void ChangeOrder(List<FoodId> pizza)
     {
+        tag1.FillTag(pizza);
+        /*
         string order = "Order 1\n";
         for (int i = 0; i < pizza.Count; i++)
         {
             order += StringifyFoodId(pizza[i]) + "\n";
         }
-        order1.text = order;
+        order1.text = order;*/
     }
 
     public void EmptyOrder()
     {
-        order1.text = "Order 1";
+        tag1.EmptyTag();
     }
 
     public string StringifyFoodId(FoodId id)

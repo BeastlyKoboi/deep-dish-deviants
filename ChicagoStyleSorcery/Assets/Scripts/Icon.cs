@@ -52,6 +52,10 @@ public class Icon : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Set the icons image
+    /// </summary>
+    /// <param name="type">fooditem type</param>
     public void SetIconType(FoodId type)
     {
         iconType = type;
@@ -68,6 +72,31 @@ public class Icon : MonoBehaviour
                 break;
             case (FoodId.plate):
                 gameObject.GetComponent<SpriteRenderer>().sprite = plate[0];
+                break;
+        }
+    }
+
+    /// <summary>
+    /// Set the icon's image
+    /// </summary>
+    /// <param name="type">fooditem type</param>
+    /// <param name="state">state of food item, 0-raw, 1-cooked, 3-burnt</param>
+    public void SetIconType(FoodId type, int state)
+    {
+        iconType = type;
+        switch (iconType)
+        {
+            case (FoodId.dough):
+                gameObject.GetComponent<SpriteRenderer>().sprite = dough[state];
+                break;
+            case (FoodId.cheese):
+                gameObject.GetComponent<SpriteRenderer>().sprite = cheese[state];
+                break;
+            case (FoodId.sauce):
+                gameObject.GetComponent<SpriteRenderer>().sprite = sauce[state];
+                break;
+            case (FoodId.plate):
+                gameObject.GetComponent<SpriteRenderer>().sprite = plate[state];
                 break;
         }
     }
