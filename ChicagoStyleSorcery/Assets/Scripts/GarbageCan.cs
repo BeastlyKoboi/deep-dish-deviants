@@ -7,8 +7,8 @@ public class GarbageCan : Station
     // Start is called before the first frame update
     void Start()
     {
-        normalColor = Color.green;
-        triggerColor = Color.white;
+        normalColor = Color.white;
+        triggerColor = Color.green;
     }
 
     // Update is called once per frame

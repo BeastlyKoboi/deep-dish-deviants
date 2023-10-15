@@ -176,7 +176,7 @@ public class Player : MonoBehaviour
             {
                 if (counterScripts[i].isInteractable && counterScripts[i].inventory[0] != null && isInteracting)
                 {
-                    /*
+                    // while I (liam) am pretty sure this is unnessassary I am going to leave it in for now
                     if (counterScripts[i].inventory[0].id == FoodId.mushroom || 
                         counterScripts[i].inventory[0].id == FoodId.onion || 
                         counterScripts[i].inventory[0].id == FoodId.olive || 
@@ -191,7 +191,7 @@ public class Player : MonoBehaviour
                             counterScripts[i].inventory[0].cutState = CutState.cut;
                         }
                     }
-                    */
+                    
                     cutCoolDown = 3;
                     cutCoolDownActive = true;
                 }
@@ -211,18 +211,18 @@ public class Player : MonoBehaviour
             {
                 if (counterScripts[i].isInteractable && counterScripts[i].inventory[0] != null && isInteracting)
                 {
-                    /*
+                    
                     // checks if ID is beef or dough
                     if (counterScripts[i].inventory[0].id == FoodId.dough ||
                         counterScripts[i].inventory[0].id == FoodId.beef)
                     {
                         // if unkneeded, kneed
-                        if (counterScripts[i].inventory[0].kneedState == KneedState.unkneeded)
+                        if (counterScripts[i].inventory[0].kneadState == KneadState.unkneaded)
                         {
-                            counterScripts[i].inventory[0].kneedState == KneedState.kneeded;
+                            counterScripts[i].inventory[0].kneadState = KneadState.kneaded;
                         }
                     }
-                    */
+                    
                     kneedCoolDown = 3;
                     kneedCoolDownActive = true;
                 }

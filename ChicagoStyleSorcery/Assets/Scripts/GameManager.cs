@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<CoreIngredientStation> coreStations;
     [SerializeField] private PlateDespenser plateDespenser;
     [SerializeField] private List<PickUpStation> pickUpStations;
+    [SerializeField] private List<ToppingStation> toppingStations;
     private List<Station> allStations = new List<Station>();
 
     // UI Elements
@@ -55,6 +56,7 @@ public class GameManager : MonoBehaviour
         allStations.AddRange(pickUpStations);
         allStations.AddRange(garbageScripts);
         allStations.AddRange(coreStations);
+        allStations.AddRange(toppingStations);
 
     }
 
@@ -183,11 +185,35 @@ public class GameManager : MonoBehaviour
             case FoodId.plate:
                 type = "Plate";
                 break;
+            case FoodId.onion:
+                type = "Onion";
+                break;
+            case FoodId.mushroom:
+                type = "Mushroom";
+                break;
+            case FoodId.olive:
+                type = "Olive";
+                break;
+            case FoodId.pepper:
+                type = "Bell Pepper";
+                break;
+            case FoodId.pepperoni:
+                type = "Pepperoni";
+                break;
+            case FoodId.beef:
+                type = "Ground Beef";
+                break;
+            case FoodId.bacon:
+                type = "Bacon";
+                break;
+            case FoodId.pineapple:
+                type = "Pineapple";
+                break;
         }
         return type;
     }
 
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {
         for(int i =0; i < allStations.Count; i++)
         {

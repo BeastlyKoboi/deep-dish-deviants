@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class Plate : FoodItem
 {
+    // list that contains all of the ingredients and toppings on any given pizza
+    // at the moment max amount of toppings is 3 so this list should be no larger than 6
     public List<FoodItem> coreFoodlist;
 
     public Plate()
     {
+        
         coreFoodlist = new List<FoodItem>();
     }
     // Start is called before the first frame update
@@ -15,6 +18,8 @@ public class Plate : FoodItem
     {
         coreFoodlist = new List<FoodItem>();
         id = FoodId.plate;
+        this.cutState = CutState.na;
+        this.kneadState= KneadState.na;
     }
 
     // Update is called once per frame
@@ -26,7 +31,7 @@ public class Plate : FoodItem
     // based on the ids of the ingredients. checks to see if pizza was made in the correct order
     public bool IsSorted()
     {
-        if (coreFoodlist.Count < 3)
+        if (coreFoodlist.Count < 6)
             return false;
         bool isSorted = true;
         for(int i = 0; i < 3; i++)
@@ -41,7 +46,7 @@ public class Plate : FoodItem
 
     public bool AddToPlate(FoodItem itemToAdd)
     {
-        if (itemToAdd.id != id && coreFoodlist.Count < 3)
+        if (itemToAdd.id != id && coreFoodlist.Count < 6)
         {
             coreFoodlist.Add(itemToAdd);
             return true;
