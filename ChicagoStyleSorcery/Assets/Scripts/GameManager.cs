@@ -23,10 +23,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI clockUI;
     [SerializeField] private TextMeshProUGUI order1;
     [SerializeField] private GameObject pausedMenu;
+    [SerializeField] private Animator IntroPopupAnimator;
 
     // Gameplay Variables 
     [SerializeField] private float _cash;
-    private bool isPaused = false; 
+    private bool isPaused = false;
     [SerializeField] private int currentDay = 1;
     [SerializeField] private int currentHour = 8;
     [SerializeField] private float currentTime = 0.0f;
@@ -35,7 +36,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<GameObject> currentCustomers = new List<GameObject>();
 
     [SerializeField] private OrderTag tag1;
- 
+
     // Properties 
     public float Cash
     {
@@ -54,14 +55,14 @@ public class GameManager : MonoBehaviour
         allStations.AddRange(pickUpStations);
         allStations.AddRange(garbageScripts);
         allStations.AddRange(coreStations);
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
         InteractWithStation();
+
         // Update the clock
         currentTime += Time.deltaTime;
         if (currentTime >= hourLength)
@@ -71,9 +72,16 @@ public class GameManager : MonoBehaviour
                 currentHour = 1;
 
             currentTime -= hourLength;
-            clockUI.text = $"{currentHour}:00 {(currentHour < 8? "PM": "AM")}";
+            clockUI.text = $"{currentHour}:00 {(currentHour < 8 ? "PM" : "AM")}";
         }
+
+        // Update the 
         cashUI.text = $"${_cash - _cash % .01}";
+    }
+
+    public void AnimateIntroPopup()
+    {
+        IntroPopupAnimator.SetTrigger("Closed");
     }
 
     public void TogglePause()
