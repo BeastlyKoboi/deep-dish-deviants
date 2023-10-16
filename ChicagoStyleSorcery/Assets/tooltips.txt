@@ -1,0 +1,2 @@
+{"x": -505, "y": -310,"mainText":"To get your first order, go to the register and press E. Press tab/enter to get to next tooltip or backspace to turn them off."}
+{"x": 200, "y": 200,"mainText":"TBD! Press tab/enter to get to next tooltip or backspace to turn them off."}

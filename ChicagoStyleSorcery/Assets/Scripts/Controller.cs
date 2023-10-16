@@ -73,7 +73,7 @@ public class Controller : MonoBehaviour
     {
         direction = context.ReadValue<Vector2>();
 
-        //transform.rotation = Quaternion.LookRotation(Vector3.forward, direction);
+        transform.rotation = Quaternion.LookRotation(Vector3.forward, direction);
     }
 
     public void OnInteract(InputAction.CallbackContext context)
