@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 using static UnityEditor.Experimental.GraphView.GraphView;
@@ -20,23 +22,35 @@ public class GameManager : MonoBehaviour
     private List<Station> allStations = new List<Station>();
 
     // UI Elements
+    [SerializeField] private GameObject canvas;
     [SerializeField] private TextMeshProUGUI cashUI;
     [SerializeField] private TextMeshProUGUI clockUI;
     [SerializeField] private TextMeshProUGUI order1;
     [SerializeField] private GameObject pausedMenu;
     [SerializeField] private Animator IntroPopupAnimator;
+    [SerializeField] private GameObject tooltipPrefab;
+    [SerializeField] private GameObject tooltipParent; // Used to maintain visible order, Intro may pop up behind w/o
+    private TooltipInfo tooltip;
 
     // Gameplay Variables 
+    public enum GameState { Open, Closed };
+    [SerializeField] private GameState gameState;
     [SerializeField] private float _cash;
     private bool isPaused = false;
     [SerializeField] private int currentDay = 1;
     [SerializeField] private int currentHour = 8;
     [SerializeField] private float currentTime = 0.0f;
-    [SerializeField] private float hourLength = 5.0f;
+    [SerializeField] private float hourLength = 20.0f;
+    [SerializeField] private bool hasTutorial = true;
 
     [SerializeField] private List<GameObject> currentCustomers = new List<GameObject>();
 
     [SerializeField] private OrderTag tag1;
+
+    // Text Assets
+    public TextAsset tooltips;
+    string[] tooltipsJSON;
+    int currentTooltipNum = 0;
 
     // Properties 
     public float Cash
@@ -58,6 +72,14 @@ public class GameManager : MonoBehaviour
         allStations.AddRange(coreStations);
         allStations.AddRange(toppingStations);
 
+        if (hasTutorial)
+        {
+            tooltip = Instantiate(tooltipPrefab, tooltipParent.transform, false).GetComponent<TooltipInfo>(); 
+            string tooltipsString = tooltips.text;
+            tooltipsJSON = tooltipsString.Split(Environment.NewLine);
+
+            tooltip.Load(tooltipsJSON[currentTooltipNum]);
+        }
     }
 
     // Update is called once per frame
@@ -65,25 +87,84 @@ public class GameManager : MonoBehaviour
     {
         InteractWithStation();
 
-        // Update the clock
-        currentTime += Time.deltaTime;
-        if (currentTime >= hourLength)
+        // This is the beginnings of the day/night cycle
+        // I intend to fill out the BeginDay and EndDay methods 
+        // to handle the gameState. To that end I will need to work 
+        // others to implement a freeze state with other systems. 
+        // Most important now is one for Customers, and Aiden has 
+        // has already implemented this for customers and we just
+        // need to connect it with the game manager.
+        switch(gameState)
         {
-            currentHour++;
-            if (currentHour > 12)
-                currentHour = 1;
-
-            currentTime -= hourLength;
-            clockUI.text = $"{currentHour}:00 {(currentHour < 8 ? "PM" : "AM")}";
+            case GameState.Open:
+                UpdateClock();
+                break;
+            case GameState.Closed:
+                break;
         }
 
         // Update the 
         cashUI.text = $"${_cash - _cash % .01}";
     }
 
+    public void UpdateClock()
+    {
+        currentTime += Time.deltaTime;
+        if (currentTime >= hourLength)
+        {
+            currentHour++;
+            if (currentHour > 12)
+                currentHour = 1;
+            if (currentHour == 5)
+                EndDay();
+
+            currentTime -= hourLength;
+            clockUI.text = $"{currentHour}:00 {(currentHour < 8 ? "PM" : "AM")}";
+        }
+    }
+
+    // Eventually will force customers to leave,
+    // and pull up a screen to tally the restaurants gains and losses that day.
+    private void EndDay()
+    {
+        gameState = GameState.Closed;
+        // More stuff to come
+    }
+    // Eventually I hope to have it called on game start
+    // and then when prompted after a day has ended.
+    // This will restart the customers coming in and in effect allow the clock to work
+    private void BeginDay()
+    {
+        gameState = GameState.Open;
+        // more stuff to come
+    }
+
     public void AnimateIntroPopup()
     {
         IntroPopupAnimator.SetTrigger("Closed");
+
+    }
+
+    public void NextTooltip()
+    {
+        if (!hasTutorial)
+        {
+            tooltip.gameObject.SetActive(false);
+            return;
+        }
+        if (currentTooltipNum == tooltipsJSON.Length - 1) return;
+
+        currentTooltipNum++;
+
+        // Overwrites the existing tooltip with new info
+        tooltip.Load(tooltipsJSON[currentTooltipNum]);
+    }
+
+    // Turns off the tutorial messages
+    public void HideTooltip()
+    {
+        hasTutorial = false;
+        tooltip.gameObject.SetActive(false);
     }
 
     public void TogglePause()
