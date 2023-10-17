@@ -129,9 +129,9 @@ MonoBehaviour:
   pepper: []
   cutPepper: []
   pepperoni:
-  - {fileID: 21300000, guid: eb0cdd1a45b518042a62b28ae1baceb3, type: 3}
-  - {fileID: 21300000, guid: eb0cdd1a45b518042a62b28ae1baceb3, type: 3}
-  - {fileID: 21300000, guid: eb0cdd1a45b518042a62b28ae1baceb3, type: 3}
+  - {fileID: 21300000, guid: e211786c7e269e04db58246b1abafeba, type: 3}
+  - {fileID: 21300000, guid: e211786c7e269e04db58246b1abafeba, type: 3}
+  - {fileID: 21300000, guid: e211786c7e269e04db58246b1abafeba, type: 3}
   beef:
   - {fileID: 21300000, guid: 053deddb491661145bbe89a446d1ee2a, type: 3}
   - {fileID: 21300000, guid: 8b5a1db9972aa7845923fb02c2533047, type: 3}
