@@ -16,7 +16,7 @@ public class PlateDespenser : Station
         icon = Instantiate<Icon>(icon);
         icon.transform.position = gameObject.transform.position;
         triggerColor = Color.green;
-        normalColor = Color.gray;
+        normalColor = Color.yellow;
     }
 
     // Update is called once per frame

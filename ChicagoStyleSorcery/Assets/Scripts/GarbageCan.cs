@@ -24,7 +24,8 @@ public class GarbageCan : Station
     {
         if (player.playerInventory[0] != null)
         {
-            player.playerInventory[0] = null;
+            Destroy(player.playerInventory[0].gameObject); 
+            //player.playerInventory[0] = null;
         }
     }
 }
