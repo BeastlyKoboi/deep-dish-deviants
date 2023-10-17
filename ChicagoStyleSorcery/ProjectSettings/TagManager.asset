@@ -50,3 +50,6 @@ TagManager:
   - name: UILayer3
     uniqueID: 3375751139
     locked: 0
+  - name: CoverLayer
+    uniqueID: 2361504753
+    locked: 0
