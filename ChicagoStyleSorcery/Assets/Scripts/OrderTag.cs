@@ -15,17 +15,36 @@ public class OrderTag : MonoBehaviour
     [SerializeField]
     List<TextMeshPro> textList;
 
+    public bool opened;
+
+    private Vector3 hiddenPoint;
+    private Vector3 lerpAnchor = Vector3.zero;
+    private float lerpDurration = .5f;
+    private float lerpTimer = 0;
+
     // Start is called before the first frame update
     void Start()
     {
         orderNum.text = "Order " + id;
         EmptyTag();
+        opened = false;
+        lerpAnchor = transform.position;
+        hiddenPoint = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (lerpTimer < lerpDurration)
+        {
+            float t = lerpTimer / lerpDurration;
+            t = t * t * (3f - 2f * t);
+            if (opened)
+                transform.position = Vector3.Lerp(lerpAnchor, hiddenPoint + new Vector3(4.1f, 0, 0), t);//Move to destination in an interlopian curve, 3.4 is approximate width of the tag in world space
+            else
+                transform.position = Vector3.Lerp(lerpAnchor, hiddenPoint, t);//Move to destination in an interlopian curve, 3.4 is approximate width of the tag in world space
+            lerpTimer += Time.deltaTime;
+        }
     }
 
     public void FillTag(List<FoodId> order)
@@ -64,5 +83,30 @@ public class OrderTag : MonoBehaviour
             i.Invisible();
         foreach (TextMeshPro t in textList)
             t.text = "";
+    }
+
+    /// <summary>
+    /// toggle whether this tag should show itself
+    /// </summary>
+    public void toggleOpended()
+    {
+        opened = !opened;
+        lerpAnchor = transform.position;
+        lerpTimer = 0;
+        lerpDurration = .5f;
+    }
+
+    /// <summary>
+    /// Toggles tag quickly, only if already open
+    /// </summary>
+    public void closeQuick()
+    {
+        if (opened)
+        {
+            opened = !opened;
+            lerpAnchor = transform.position;
+            lerpTimer = 0;
+            lerpDurration = .15f;
+        }
     }
 }
