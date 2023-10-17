@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Rendering.Universal.Internal;
 
 public class CustomerManager : MonoBehaviour
 {
@@ -14,14 +16,19 @@ public class CustomerManager : MonoBehaviour
     Customer customerDefault;
 
     List<Customer> customerList;
+    List<FoodId> toppings;
 
     // Start is called before the first frame update
     void Start()
     {
         //This script will manage all of the customers and keep track of them
         //It may also contain methods to allow customers to communicate with each other
+
+        toppings = new List<FoodId>() {FoodId.onion, FoodId.mushroom, FoodId.olive, FoodId.pepper, FoodId.pepperoni, FoodId.beef, FoodId.bacon, FoodId.pineapple };
+
         //List of customers so they can stand in a line
-        //Not needed for this sprint so this will be blank for now
+        customerList = new List<Customer>();
+
         GenerateCustomer();
     }
 
@@ -99,6 +106,11 @@ public class CustomerManager : MonoBehaviour
     {
         Customer c = Instantiate(customerDefault);
         c.GetComponent<Customer>().customerManager = gameObject.GetComponent<CustomerManager>();
+        List<FoodId> order = new List<FoodId>() {FoodId.dough, FoodId.cheese, FoodId.sauce };
+        order.Add(toppings[UnityEngine.Random.Range(0, toppings.Count)]);
+
+        c.SetOrder(order);
+        customerList.Add(c);
     }
 
     /// <summary>

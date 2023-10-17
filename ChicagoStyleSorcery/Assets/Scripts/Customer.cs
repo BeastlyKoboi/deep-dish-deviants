@@ -200,4 +200,9 @@ public class Customer : MonoBehaviour
             lerpAnchor = transform.position;
         }
     }
+
+    public void SetOrder(List<FoodId> pizza)
+    {
+        order = pizza;
+    }
 }
