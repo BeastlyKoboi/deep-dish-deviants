@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI.Table;
 
 public class OrderTag : MonoBehaviour
 {
@@ -64,20 +65,52 @@ public class OrderTag : MonoBehaviour
             switch(order[i])
             {
                 case FoodId.plate:
-                    iconList[i+1].SetIconType(FoodId.plate, 1);
+                    iconList[i+1].SetIconType(FoodId.plate, 1, false, false);
                     textList[i+1].text = "Plate";
                     break;
                 case FoodId.dough:
-                    iconList[i+1].SetIconType(FoodId.dough, 1);
+                    iconList[i+1].SetIconType(FoodId.dough, 1, false, false);
                     textList[i+1].text = "Dough";
                     break;
                 case FoodId.cheese:
-                    iconList[i+1].SetIconType(FoodId.cheese, 1);
+                    iconList[i+1].SetIconType(FoodId.cheese, 1, false, false);
                     textList[i+1].text = "Cheese";
                     break;
                 case FoodId.sauce:
-                    iconList[i+1].SetIconType(FoodId.sauce, 1);
+                    iconList[i+1].SetIconType(FoodId.sauce, 1, false, false);
                     textList[i+1].text = "Sauce";
+                    break;
+                case FoodId.onion:
+                    iconList[i + 1].SetIconType(FoodId.onion, 1, false, true);
+                    textList[i + 1].text = "Onion";
+                    break;
+                case FoodId.mushroom:
+                    iconList[i + 1].SetIconType(FoodId.mushroom, 1, false, true);
+                    textList[i + 1].text = "Mushroom";
+                    break;
+                case FoodId.olive:
+                    iconList[i + 1].SetIconType(FoodId.olive, 1, false, true);
+                    textList[i + 1].text = "Olive";
+                    break;
+                case FoodId.pepper:
+                    iconList[i + 1].SetIconType(FoodId.pepper, 1, false, true);
+                    textList[i + 1].text = "Pepper";
+                    break;
+                case FoodId.pepperoni:
+                    iconList[i + 1].SetIconType(FoodId.pepperoni, 1, false, false);
+                    textList[i + 1].text = "Pepperoni";
+                    break;
+                case FoodId.beef:
+                    iconList[i + 1].SetIconType(FoodId.beef, 1, true, false);
+                    textList[i + 1].text = "Beef";
+                    break;
+                case FoodId.bacon:
+                    iconList[i + 1].SetIconType(FoodId.bacon, 1, false, true);
+                    textList[i + 1].text = "Bacon";
+                    break;
+                case FoodId.pineapple:
+                    iconList[i + 1].SetIconType(FoodId.sauce, 1, false, true);
+                    textList[i + 1].text = "Pineapple";
                     break;
                 default:
                     break;
