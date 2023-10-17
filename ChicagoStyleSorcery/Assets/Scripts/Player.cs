@@ -203,7 +203,7 @@ public class Player : MonoBehaviour
                             counterScripts[i].inventory[0].cutState = CutState.cut;
                         }
                     }
-                    
+                    counterScripts[i].SetIcons();
                     cutCoolDown = 3;
                     cutCoolDownActive = true;
                 }
@@ -234,7 +234,7 @@ public class Player : MonoBehaviour
                             counterScripts[i].inventory[0].kneadState = KneadState.kneaded;
                         }
                     }
-                    
+                    counterScripts[i].SetIcons();
                     kneedCoolDown = 3;
                     kneedCoolDownActive = true;
                 }
