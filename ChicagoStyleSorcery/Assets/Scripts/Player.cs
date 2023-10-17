@@ -23,6 +23,9 @@ public class Player : MonoBehaviour
     private Icon icon2;
     private Icon icon3;
     private Icon icon4;
+    private Icon icon5;
+    private Icon icon6;
+    private Icon icon7;
     // is true when player fires aka presses E or right click
     public bool isInteracting;
     // Start is called before the first frame update
@@ -30,6 +33,9 @@ public class Player : MonoBehaviour
     {
         playerInventory = new FoodItem[1] { null };
         isInteracting = false;
+        icon7 = Instantiate(icon);
+        icon6 = Instantiate(icon);
+        icon5 = Instantiate(icon);
         icon4 = Instantiate(icon);
         icon3 = Instantiate(icon);
         icon2 = Instantiate(icon);
@@ -99,6 +105,12 @@ public class Player : MonoBehaviour
             iconList.Add(icon3);
             icon4.GetComponent<SpriteRenderer>().sortingOrder = 4;
             iconList.Add(icon4);
+            icon2.GetComponent<SpriteRenderer>().sortingOrder = 5;
+            iconList.Add(icon5);
+            icon3.GetComponent<SpriteRenderer>().sortingOrder = 6;
+            iconList.Add(icon6);
+            icon4.GetComponent<SpriteRenderer>().sortingOrder = 7;
+            iconList.Add(icon7);
         }
 
         for (int i = 0; i < iconList.Count; i++)//Make all icons invisible so they can be refilled

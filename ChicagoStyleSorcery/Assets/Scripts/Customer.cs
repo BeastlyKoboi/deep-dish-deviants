@@ -135,7 +135,7 @@ public class Customer : MonoBehaviour
             {
                 successPercentile -= (1f / ((float)order.Count / 4f));
             }
-            if (i > order.Count)//extra unexpected toping
+            if (i > order.Count && pizza.coreFoodlist[i] != null)//extra unexpected toping
             {
                 //Reduce percentile
                 successPercentile -= 1f / ((float)order.Count / 4f);
@@ -183,6 +183,7 @@ public class Customer : MonoBehaviour
         if (customerManager.FindPickupCounter(gameObject.GetComponent<Customer>()))
         {
             state = AiState.Waiting;
+            lerpAnchor = transform.position;
         }
         else//We can use this null return later to signify that the order cannot be taken
         {

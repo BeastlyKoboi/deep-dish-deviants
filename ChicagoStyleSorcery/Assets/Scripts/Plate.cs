@@ -31,7 +31,7 @@ public class Plate : FoodItem
     // based on the ids of the ingredients. checks to see if pizza was made in the correct order
     public bool IsSorted()
     {
-        if (coreFoodlist.Count < 6)
+        if (coreFoodlist.Count > 6)
             return false;
         bool isSorted = true;
         for(int i = 0; i < 3; i++)

@@ -15,12 +15,18 @@ public class Counter : Station
     private Icon icon2;
     private Icon icon3;
     private Icon icon4;
+    private Icon icon5;
+    private Icon icon6;
+    private Icon icon7;
     //private Icon FirstIcon;
 
     // Start is called before the first frame update
     void Start()
     {
         inventory = new FoodItem[1];
+        icon7 = Instantiate(icon);
+        icon6 = Instantiate(icon);
+        icon5 = Instantiate(icon);
         icon4 = Instantiate(icon);
         icon3 = Instantiate(icon);
         icon2 = Instantiate(icon);
@@ -29,6 +35,9 @@ public class Counter : Station
         icon2.transform.position = gameObject.transform.position;
         icon3.transform.position = gameObject.transform.position;
         icon4.transform.position = gameObject.transform.position;
+        icon5.transform.position = gameObject.transform.position;
+        icon6.transform.position = gameObject.transform.position;
+        icon7.transform.position = gameObject.transform.position;
         iconList = new List<Icon>();
 
         normalColor = Color.blue;
@@ -90,6 +99,12 @@ public class Counter : Station
             iconList.Add(icon3);
             icon4.GetComponent<SpriteRenderer>().sortingOrder = 4;
             iconList.Add(icon4);
+            icon2.GetComponent<SpriteRenderer>().sortingOrder = 5;
+            iconList.Add(icon5);
+            icon3.GetComponent<SpriteRenderer>().sortingOrder = 6;
+            iconList.Add(icon6);
+            icon4.GetComponent<SpriteRenderer>().sortingOrder = 7;
+            iconList.Add(icon7);
         }
 
         for (int i = 0; i < iconList.Count; i++)//Invis all before reset

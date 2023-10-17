@@ -104,5 +104,7 @@ MonoBehaviour:
   registerPosition: {x: -3, y: -1.99, z: 0}
   pickupPositions:
   - {x: -3, y: 3, z: 0}
+  - {x: -3, y: 1, z: 0}
+  - {x: -3, y: -1, z: 0}
   doorPosition: {x: -8, y: 4, z: 0}
   pickupChosen: 0
