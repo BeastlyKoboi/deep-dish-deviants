@@ -35,7 +35,7 @@ public class OrderTag : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (lerpTimer < lerpDurration)
+        if (lerpTimer <= lerpDurration)
         {
             float t = lerpTimer / lerpDurration;
             t = t * t * (3f - 2f * t);
@@ -44,6 +44,14 @@ public class OrderTag : MonoBehaviour
             else
                 transform.position = Vector3.Lerp(lerpAnchor, hiddenPoint, t);//Move to destination in an interlopian curve, 3.4 is approximate width of the tag in world space
             lerpTimer += Time.deltaTime;
+
+            if (lerpTimer > lerpDurration)//fix position at end, should be unnoticeable
+            {
+                if (opened)
+                    transform.position = hiddenPoint + new Vector3(4.1f, 0, 0);
+                else
+                    transform.position = hiddenPoint;
+            }
         }
     }
 
@@ -106,7 +114,7 @@ public class OrderTag : MonoBehaviour
             opened = !opened;
             lerpAnchor = transform.position;
             lerpTimer = 0;
-            lerpDurration = .15f;
+            lerpDurration = .125f;
         }
     }
 }
