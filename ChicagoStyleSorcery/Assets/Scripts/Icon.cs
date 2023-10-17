@@ -195,7 +195,10 @@ public class Icon : MonoBehaviour
         switch (iconType)
         {
             case (FoodId.dough):
-                gameObject.GetComponent<SpriteRenderer>().sprite = dough[state];
+                if (!kneaded)
+                    gameObject.GetComponent<SpriteRenderer>().sprite = doughUnKneaded[row];
+                else
+                    gameObject.GetComponent<SpriteRenderer>().sprite = dough[row];
                 break;
             case (FoodId.cheese):
                 gameObject.GetComponent<SpriteRenderer>().sprite = cheese[state];
