@@ -117,7 +117,10 @@ MonoBehaviour:
   - {fileID: 1602577809, guid: d1b00214f2a637049b79ac9bc7bbed34, type: 3}
   - {fileID: -1348413028, guid: d1b00214f2a637049b79ac9bc7bbed34, type: 3}
   - {fileID: 1570027472, guid: d1b00214f2a637049b79ac9bc7bbed34, type: 3}
-  onion: []
+  onion:
+  - {fileID: 21300000, guid: d314fe77024ed7849bbb5394a0b70874, type: 3}
+  - {fileID: 21300000, guid: 314e7177142fd25498007dc2acb050a8, type: 3}
+  - {fileID: 21300000, guid: fa530419ffe49714088ef1010506534e, type: 3}
   cutOnion: []
   mushroom: []
   cutMushroom: []
