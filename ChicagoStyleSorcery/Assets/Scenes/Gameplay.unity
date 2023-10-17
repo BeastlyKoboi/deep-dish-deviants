@@ -7083,9 +7083,9 @@ MonoBehaviour:
   gameManager: {fileID: 791342849}
   register: {fileID: 1784655665}
   pickUpStationList:
-  - {fileID: 1230623829}
-  - {fileID: 53547011}
   - {fileID: 1237236731}
+  - {fileID: 53547011}
+  - {fileID: 1230623829}
   customerDefault: {fileID: 51903936919950092, guid: 79648fae286b58740902c510e5d8a891, type: 3}
 --- !u!4 &1023365881
 Transform:
@@ -15166,12 +15166,16 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6215234666209185619, guid: 07411d0d522fb8f4fb23d95838f1b85c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.4707
+      objectReference: {fileID: 0}
+    - target: {fileID: 6215234666209185619, guid: 07411d0d522fb8f4fb23d95838f1b85c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.43
       objectReference: {fileID: 0}
     - target: {fileID: 6215234666209185619, guid: 07411d0d522fb8f4fb23d95838f1b85c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.03
+      value: 0.6065
       objectReference: {fileID: 0}
     - target: {fileID: 6215234666209185619, guid: 07411d0d522fb8f4fb23d95838f1b85c, type: 3}
       propertyPath: m_LocalPosition.z
