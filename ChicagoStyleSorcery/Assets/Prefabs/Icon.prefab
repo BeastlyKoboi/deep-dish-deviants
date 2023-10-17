@@ -98,13 +98,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plate:
-  - {fileID: -609769595, guid: d1b00214f2a637049b79ac9bc7bbed34, type: 3}
-  - {fileID: -62827754, guid: d1b00214f2a637049b79ac9bc7bbed34, type: 3}
-  - {fileID: 282857466, guid: d1b00214f2a637049b79ac9bc7bbed34, type: 3}
+  - {fileID: 21300000, guid: 344e0fa9b86032d41b7c21b86fbd1e31, type: 3}
+  - {fileID: 21300000, guid: 344e0fa9b86032d41b7c21b86fbd1e31, type: 3}
+  - {fileID: 21300000, guid: 344e0fa9b86032d41b7c21b86fbd1e31, type: 3}
   dough:
-  - {fileID: -781279042, guid: d1b00214f2a637049b79ac9bc7bbed34, type: 3}
-  - {fileID: 1532456574, guid: d1b00214f2a637049b79ac9bc7bbed34, type: 3}
-  - {fileID: -501334979, guid: d1b00214f2a637049b79ac9bc7bbed34, type: 3}
+  - {fileID: 21300000, guid: d871d3903f30f0943b4cea09462e820c, type: 3}
+  - {fileID: 21300000, guid: b64c17be25932c24298e930dd2f732cb, type: 3}
+  - {fileID: 21300000, guid: 7f23d1fb8abf3114e833291697bdfa0b, type: 3}
+  doughUnKneaded:
+  - {fileID: 21300000, guid: e238885a70634434980c926ab68b6b2e, type: 3}
+  - {fileID: 21300000, guid: 8c98da2c07eda3943a9b3249e0821a5c, type: 3}
+  - {fileID: 21300000, guid: 784361bbd748fc04c9b580210cbd3a84, type: 3}
   cheese:
   - {fileID: 1968075734, guid: d1b00214f2a637049b79ac9bc7bbed34, type: 3}
   - {fileID: 1996148151, guid: d1b00214f2a637049b79ac9bc7bbed34, type: 3}
@@ -113,5 +117,22 @@ MonoBehaviour:
   - {fileID: 1602577809, guid: d1b00214f2a637049b79ac9bc7bbed34, type: 3}
   - {fileID: -1348413028, guid: d1b00214f2a637049b79ac9bc7bbed34, type: 3}
   - {fileID: 1570027472, guid: d1b00214f2a637049b79ac9bc7bbed34, type: 3}
+  onion: []
+  cutOnion: []
+  mushroom: []
+  cutMushroom: []
+  olive: []
+  cutOlive: []
+  pepper: []
+  cutPepper: []
+  pepperoni:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  beef: []
+  kneadedBeef: []
+  bacon: []
+  cutBacon: []
+  pineapple: []
+  cutPineapple: []
   invisible: {fileID: 0}
-  pepperoni: {fileID: 21300000, guid: eb0cdd1a45b518042a62b28ae1baceb3, type: 3}

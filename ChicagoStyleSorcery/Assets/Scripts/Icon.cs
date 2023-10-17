@@ -11,6 +11,8 @@ public class Icon : MonoBehaviour
     [SerializeField]
     List<Sprite> dough;
     [SerializeField]
+    List<Sprite> doughUnKneaded;
+    [SerializeField]
     List<Sprite> cheese;
     [SerializeField]
     List<Sprite> sauce;
@@ -70,7 +72,10 @@ public class Icon : MonoBehaviour
         switch (iconType)
         {
             case (FoodId.dough):
-                gameObject.GetComponent<SpriteRenderer>().sprite = dough[row];
+                if (type.kneadState == KneadState.unkneaded)
+                    gameObject.GetComponent<SpriteRenderer>().sprite = doughUnKneaded[row];
+                else 
+                    gameObject.GetComponent<SpriteRenderer>().sprite = dough[row];
                 break;
             case (FoodId.cheese):
                 gameObject.GetComponent<SpriteRenderer>().sprite = cheese[row];
