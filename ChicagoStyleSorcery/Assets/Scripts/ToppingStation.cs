@@ -17,8 +17,8 @@ public class ToppingStation : Station
     // Start is called before the first frame update
     void Start()
     {
-        //icon = Instantiate<Icon>(icon);
-       // icon.transform.position = gameObject.transform.position;
+       icon = Instantiate<Icon>(icon);
+       icon.transform.position = gameObject.transform.position;
         normalColor = Color.white;
         triggerColor = Color.black;
     }
@@ -26,7 +26,7 @@ public class ToppingStation : Station
     // Update is called once per frame
     void Update()
     {
-       // icon.SetIconType(despenserType.id);
+       icon.SetIconType(despenserType.id);
         if (!isInteractable)
         {
             GetComponent<SpriteRenderer>().color = normalColor;
