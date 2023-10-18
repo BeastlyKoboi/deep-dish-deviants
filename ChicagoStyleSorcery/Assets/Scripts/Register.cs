@@ -11,7 +11,7 @@ public class Register : Station
     // Start is called before the first frame update
     void Start()
     {
-        normalColor = Color.magenta;
+        normalColor = Color.white;
         triggerColor= Color.yellow; 
     }
 
