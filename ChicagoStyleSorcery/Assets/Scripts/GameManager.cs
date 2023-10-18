@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class GameManager : MonoBehaviour
@@ -141,12 +142,19 @@ public class GameManager : MonoBehaviour
 
     public void AnimateIntroPopup()
     {
-        IntroPopupAnimator.SetTrigger("Closed");
-
+        IntroPopupAnimator.SetTrigger("Close");
+        IntroPopupAnimator.SetBool("wasClosed", true);
     }
 
-    public void NextTooltip()
+    public void OnNextTooltip(InputAction.CallbackContext context)
     {
+        if (!context.performed) return;
+
+        if (!IntroPopupAnimator.GetBool("wasClosed"))
+        {
+            AnimateIntroPopup();
+            return;
+        }    
         if (!hasTutorial)
         {
             tooltip.gameObject.SetActive(false);
@@ -161,14 +169,20 @@ public class GameManager : MonoBehaviour
     }
 
     // Turns off the tutorial messages
-    public void HideTooltip()
+    public void OnHideTooltip(InputAction.CallbackContext context)
     {
+        if (!context.performed) return;
+
+        if (!IntroPopupAnimator.GetBool("wasClosed"))
+            AnimateIntroPopup();
         hasTutorial = false;
         tooltip.gameObject.SetActive(false);
     }
 
-    public void TogglePause()
+    public void OnTogglePause(InputAction.CallbackContext context)
     {
+        if (!context.performed) return;
+
         isPaused = !isPaused;
         pausedMenu.SetActive(isPaused);
         if (isPaused)
