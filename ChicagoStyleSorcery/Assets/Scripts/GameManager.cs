@@ -46,6 +46,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<GameObject> currentCustomers = new List<GameObject>();
 
     [SerializeField] private OrderTag tag1;
+    [SerializeField] private OrderTag tag2;
+    [SerializeField] private OrderTag tag3;
 
     // Text Assets
     public TextAsset tooltips;
@@ -232,23 +234,51 @@ public class GameManager : MonoBehaviour
         _cash += value * mult;
     }
 
-    public void ChangeOrder(List<FoodId> pizza)
+    /// <summary>
+    /// Changes the order of the given tag to the new order
+    /// </summary>
+    /// <param name="pizza">The pizza order</param>
+    /// <param name="station">The station number this is for</param>
+    public void ChangeOrder(List<FoodId> pizza, int station)
     {
-        tag1.FillTag(pizza);
-        /*
-        string order = "Order 1\n";
-        for (int i = 0; i < pizza.Count; i++)
+        switch(station)
         {
-            order += StringifyFoodId(pizza[i]) + "\n";
+            case 1:
+                tag1.FillTag(pizza);
+                break;
+            case 2:
+                tag2.FillTag(pizza);
+                break;
+            case 3:
+                tag3.FillTag(pizza);
+                break;
         }
-        order1.text = order;*/
     }
 
-    public void EmptyOrder()
+    /// <summary>
+    /// Empties the given order from an order tag
+    /// </summary>
+    public void EmptyOrder(int station)
     {
-        tag1.EmptyTag();
+        switch (station)
+        {
+            case 1:
+                tag1.EmptyTag();
+                break;
+            case 2:
+                tag2.EmptyTag();
+                break;
+            case 3:
+                tag3.EmptyTag();
+                break;
+        }
     }
 
+    /// <summary>
+    /// Gets string version of FoodItem
+    /// </summary>
+    /// <param name="id">FoodId of food</param>
+    /// <returns>string name of food item</returns>
     public string StringifyFoodId(FoodId id)
     {
         string type = "Error";

@@ -47,7 +47,7 @@ public class CustomerManager : MonoBehaviour
     {
         int counter = -1;
         //Find an open register, will choose last open one
-        for (int i = 0; i < pickUpStationList.Count; i++) 
+        for (int i = pickUpStationList.Count - 1; i >= 0; i--) 
         {
             if (pickUpStationList[i].currentCustomer == null)
             {
@@ -62,7 +62,8 @@ public class CustomerManager : MonoBehaviour
         if (customer != null)
         {
             customer.MoveToStation(counter);
-            
+            gameManager.ChangeOrder(customer.SeeOrder(), counter + 1);
+
             return true;
         }
         return false;
@@ -107,7 +108,7 @@ public class CustomerManager : MonoBehaviour
         Customer c = Instantiate(customerDefault);
         c.GetComponent<Customer>().customerManager = gameObject.GetComponent<CustomerManager>();
         List<FoodId> order = new List<FoodId>() {FoodId.dough, FoodId.cheese, FoodId.sauce };
-        order.Add(toppings[UnityEngine.Random.Range(0, toppings.Count)]);
+        //order.Add(toppings[UnityEngine.Random.Range(0, toppings.Count)]);
 
         c.SetOrder(order);
         customerList.Add(c);
@@ -117,8 +118,8 @@ public class CustomerManager : MonoBehaviour
     /// Elevator method for GameManager.ChangeOrder
     /// </summary>
     /// <param name="pizza"></param>
-    public void ChangeOrder(List<FoodId> pizza)
+    public void ChangeOrder(List<FoodId> pizza, int station)
     {
-        gameManager.ChangeOrder(pizza);
+        gameManager.ChangeOrder(pizza, station);
     }
 }

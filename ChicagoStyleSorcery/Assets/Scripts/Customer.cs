@@ -178,18 +178,28 @@ public class Customer : MonoBehaviour
         return successPercentile * 100;
     }
 
-    public List<FoodId> getOrder() 
+    /// <summary>
+    /// For the register to take an order
+    /// </summary>
+    /// <returns>If the order can be taken</returns>
+    public bool TakeOrder() 
     {
         if (customerManager.FindPickupCounter(gameObject.GetComponent<Customer>()))
         {
             state = AiState.Waiting;
             lerpAnchor = transform.position;
+            return true;
         }
-        else//We can use this null return later to signify that the order cannot be taken
-        {
-            return null;
-        }
-        return order; 
+        return false;
+    }
+
+    /// <summary>
+    /// To view the order only
+    /// </summary>
+    /// <returns>The customer's order</returns>
+    public List<FoodId> SeeOrder()
+    {
+        return order;
     }
 
     public void MoveToStation(int num)

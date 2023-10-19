@@ -99,11 +99,11 @@ public class Counter : Station
             iconList.Add(icon3);
             icon4.GetComponent<SpriteRenderer>().sortingOrder = 4;
             iconList.Add(icon4);
-            icon2.GetComponent<SpriteRenderer>().sortingOrder = 5;
+            icon5.GetComponent<SpriteRenderer>().sortingOrder = 5;
             iconList.Add(icon5);
-            icon3.GetComponent<SpriteRenderer>().sortingOrder = 6;
+            icon6.GetComponent<SpriteRenderer>().sortingOrder = 6;
             iconList.Add(icon6);
-            icon4.GetComponent<SpriteRenderer>().sortingOrder = 7;
+            icon7.GetComponent<SpriteRenderer>().sortingOrder = 7;
             iconList.Add(icon7);
         }
 

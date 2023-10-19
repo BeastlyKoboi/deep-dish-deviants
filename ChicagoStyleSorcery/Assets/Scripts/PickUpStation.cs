@@ -6,6 +6,8 @@ public class PickUpStation : Station
 {
     [SerializeField]
     GameManager manager;
+    [SerializeField]
+    int PickupNumber;
 
     // pick up station can only hold plate objects
     public Plate inventory;
@@ -38,7 +40,7 @@ public class PickUpStation : Station
             player.playerInventory[0] = null;
             currentCustomer.ReviewOrder(inventory);
             currentCustomer = null;
-            manager.EmptyOrder();
+            manager.EmptyOrder(PickupNumber);
             ClearCounter();
         }
     }
