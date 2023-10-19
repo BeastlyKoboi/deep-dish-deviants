@@ -199,7 +199,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &97754812
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10994,11 +10994,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5782208370944769172, guid: eeeb32a4188ed014487af4372f7febeb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.22
+      value: 2.17
       objectReference: {fileID: 0}
     - target: {fileID: 5782208370944769172, guid: eeeb32a4188ed014487af4372f7febeb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.52
+      value: 5.43
       objectReference: {fileID: 0}
     - target: {fileID: 5782208370944769172, guid: eeeb32a4188ed014487af4372f7febeb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -11512,11 +11512,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5782208370944769172, guid: eeeb32a4188ed014487af4372f7febeb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.22
+      value: 2.18
       objectReference: {fileID: 0}
     - target: {fileID: 5782208370944769172, guid: eeeb32a4188ed014487af4372f7febeb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.34
+      value: 7.07
       objectReference: {fileID: 0}
     - target: {fileID: 5782208370944769172, guid: eeeb32a4188ed014487af4372f7febeb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -13598,11 +13598,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5782208370944769172, guid: eeeb32a4188ed014487af4372f7febeb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.24
+      value: 2.18
       objectReference: {fileID: 0}
     - target: {fileID: 5782208370944769172, guid: eeeb32a4188ed014487af4372f7febeb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.88
+      value: 3.78
       objectReference: {fileID: 0}
     - target: {fileID: 5782208370944769172, guid: eeeb32a4188ed014487af4372f7febeb, type: 3}
       propertyPath: m_LocalPosition.z
