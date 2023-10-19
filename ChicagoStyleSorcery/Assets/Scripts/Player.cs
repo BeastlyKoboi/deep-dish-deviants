@@ -44,6 +44,9 @@ public class Player : MonoBehaviour
         icon2.transform.position = gameObject.transform.position;
         icon3.transform.position = gameObject.transform.position;
         icon4.transform.position = gameObject.transform.position;
+        icon5.transform.position = gameObject.transform.position;
+        icon6.transform.position = gameObject.transform.position;
+        icon7.transform.position = gameObject.transform.position;
         iconList = new List<Icon>();
         fireCoolDown = 0;
         fireCoolDownActive = false;
@@ -95,6 +98,9 @@ public class Player : MonoBehaviour
         icon2.transform.position = gameObject.transform.position;
         icon3.transform.position = gameObject.transform.position;
         icon4.transform.position = gameObject.transform.position;
+        icon5.transform.position = gameObject.transform.position;
+        icon6.transform.position = gameObject.transform.position;
+        icon7.transform.position = gameObject.transform.position;
 
         if (iconList.Count == 0) //Must happen here or else original icon will not have time to instantiate, unfortunately means this is hardcoded until I find a better solution
         {
@@ -105,11 +111,11 @@ public class Player : MonoBehaviour
             iconList.Add(icon3);
             icon4.GetComponent<SpriteRenderer>().sortingOrder = 4;
             iconList.Add(icon4);
-            icon2.GetComponent<SpriteRenderer>().sortingOrder = 5;
+            icon5.GetComponent<SpriteRenderer>().sortingOrder = 5;
             iconList.Add(icon5);
-            icon3.GetComponent<SpriteRenderer>().sortingOrder = 6;
+            icon6.GetComponent<SpriteRenderer>().sortingOrder = 6;
             iconList.Add(icon6);
-            icon4.GetComponent<SpriteRenderer>().sortingOrder = 7;
+            icon7.GetComponent<SpriteRenderer>().sortingOrder = 7;
             iconList.Add(icon7);
         }
 

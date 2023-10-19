@@ -69,7 +69,7 @@ public class OrderTag : MonoBehaviour
                     textList[i+1].text = "Plate";
                     break;
                 case FoodId.dough:
-                    iconList[i+1].SetIconType(FoodId.dough, 1, false, false);
+                    iconList[i+1].SetIconType(FoodId.dough, 1, true, false);
                     textList[i+1].text = "Dough";
                     break;
                 case FoodId.cheese:
