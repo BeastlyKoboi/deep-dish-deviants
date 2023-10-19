@@ -40,7 +40,7 @@ public class CoreIngredientStation : Station
     // Update is called once per frame
     void Update()
     {
-        icon.SetIconType(despenserType.id);
+        icon.SetIconType(despenserType);
 
         if (!isInteractable)
         {
