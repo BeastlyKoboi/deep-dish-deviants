@@ -8,6 +8,8 @@ public abstract class Station : MonoBehaviour
     protected Player player;
 
     public bool isInteractable;
+    public Color triggerColor;
+    public Color normalColor;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +19,7 @@ public abstract class Station : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+   
     }
     private void OnTriggerEnter2D(Collider2D other)
     {

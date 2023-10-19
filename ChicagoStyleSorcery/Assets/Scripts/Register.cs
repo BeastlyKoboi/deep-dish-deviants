@@ -11,7 +11,8 @@ public class Register : Station
     // Start is called before the first frame update
     void Start()
     {
-        
+        normalColor = Color.white;
+        triggerColor= Color.yellow; 
     }
 
     // Update is called once per frame
@@ -19,21 +20,17 @@ public class Register : Station
     {
         if (!isInteractable)
         {
-            GetComponent<SpriteRenderer>().color = Color.magenta;
+            GetComponent<SpriteRenderer>().color = normalColor;
         }
-        else
-        {
-            GetComponent<SpriteRenderer>().color = Color.yellow;
-        }
+
     }
 
     public override void onInteract()
     {
         if(currentCustomer != null)
         {
-            List<FoodId> list = currentCustomer.getOrder();
-            manager.ChangeOrder(list);
-            currentCustomer = null;
+            if (currentCustomer.TakeOrder())
+                currentCustomer = null;
         }
     }
 }

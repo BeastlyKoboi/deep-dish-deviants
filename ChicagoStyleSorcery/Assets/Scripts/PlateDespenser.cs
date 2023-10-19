@@ -15,20 +15,21 @@ public class PlateDespenser : Station
     {
         icon = Instantiate<Icon>(icon);
         icon.transform.position = gameObject.transform.position;
+        triggerColor = Color.green;
+        normalColor = Color.yellow;
     }
 
     // Update is called once per frame
     void Update()
     {
         icon.SetIconType(FoodId.plate);
+        
         if (!isInteractable)
         {
-            GetComponent<SpriteRenderer>().color = Color.gray;
+            GetComponent<SpriteRenderer>().color = normalColor;
         }
-        else
-        {
-            GetComponent<SpriteRenderer>().color = Color.green;
-        }
+      
+        
     }
 
     public override void onInteract()

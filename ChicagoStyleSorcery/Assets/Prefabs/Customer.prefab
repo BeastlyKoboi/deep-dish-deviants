@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8876344907016882963
 SpriteRenderer:
@@ -74,8 +74,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.432644, g: 1, b: 0, a: 1}
+  m_Sprite: {fileID: 419180344, guid: dd4d0f14b3cf89a46ae230ec45af0d1b, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -101,6 +101,10 @@ MonoBehaviour:
   customerManager: {fileID: 0}
   maxPatience: 120
   difficultyFloat: 0.2
-  registerPosition: {x: -3, y: -1.99, z: 0}
-  counterPositions:
-  - {x: -3, y: 3, z: 0}
+  registerPosition: {x: -3.343581, y: -2.087444, z: 0}
+  pickupPositions:
+  - {x: -3.3, y: 1.1, z: 0}
+  - {x: -3.39, y: -0.43, z: 0}
+  - {x: -3.43, y: 2.72, z: 0}
+  doorPosition: {x: -8, y: 4, z: 0}
+  pickupChosen: 0

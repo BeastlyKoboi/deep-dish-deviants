@@ -23,6 +23,9 @@ public class Player : MonoBehaviour
     private Icon icon2;
     private Icon icon3;
     private Icon icon4;
+    private Icon icon5;
+    private Icon icon6;
+    private Icon icon7;
     // is true when player fires aka presses E or right click
     public bool isInteracting;
     // Start is called before the first frame update
@@ -30,6 +33,9 @@ public class Player : MonoBehaviour
     {
         playerInventory = new FoodItem[1] { null };
         isInteracting = false;
+        icon7 = Instantiate(icon);
+        icon6 = Instantiate(icon);
+        icon5 = Instantiate(icon);
         icon4 = Instantiate(icon);
         icon3 = Instantiate(icon);
         icon2 = Instantiate(icon);
@@ -38,6 +44,9 @@ public class Player : MonoBehaviour
         icon2.transform.position = gameObject.transform.position;
         icon3.transform.position = gameObject.transform.position;
         icon4.transform.position = gameObject.transform.position;
+        icon5.transform.position = gameObject.transform.position;
+        icon6.transform.position = gameObject.transform.position;
+        icon7.transform.position = gameObject.transform.position;
         iconList = new List<Icon>();
         fireCoolDown = 0;
         fireCoolDownActive = false;
@@ -84,11 +93,14 @@ public class Player : MonoBehaviour
             cutCoolDownActive = false;
         }
 
-
+        //Set constructed icons to player position each frame
         icon.transform.position = gameObject.transform.position;
         icon2.transform.position = gameObject.transform.position;
         icon3.transform.position = gameObject.transform.position;
         icon4.transform.position = gameObject.transform.position;
+        icon5.transform.position = gameObject.transform.position;
+        icon6.transform.position = gameObject.transform.position;
+        icon7.transform.position = gameObject.transform.position;
 
         if (iconList.Count == 0) //Must happen here or else original icon will not have time to instantiate, unfortunately means this is hardcoded until I find a better solution
         {
@@ -99,18 +111,24 @@ public class Player : MonoBehaviour
             iconList.Add(icon3);
             icon4.GetComponent<SpriteRenderer>().sortingOrder = 4;
             iconList.Add(icon4);
+            icon5.GetComponent<SpriteRenderer>().sortingOrder = 5;
+            iconList.Add(icon5);
+            icon6.GetComponent<SpriteRenderer>().sortingOrder = 6;
+            iconList.Add(icon6);
+            icon7.GetComponent<SpriteRenderer>().sortingOrder = 7;
+            iconList.Add(icon7);
         }
 
-        for (int i = 0; i < iconList.Count; i++)//Invis all before reset
+        for (int i = 0; i < iconList.Count; i++)//Make all icons invisible so they can be refilled
         {
             iconList[i].Invisible();
         }
 
-        if (playerInventory[0] == null)//all invis
+        if (playerInventory[0] == null)//Leave all icons invisible because there is nothing
         {
             //Leave invis
         }
-        else if (playerInventory[0].id != FoodId.plate)//All but 1 invis
+        else if (playerInventory[0].id != FoodId.plate)//Only bottom icon is filled
         {
             iconList[0].SetIconType(playerInventory[0]);
         }
@@ -125,75 +143,6 @@ public class Player : MonoBehaviour
             }
         }
 
-        /*
-        if (playerInventory[0] != null)
-        {
-            switch (playerInventory[0].id)
-            {
-                case FoodId.dough:
-                    if (playerInventory[0].foodState == CookState.raw)
-                    {
-                        GetComponent<SpriteRenderer>().color = Color.cyan;
-                    }
-                    else if (playerInventory[0].foodState == CookState.cooked)
-                    {
-                        GetComponent<SpriteRenderer>().color = Color.gray;
-                    }
-                    else if (playerInventory[0].foodState == CookState.burnt)
-                    {
-                        GetComponent<SpriteRenderer>().color = Color.magenta;
-                    }
-                    break;
-                 case FoodId.cheese:
-                    if (playerInventory[0].foodState == CookState.raw)
-                    {
-                        GetComponent<SpriteRenderer>().color = Color.yellow;
-                    }
-                    else if (playerInventory[0].foodState == CookState.cooked)
-                    {
-                        GetComponent<SpriteRenderer>().color = Color.gray;
-                    }
-                    else if (playerInventory[0].foodState == CookState.burnt)
-                    {
-                        GetComponent<SpriteRenderer>().color = Color.magenta;
-                    }
-                    break;
-                 case FoodId.sauce:
-                    if (playerInventory[0].foodState == CookState.raw)
-                    {
-                        GetComponent<SpriteRenderer>().color = Color.red;
-                    }
-                    else if (playerInventory[0].foodState == CookState.cooked)
-                    {
-                        GetComponent<SpriteRenderer>().color = Color.gray;
-                    }
-                    else if (playerInventory[0].foodState == CookState.burnt)
-                    {
-                        GetComponent<SpriteRenderer>().color = Color.magenta;
-                    }
-                    break;
-                case FoodId.plate:
-                    if (playerInventory[0].foodState == CookState.raw)
-                    {
-                        GetComponent<SpriteRenderer>().color = Color.black;
-                    }
-                    else if (playerInventory[0].foodState == CookState.cooked)
-                    {
-                        GetComponent<SpriteRenderer>().color = Color.gray;
-                    }
-                    else if (playerInventory[0].foodState == CookState.burnt)
-                    {
-                        GetComponent<SpriteRenderer>().color = Color.magenta;
-                    }
-                    break;
-            }
-        }
-        
-        else
-        {
-           GetComponent<SpriteRenderer>().color = Color.white;
-
-        }*/
         GetComponent<SpriteRenderer>().color = Color.white;
     }
 
@@ -225,6 +174,7 @@ public class Player : MonoBehaviour
                             f.foodState = CookState.burnt;
                         }
                         counterScripts[i].inventory[0] = tempPlate;
+                        counterScripts[i].SetIcons();
                     }
                     fireCoolDown = 3;
                     fireCoolDownActive = true;
@@ -244,7 +194,7 @@ public class Player : MonoBehaviour
             {
                 if (counterScripts[i].isInteractable && counterScripts[i].inventory[0] != null && isInteracting)
                 {
-                    /*
+                    // while I (liam) am pretty sure this is unnessassary I am going to leave it in for now
                     if (counterScripts[i].inventory[0].id == FoodId.mushroom || 
                         counterScripts[i].inventory[0].id == FoodId.onion || 
                         counterScripts[i].inventory[0].id == FoodId.olive || 
@@ -259,7 +209,7 @@ public class Player : MonoBehaviour
                             counterScripts[i].inventory[0].cutState = CutState.cut;
                         }
                     }
-                    */
+                    counterScripts[i].SetIcons();
                     cutCoolDown = 3;
                     cutCoolDownActive = true;
                 }
@@ -279,18 +229,18 @@ public class Player : MonoBehaviour
             {
                 if (counterScripts[i].isInteractable && counterScripts[i].inventory[0] != null && isInteracting)
                 {
-                    /*
+                    
                     // checks if ID is beef or dough
                     if (counterScripts[i].inventory[0].id == FoodId.dough ||
                         counterScripts[i].inventory[0].id == FoodId.beef)
                     {
                         // if unkneeded, kneed
-                        if (counterScripts[i].inventory[0].kneedState == KneedState.unkneeded)
+                        if (counterScripts[i].inventory[0].kneadState == KneadState.unkneaded)
                         {
-                            counterScripts[i].inventory[0].kneedState == KneedState.kneeded;
+                            counterScripts[i].inventory[0].kneadState = KneadState.kneaded;
                         }
                     }
-                    */
+                    counterScripts[i].SetIcons();
                     kneedCoolDown = 3;
                     kneedCoolDownActive = true;
                 }

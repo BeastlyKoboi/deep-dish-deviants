@@ -41,3 +41,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: UILayer
+    uniqueID: 2654671413
+    locked: 0
+  - name: UILayer2
+    uniqueID: 2257725391
+    locked: 0
+  - name: UILayer3
+    uniqueID: 3375751139
+    locked: 0
+  - name: CoverLayer
+    uniqueID: 2361504753
+    locked: 0

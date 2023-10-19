@@ -6,6 +6,8 @@ public class PickUpStation : Station
 {
     [SerializeField]
     GameManager manager;
+    [SerializeField]
+    int PickupNumber;
 
     // pick up station can only hold plate objects
     public Plate inventory;
@@ -16,6 +18,8 @@ public class PickUpStation : Station
     void Start()
     {
         currentCustomer = null;
+        normalColor = Color.gray;
+        triggerColor = Color.blue;
     }
 
     // Update is called once per frame
@@ -23,12 +27,9 @@ public class PickUpStation : Station
     {
         if (!isInteractable)
         {
-            GetComponent<SpriteRenderer>().color = Color.gray;
+            GetComponent<SpriteRenderer>().color = normalColor;
         }
-        else
-        {
-            GetComponent<SpriteRenderer>().color = Color.blue;
-        }
+        
     }
 
     public override void onInteract()
@@ -39,7 +40,7 @@ public class PickUpStation : Station
             player.playerInventory[0] = null;
             currentCustomer.ReviewOrder(inventory);
             currentCustomer = null;
-            manager.EmptyOrder();
+            manager.EmptyOrder(PickupNumber);
             ClearCounter();
         }
     }

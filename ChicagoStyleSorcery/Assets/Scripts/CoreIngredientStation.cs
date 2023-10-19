@@ -19,7 +19,8 @@ public class CoreIngredientStation : Station
     {
         icon = Instantiate<Icon>(icon);
         icon.transform.position = gameObject.transform.position ;
-
+        // this code is not being used anymore so I am commenting it out.
+        /*
         if(id == FoodId.dough)
         {
             stationColor = Color.cyan;
@@ -31,6 +32,9 @@ public class CoreIngredientStation : Station
         {
             stationColor = Color.red;
         }
+        */
+        normalColor = Color.gray;
+        triggerColor = Color.green;
     }
 
     // Update is called once per frame
@@ -41,11 +45,7 @@ public class CoreIngredientStation : Station
         if (!isInteractable)
         {
             //GetComponent<SpriteRenderer>().color = stationColor;
-            GetComponent<SpriteRenderer>().color = Color.gray;
-        }
-        else
-        {
-            GetComponent<SpriteRenderer>().color = Color.green;
+            GetComponent<SpriteRenderer>().color = normalColor;
         }
     }
 

@@ -67,6 +67,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "NextTooltip",
+                    "type": "Button",
+                    "id": "d39c876a-90d0-4bfd-9fc9-4e368bf0a1a1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "HideTooltips",
+                    "type": "Button",
+                    "id": "db22686e-32e3-40e6-9907-ec156b9a898e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -108,7 +126,7 @@
                     "id": "8180e8bd-4097-4f4e-ab88-4523101a6ce9",
                     "path": "<Keyboard>/upArrow",
                     "interactions": "",
-                    "processors": "Scale(factor=0)",
+                    "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "Move",
                     "isComposite": false,
@@ -342,6 +360,39 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "KneedMagic",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e8cec66f-cc95-4a6b-9162-cae9111b3466",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NextTooltip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fa17f5a2-84ef-4c17-b24b-4af19be633b5",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NextTooltip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f7925e41-be5e-4433-9fc2-e8b918fd1d68",
+                    "path": "<Keyboard>/backspace",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HideTooltips",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

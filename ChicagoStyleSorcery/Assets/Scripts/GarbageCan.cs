@@ -7,7 +7,8 @@ public class GarbageCan : Station
     // Start is called before the first frame update
     void Start()
     {
-        
+        normalColor = Color.white;
+        triggerColor = Color.green;
     }
 
     // Update is called once per frame
@@ -15,11 +16,7 @@ public class GarbageCan : Station
     {
         if (!isInteractable)
         {
-            GetComponent<SpriteRenderer>().color = Color.green;
-        }
-        else
-        {
-            GetComponent<SpriteRenderer>().color = Color.white;
+            GetComponent<SpriteRenderer>().color = normalColor;
         }
     }
   
@@ -27,7 +24,8 @@ public class GarbageCan : Station
     {
         if (player.playerInventory[0] != null)
         {
-            player.playerInventory[0] = null;
+            Destroy(player.playerInventory[0].gameObject); 
+            //player.playerInventory[0] = null;
         }
     }
 }
