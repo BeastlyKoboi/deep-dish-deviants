@@ -24,7 +24,7 @@ public class CustomerManager : MonoBehaviour
         //This script will manage all of the customers and keep track of them
         //It may also contain methods to allow customers to communicate with each other
 
-        toppings = new List<FoodId>() {FoodId.onion, FoodId.mushroom, FoodId.olive, FoodId.pepper, FoodId.pepperoni, FoodId.beef, FoodId.bacon, FoodId.pineapple };
+        toppings = new List<FoodId>() {FoodId.onion, FoodId.mushroom, FoodId.olive, FoodId.pepper, FoodId.pepperoni, FoodId.beef, FoodId.bacon ,FoodId.pineapple };
 
         //List of customers so they can stand in a line
         customerList = new List<Customer>();
@@ -108,8 +108,30 @@ public class CustomerManager : MonoBehaviour
         Customer c = Instantiate(customerDefault);
         c.GetComponent<Customer>().customerManager = gameObject.GetComponent<CustomerManager>();
         List<FoodId> order = new List<FoodId>() {FoodId.dough, FoodId.cheese, FoodId.sauce };
-        //order.Add(toppings[UnityEngine.Random.Range(0, toppings.Count)]);
+        order.Add(toppings[UnityEngine.Random.Range(0, toppings.Count)]);
+        // code for generating random pizza orders.
+        // can be used later but not for upcoming playtest
+        /*
+        for(int i = 0; i < 3; i++)
+        {
+            //for now there is only a 50% chance to get topping which is checked 3 times
 
+            if(UnityEngine.Random.Range(1,11) > 8)
+            {
+                // gets a random topping
+                FoodId toppingToAdd = toppings[UnityEngine.Random.Range(0, toppings.Count)];
+                // if the pizza already has that topping on it, it will reroll till it gets a new topping
+                // that the pizza does not have
+                while (!CheckOrder(toppingToAdd, order))
+                {
+                    toppingToAdd = toppings[UnityEngine.Random.Range(0, toppings.Count)];
+                }
+                // adds the topping to the pizza
+                order.Add(toppingToAdd); 
+               // order.Add(toppings[UnityEngine.Random.Range(0, toppings.Count)]);
+            }
+        }
+        */
         c.SetOrder(order);
         customerList.Add(c);
     }
@@ -121,5 +143,22 @@ public class CustomerManager : MonoBehaviour
     public void ChangeOrder(List<FoodId> pizza, int station)
     {
         gameManager.ChangeOrder(pizza, station);
+    }
+
+    /// <summary>
+    /// checks if the a pizza already contains a specific food item. necessary to prevent random
+    /// pizza generator from ordering a pizza with duplicate ingredients
+    /// </summary>
+    /// <returns></returns>
+    public bool CheckOrder(FoodId itemToCheck, List<FoodId> pizza)
+    {
+        for(int i = 0; i < pizza.Count; i++)
+        {
+            if (pizza[i] == itemToCheck)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }

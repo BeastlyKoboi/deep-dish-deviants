@@ -28,7 +28,7 @@ public class OrderTag : MonoBehaviour
     {
         orderNum.text = "Order " + id;
         EmptyTag();
-        opened = false;
+        //opened = false;
         lerpAnchor = transform.position;
         hiddenPoint = transform.position;
     }

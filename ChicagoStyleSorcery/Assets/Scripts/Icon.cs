@@ -121,9 +121,9 @@ public class Icon : MonoBehaviour
                 break;
             case FoodId.bacon:
                 if (type.cutState == CutState.cut)
-                    gameObject.GetComponent<SpriteRenderer>().sprite = bacon[row];
-                else
                     gameObject.GetComponent<SpriteRenderer>().sprite = cutBacon[row];
+                else
+                    gameObject.GetComponent<SpriteRenderer>().sprite = bacon[row];
                 break;
             case FoodId.pineapple:
                 if (type.cutState == CutState.cut)
@@ -174,7 +174,7 @@ public class Icon : MonoBehaviour
                 gameObject.GetComponent<SpriteRenderer>().sprite = beef[0];
                 break;
             case FoodId.bacon:
-                gameObject.GetComponent<SpriteRenderer>().sprite = cutBacon[0];
+                gameObject.GetComponent<SpriteRenderer>().sprite = bacon[0];
                 break;
             case FoodId.pineapple:
                 gameObject.GetComponent<SpriteRenderer>().sprite = pineapple[0];
@@ -195,10 +195,7 @@ public class Icon : MonoBehaviour
         switch (iconType)
         {
             case (FoodId.dough):
-                if (!kneaded)
-                    gameObject.GetComponent<SpriteRenderer>().sprite = doughUnKneaded[state];
-                else
-                    gameObject.GetComponent<SpriteRenderer>().sprite = dough[state];
+                gameObject.GetComponent<SpriteRenderer>().sprite = dough[state];
                 break;
             case (FoodId.cheese):
                 gameObject.GetComponent<SpriteRenderer>().sprite = cheese[state];
@@ -244,9 +241,9 @@ public class Icon : MonoBehaviour
                 break;
             case FoodId.bacon:
                 if (cut)
-                    gameObject.GetComponent<SpriteRenderer>().sprite = bacon[state];
-                else
                     gameObject.GetComponent<SpriteRenderer>().sprite = cutBacon[state];
+                else
+                    gameObject.GetComponent<SpriteRenderer>().sprite = bacon[state];
                 break;
             case FoodId.pineapple:
                 if (cut)
