@@ -112,7 +112,7 @@ public class CustomerManager : MonoBehaviour
         for(int i = 0; i < 3; i++)
         {
             //for now there is only a 50% chance to get topping which is checked 3 times
-            if(UnityEngine.Random.Range(1,11) > 2)
+            if(UnityEngine.Random.Range(1,11) > 6)
             {
                 // gets a random topping
                 FoodId toppingToAdd = toppings[UnityEngine.Random.Range(0, toppings.Count)];
