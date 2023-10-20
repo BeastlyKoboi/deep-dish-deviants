@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
     public enum GameState { Open, Closed };
     [SerializeField] private GameState gameState;
     [SerializeField] private float _cash;
-    private bool isPaused = false;
+    [SerializeField] private bool isPaused = false;
     [SerializeField] private int currentDay = 1;
     [SerializeField] private int currentHour = 8;
     [SerializeField] private float currentTime = 0.0f;
@@ -59,6 +59,7 @@ public class GameManager : MonoBehaviour
     // Scene Loading 
     [SerializeField] private GameObject loadingScreen;
     [SerializeField] private SceneLoader sceneLoader;
+    [SerializeField] private GameObject loadingScreenPrefab;
 
     // Properties 
     public float Cash
@@ -71,7 +72,27 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Setting up UI start states
         pausedMenu.SetActive(false);
+        IntroPopupAnimator.gameObject.SetActive(true);
+
+        // If there a is a loading animation to come, 
+        // wait until its over to pause the game
+        GameObject loadingScreenObj = GameObject.Find("LoadingScreen");
+        if (loadingScreenObj == null)
+            ToggleGamePause();
+        else
+            loadingScreenObj.GetComponent<SceneLoader>().fadeFinished.AddListener(ToggleGamePause);
+
+        // saves for use in later methods
+        loadingScreenObj = Instantiate(loadingScreenPrefab);
+        sceneLoader = loadingScreenObj.GetComponent<SceneLoader>();
+        loadingScreen = loadingScreenObj.transform.GetChild(0).gameObject;
+
+        // Will be paused once loading is done
+        // Then will be unpaused by popup screen
+
+        // combining scripts for later use
         allStations.Add(registerScript);
         allStations.Add(plateDespenser);
         allStations.AddRange(counterScripts);
@@ -80,6 +101,7 @@ public class GameManager : MonoBehaviour
         allStations.AddRange(coreStations);
         allStations.AddRange(toppingStations);
 
+        // Setting up tooltips
         if (hasTutorial)
         {
             tooltip = Instantiate(tooltipPrefab, tooltipParent.transform, false).GetComponent<TooltipInfo>(); 
@@ -149,6 +171,7 @@ public class GameManager : MonoBehaviour
 
     public void AnimateIntroPopup()
     {
+        ToggleGamePause();
         IntroPopupAnimator.SetTrigger("Close");
         IntroPopupAnimator.SetBool("wasClosed", true);
     }
@@ -189,6 +212,11 @@ public class GameManager : MonoBehaviour
     public void OnTogglePauseMenu(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
+        if (!IntroPopupAnimator.GetBool("wasClosed"))
+        {
+            AnimateIntroPopup();
+            return;
+        }
 
         ToggleGamePause();
         pausedMenu.SetActive(isPaused);

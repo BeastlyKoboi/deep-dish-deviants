@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 // Implementation mostly draws from this source.
@@ -12,6 +13,7 @@ public class SceneLoader : MonoBehaviour
     public GameObject loadingScreen;
     public CanvasGroup canvasGroup;
     public string sceneToLoad;
+    public UnityEvent fadeFinished; 
 
     void Start()
     {
@@ -26,14 +28,16 @@ public class SceneLoader : MonoBehaviour
     IEnumerator StartLoad()
     {
         loadingScreen.SetActive(true);
-        yield return StartCoroutine(FadeLoadingScreen(1, 1));
+        yield return StartCoroutine(FadeLoadingScreen(1, 0.2f));
         AsyncOperation load = SceneManager.LoadSceneAsync(sceneToLoad);
         while (!load.isDone)
         {
             yield return null;
         }
-        yield return StartCoroutine(FadeLoadingScreen(0, 1));
+        yield return StartCoroutine(FadeLoadingScreen(0, 0.2f));
         loadingScreen.SetActive(false);
+        if (fadeFinished != null) 
+            fadeFinished.Invoke();
         Destroy(gameObject);
     }
 
