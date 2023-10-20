@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class GameManager : MonoBehaviour
@@ -55,6 +56,10 @@ public class GameManager : MonoBehaviour
     string[] tooltipsJSON;
     int currentTooltipNum = 0;
 
+    // Scene Loading 
+    [SerializeField] private GameObject loadingScreen;
+    [SerializeField] private SceneLoader sceneLoader;
+
     // Properties 
     public float Cash
     {
@@ -79,7 +84,7 @@ public class GameManager : MonoBehaviour
         {
             tooltip = Instantiate(tooltipPrefab, tooltipParent.transform, false).GetComponent<TooltipInfo>(); 
             string tooltipsString = tooltips.text;
-            tooltipsJSON = tooltipsString.Split(Environment.NewLine);
+            tooltipsJSON = tooltipsString.Split(";");
 
             tooltip.Load(tooltipsJSON[currentTooltipNum]);
         }
@@ -181,16 +186,28 @@ public class GameManager : MonoBehaviour
         tooltip.gameObject.SetActive(false);
     }
 
-    public void OnTogglePause(InputAction.CallbackContext context)
+    public void OnTogglePauseMenu(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
 
-        isPaused = !isPaused;
+        ToggleGamePause();
         pausedMenu.SetActive(isPaused);
+    }
+
+    private void ToggleGamePause()
+    {
+        isPaused = !isPaused;
         if (isPaused)
             Time.timeScale = 0.0f;
         else
             Time.timeScale = 1.0f;
+    }
+
+    public void LoadMainMenu()
+    {
+        ToggleGamePause();
+        sceneLoader.sceneToLoad = SceneNames.MAINMENU;
+        sceneLoader.LoadScene();
     }
 
     public void QuitGame()
