@@ -376,17 +376,6 @@
                 },
                 {
                     "name": "",
-                    "id": "fa17f5a2-84ef-4c17-b24b-4af19be633b5",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "NextTooltip",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "f7925e41-be5e-4433-9fc2-e8b918fd1d68",
                     "path": "<Keyboard>/backspace",
                     "interactions": "",
