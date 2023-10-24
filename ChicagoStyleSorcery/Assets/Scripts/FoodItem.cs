@@ -49,4 +49,5 @@ public class FoodItem : MonoBehaviour
     public CookState foodState;
     public CutState cutState;
     public KneadState kneadState;
+
 }
