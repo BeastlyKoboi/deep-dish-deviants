@@ -23,6 +23,11 @@ public class Player : MonoBehaviour
 
     private Vector3 originalPositionFire;
 
+    [SerializeField]
+    private ParticleSystem cut;
+
+    private Vector3 originalPositionCut;
+
     //Icon stuff
     [SerializeField]
     private Icon icon;
@@ -64,6 +69,7 @@ public class Player : MonoBehaviour
 
         // store particle's original off-screen position
         originalPositionFire = fire.transform.position;
+        originalPositionCut = cut.transform.position;
     }
 
     // Update is called once per frame
@@ -209,6 +215,11 @@ public class Player : MonoBehaviour
             {
                 if (counterScripts[i].isInteractable && counterScripts[i].inventory[0] != null && isInteracting)
                 {
+                    Vector3 targetPosition = counterScripts[i].transform.position;
+                    float duration = 2.0f;
+
+                    MoveParticleToLocation(targetPosition, duration, cut);
+
                     // while I (liam) am pretty sure this is unnessassary I am going to leave it in for now
                     if (counterScripts[i].inventory[0].id == FoodId.mushroom || 
                         counterScripts[i].inventory[0].id == FoodId.onion || 
@@ -302,6 +313,10 @@ public class Player : MonoBehaviour
         if (particleSystem == fire)
         {
             particleSystem.transform.position = originalPositionFire;
+        }
+        else if (particleSystem == cut)
+        {
+            particleSystem.transform.position = originalPositionCut;
         }
 
         // Disable the particle system
