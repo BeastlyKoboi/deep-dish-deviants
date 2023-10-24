@@ -1,9 +1,0 @@
-{"x": -505, "y": -310,"mainText":"To get your first order, go to the register and press E. Press tab to get to next tooltip or backspace to turn them off."}
-{"x": 200, "y": 200,"mainText":"To start go to the register to take the customer's order"}
-{"x": 597, "y": -138,"mainText":"The plates along with your 3 core ingredients are along the bottom wall. make sure to remember your in chicago!"}
-{"x": 520, "y": 200,"mainText":"Toppings are along the back wall. you have onions, mushrooms, olives, bell peppers, pepperoni, beef, bacon, and pineapple."}
-{"x": -332, "y": 372,"mainText":"You prepare the pizza using magic. You have Fire, cutting, and kneading magic."}
-{"x": 65, "y": 286,"mainText":"You use fire magic on a plate of ingredients to cook the pizza"}
-{"x": 460, "y": -70,"mainText":"You use cutting magic to prepare all toppings except for beef"}
-{"x": 520, "y": 200,"mainText":"You use kneading magic to knead dough and ground the beef"}
-{"x": -290, "y": 373,"mainText":"Once the pizza is finished bring it to the pickup station and give it to the customer"}

@@ -108,15 +108,11 @@ public class CustomerManager : MonoBehaviour
         Customer c = Instantiate(customerDefault);
         c.GetComponent<Customer>().customerManager = gameObject.GetComponent<CustomerManager>();
         List<FoodId> order = new List<FoodId>() {FoodId.dough, FoodId.cheese, FoodId.sauce };
-        order.Add(toppings[UnityEngine.Random.Range(0, toppings.Count)]);
         // code for generating random pizza orders.
-        // can be used later but not for upcoming playtest
-        /*
         for(int i = 0; i < 3; i++)
         {
             //for now there is only a 50% chance to get topping which is checked 3 times
-
-            if(UnityEngine.Random.Range(1,11) > 8)
+            if(UnityEngine.Random.Range(1,11) > 6)
             {
                 // gets a random topping
                 FoodId toppingToAdd = toppings[UnityEngine.Random.Range(0, toppings.Count)];
@@ -128,10 +124,8 @@ public class CustomerManager : MonoBehaviour
                 }
                 // adds the topping to the pizza
                 order.Add(toppingToAdd); 
-               // order.Add(toppings[UnityEngine.Random.Range(0, toppings.Count)]);
             }
         }
-        */
         c.SetOrder(order);
         customerList.Add(c);
     }

@@ -1,0 +1,53 @@
+10/20/2023
+Deep Dish Deviants
+Game: Slice of Sourcery
+Sprint 3 Changelog
+
+Changes:
+- Overhauled how the game checks player/station interaction
+	- instead of looping through every station, checking if player can and/or is trying to interact with them
+	- now finds closest station to the player and checks for interactions with just that one
+- Change conditions for using magic
+	- previously magic was used on what the player was holding, now player uses magic on items that are on counters
+- added bounds so player cannot leave the kitchen
+- expanded on the pause menu to show controls and allow player to quit the game
+
+Bug Fixes from previous sprint:
+- fixed bug where if player took to long or did not give the right pizza, they would earn negative money
+- fixed bug where player could interact with multiple stations at the same time
+
+Additions:
+
+Toppings and topping dispensers: 
+- added 8 toppings that have to be prepared before they can be put on a pizza
+- 4 vegitables, 3 meats, and pineapple.
+- added dispensers that give the player the toppings
+
+More Magic:
+- to go along with new toppings, 2 news spells were added
+- Cut spell is used to slice and dice toppings such as peppers, pineapple, and bacon
+- Knead spell is used to knead dough from a ball into a flat disc, it is also used on beaf to ground it into its topping form
+
+- also added cooldowns for magic although the pace of this build makes them irrelavent and they are not visually indicated
+
+- The fire spell was also changed to be used on plates to cook the pizza
+
+Tooltips:
+- pop up card that help to explain gameplay elements to the player
+- player can read them or press backspace to get rid of them entirely
+
+Main menu scene
+- its very bare bones for now but it lets the player start the game or quit the application
+
+Random Pizza generation:
+- allows for customers to ask for pizza with a random amount and combination of toppings along with the 3 core ingredients
+
+SPRITES AND LOTS OF THEM
+- sprites for all ingredients, raw, cooked, and burnt versions for those that apply
+- sprite for player
+- sprite for customer
+- image for register and trash cans
+- some of these are going to be replaced
+
+Order UI:
+- on the left of the screen is where player can see their currently in progress pizza orders
