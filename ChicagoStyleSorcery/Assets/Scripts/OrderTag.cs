@@ -109,7 +109,7 @@ public class OrderTag : MonoBehaviour
                     textList[i + 1].text = "Bacon";
                     break;
                 case FoodId.pineapple:
-                    iconList[i + 1].SetIconType(FoodId.sauce, 1, false, true);
+                    iconList[i + 1].SetIconType(FoodId.pineapple, 1, false, true);
                     textList[i + 1].text = "Pineapple";
                     break;
                 default:

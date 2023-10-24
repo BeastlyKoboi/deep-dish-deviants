@@ -122,9 +122,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 314e7177142fd25498007dc2acb050a8, type: 3}
   - {fileID: 21300000, guid: fa530419ffe49714088ef1010506534e, type: 3}
   cutOnion:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 12dcf697de32b1541b493ab3739ff858, type: 3}
+  - {fileID: 21300000, guid: 6a9227851544f7d44a72be3de7c617bd, type: 3}
+  - {fileID: 21300000, guid: 9723d14e1be762644a7fd686a28b6612, type: 3}
   mushroom:
   - {fileID: 21300000, guid: 9c994a1618607114d946382ea66987bc, type: 3}
   - {fileID: 21300000, guid: 377beb615f6c4f14e99ac8976fca889f, type: 3}
@@ -134,21 +134,21 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f3c95f9d8e8cfbd449b2dafa3ea0cc1b, type: 3}
   - {fileID: 21300000, guid: ebfb302ee5873d94d84b46f25d661593, type: 3}
   olive:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 0cbdca74ab8a9af4c83e8bb207e7662c, type: 3}
+  - {fileID: 21300000, guid: 0cbdca74ab8a9af4c83e8bb207e7662c, type: 3}
+  - {fileID: 21300000, guid: 0cbdca74ab8a9af4c83e8bb207e7662c, type: 3}
   cutOlive:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 63c86bfbeebbc39488388c1cda5f09df, type: 3}
+  - {fileID: 21300000, guid: 63c86bfbeebbc39488388c1cda5f09df, type: 3}
+  - {fileID: 21300000, guid: 63c86bfbeebbc39488388c1cda5f09df, type: 3}
   pepper:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 3fc84e9393f412a44a5e22340bd3847c, type: 3}
+  - {fileID: 21300000, guid: e82fa36f325dbf948a1d4f6ad8e37a84, type: 3}
+  - {fileID: 21300000, guid: 9900214383940934194e08e9d83ff6e7, type: 3}
   cutPepper:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: f3f2951cf0e12d54eab0bb417c13e76a, type: 3}
+  - {fileID: 21300000, guid: f3f2951cf0e12d54eab0bb417c13e76a, type: 3}
+  - {fileID: 21300000, guid: 4465f5917bec1d141975ecef363b3cbe, type: 3}
   pepperoni:
   - {fileID: 21300000, guid: e211786c7e269e04db58246b1abafeba, type: 3}
   - {fileID: 21300000, guid: e211786c7e269e04db58246b1abafeba, type: 3}
@@ -170,11 +170,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: a4a4d16f001961a4f8d77db1da177a07, type: 3}
   - {fileID: 21300000, guid: 2f3447d696ec4044eaf6c7b4271cef98, type: 3}
   pineapple:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: fd4847d9f811bf341af5b8c345a160e6, type: 3}
+  - {fileID: 21300000, guid: c06ed9a2de7b66c4e99effcc3c94fffa, type: 3}
+  - {fileID: 21300000, guid: 2458963fc887f854ca5034eacf881a19, type: 3}
   cutPineapple:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 5ba3d7f533837d244a409768f5eb915f, type: 3}
+  - {fileID: 21300000, guid: a5b2d0e339608844bbfb6677d880356a, type: 3}
+  - {fileID: 21300000, guid: 537274a744825104da8f785bde8761b2, type: 3}
   invisible: {fileID: 21300000, guid: 22306f02e4562ed459a2582f5523a7a4, type: 3}

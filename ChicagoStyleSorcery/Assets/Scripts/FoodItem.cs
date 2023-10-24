@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.PackageManager;
+//using UnityEditor.PackageManager;
 using UnityEngine;
 
 public enum FoodId
@@ -49,4 +49,5 @@ public class FoodItem : MonoBehaviour
     public CookState foodState;
     public CutState cutState;
     public KneadState kneadState;
+
 }

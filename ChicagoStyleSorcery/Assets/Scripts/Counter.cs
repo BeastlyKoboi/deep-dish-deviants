@@ -41,7 +41,7 @@ public class Counter : Station
         iconList = new List<Icon>();
 
         normalColor = Color.blue;
-        triggerColor = Color.red;
+        triggerColor = Color.green;
     }
 
     // Update is called once per frame
@@ -77,7 +77,7 @@ public class Counter : Station
         }
         else if(inventory[0] != null && player.playerInventory[0] != null)
         {
-            CoreIngredient tempIngredient = (CoreIngredient) inventory[0];
+            FoodItem tempIngredient = (FoodItem) inventory[0];
             inventory[0] = player.playerInventory[0];
             player.playerInventory[0] = tempIngredient;
         }

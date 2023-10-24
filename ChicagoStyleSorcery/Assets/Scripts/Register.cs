@@ -5,7 +5,7 @@ using UnityEngine;
 public class Register : Station
 {
     [SerializeField]
-    GameManager manager;
+   // GameManager manager;
 
     public Customer currentCustomer;
     // Start is called before the first frame update
