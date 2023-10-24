@@ -17,6 +17,13 @@ public class Player : MonoBehaviour
 
     [SerializeField] private List<Counter> counterScripts;
 
+    // Particle stuff
+    [SerializeField]
+    private ParticleSystem fire;
+
+    private Vector3 originalPositionFire;
+
+    //Icon stuff
     [SerializeField]
     private Icon icon;
 
@@ -54,6 +61,9 @@ public class Player : MonoBehaviour
         kneedCoolDownActive = false;
         cutCoolDown = 0;
         cutCoolDownActive = false;
+
+        // store particle's original off-screen position
+        originalPositionFire = fire.transform.position;
     }
 
     // Update is called once per frame
@@ -159,6 +169,11 @@ public class Player : MonoBehaviour
             {
                 if (counterScripts[i].isInteractable && isInteracting && counterScripts[i].inventory[0] != null && counterScripts[i].inventory[0].id == FoodId.plate)
                 {
+                    Vector3 targetPosition = counterScripts[i].transform.position;
+                    float duration = 2.0f;
+
+                    MoveParticleToLocation(targetPosition, duration, fire);
+
                     //cycle through plate inventory and place new food items in new plate with different cooked states
                     Plate tempPlate = (Plate)counterScripts[i].inventory[0];
                     foreach (FoodItem f in tempPlate.coreFoodlist)
@@ -246,5 +261,50 @@ public class Player : MonoBehaviour
                 }
             }
         }
+    }
+
+    //helper methods for particle movement and activation
+    /// <summary>
+    /// Activates the particle system and moves it to target location
+    /// </summary>
+    /// <param name="targetPosition"></param>
+    /// <param name="duration"></param>
+    /// <param name="particleSystem"></param>
+    public void MoveParticleToLocation(Vector3 targetPosition, float duration, ParticleSystem particleSystem)
+    {
+        // Activate the particle system
+        particleSystem.Play();
+
+        //Move the particle to the targe location over a specified duration
+        StartCoroutine(MoveToLocation(targetPosition, duration, particleSystem));
+    }
+
+    /// <summary>
+    /// Runs for the duration of time, then stops and moves off-screen
+    /// </summary>
+    /// <param name="targetPosition"></param>
+    /// <param name="duration"></param>
+    /// <param name="particleSystem"></param>
+    /// <returns></returns>
+    private IEnumerator MoveToLocation(Vector3 targetPosition, float duration, ParticleSystem particleSystem)
+    {
+        float elapsedTime = 0f;
+        Vector3 initialPosition = particleSystem.transform.position;
+
+        while (elapsedTime < duration)
+        {
+            particleSystem.transform.position = Vector3.Lerp(initialPosition, targetPosition, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // Return the particle to its original position
+        if (particleSystem == fire)
+        {
+            particleSystem.transform.position = originalPositionFire;
+        }
+
+        // Disable the particle system
+        particleSystem.Stop();
     }
 }
