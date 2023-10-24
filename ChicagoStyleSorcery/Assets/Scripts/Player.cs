@@ -293,7 +293,7 @@ public class Player : MonoBehaviour
 
         while (elapsedTime < duration)
         {
-            particleSystem.transform.position = Vector3.Lerp(initialPosition, targetPosition, elapsedTime / duration);
+            particleSystem.transform.position = targetPosition;
             elapsedTime += Time.deltaTime;
             yield return null;
         }
