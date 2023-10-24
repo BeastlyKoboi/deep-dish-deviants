@@ -73,8 +73,12 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         // Setting up UI start states
-        pausedMenu.SetActive(false);
-        IntroPopupAnimator.gameObject.SetActive(true);
+        if(pausedMenu != null)
+        {
+            pausedMenu.SetActive(false);
+            IntroPopupAnimator.gameObject.SetActive(true);
+        }
+       
 
         // If there a is a loading animation to come, 
         // wait until its over to pause the game
@@ -84,22 +88,38 @@ public class GameManager : MonoBehaviour
         else
             loadingScreenObj.GetComponent<SceneLoader>().fadeFinished.AddListener(ToggleGamePause);
 
-        // saves for use in later methods
-        loadingScreenObj = Instantiate(loadingScreenPrefab);
-        sceneLoader = loadingScreenObj.GetComponent<SceneLoader>();
-        loadingScreen = loadingScreenObj.transform.GetChild(0).gameObject;
+        if(loadingScreenPrefab!= null)
+        {
+            // saves for use in later methods
+            loadingScreenObj = Instantiate(loadingScreenPrefab);
+            sceneLoader = loadingScreenObj.GetComponent<SceneLoader>();
+            loadingScreen = loadingScreenObj.transform.GetChild(0).gameObject;
+        }
+       
 
         // Will be paused once loading is done
         // Then will be unpaused by popup screen
 
         // combining scripts for later use
-        allStations.Add(registerScript);
-        allStations.Add(plateDespenser);
-        allStations.AddRange(counterScripts);
-        allStations.AddRange(pickUpStations);
-        allStations.AddRange(garbageScripts);
-        allStations.AddRange(coreStations);
-        allStations.AddRange(toppingStations);
+        if(counterScripts != null)
+            allStations.AddRange(counterScripts);
+        if (registerScript != null)
+        {
+            allStations.Add(registerScript);
+        }
+        if (plateDespenser != null)
+        {
+            allStations.Add(plateDespenser);
+        }
+        
+        if(pickUpStations != null)
+            allStations.AddRange(pickUpStations);
+        if (garbageScripts != null)
+            allStations.AddRange(garbageScripts);
+        if (coreStations != null)
+            allStations.AddRange(coreStations);
+        if (toppingStations != null)
+            allStations.AddRange(toppingStations);
 
         // Setting up tooltips
         if (hasTutorial)
@@ -134,7 +154,8 @@ public class GameManager : MonoBehaviour
         }
 
         // Update the 
-        cashUI.text = $"${_cash - _cash % .01}";
+        if(cashUI!= null)
+            cashUI.text = $"${_cash - _cash % .01}";
     }
 
     public void UpdateClock()

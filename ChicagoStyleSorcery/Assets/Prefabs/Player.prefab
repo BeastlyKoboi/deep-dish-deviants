@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: -2141529295, guid: c692344e723e5eb40aac4d4320d75bf8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -102,6 +102,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInventory: []
+  fireCoolDown: 0
+  fireCoolDownActive: 0
+  kneedCoolDown: 0
+  kneedCoolDownActive: 0
+  cutCoolDown: 0
+  cutCoolDownActive: 0
+  counterScripts: []
+  icon: {fileID: 0}
   isInteracting: 0
 --- !u!61 &824235580455297565
 BoxCollider2D:
@@ -137,9 +145,9 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
+    border: {x: 0.03, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.84, y: 1.39}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -292,6 +300,26 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 2954dfe0-0cf2-44fc-b5c6-85311fa460d0
     m_ActionName: Player/Pause[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e0b33cbc-0616-404d-b70f-77ea38633642
+    m_ActionName: Player/FireMagic[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1ade242c-42f7-49ea-ba80-4afe7dd76ec8
+    m_ActionName: Player/CutMagic[/Keyboard/c]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f88c78ff-841b-48b2-8c1a-78419c1e0c67
+    m_ActionName: Player/KneedMagic[/Keyboard/x]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d39c876a-90d0-4bfd-9fc9-4e368bf0a1a1
+    m_ActionName: Player/NextTooltip[/Keyboard/tab]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: db22686e-32e3-40e6-9907-ec156b9a898e
+    m_ActionName: Player/HideTooltips[/Keyboard/backspace]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -310,5 +338,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  player: {fileID: 0}
   cam: {fileID: 0}
   playerRigidBody: {fileID: 7376409106874390517}
