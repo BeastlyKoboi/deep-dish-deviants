@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5263346876599837806
 SpriteRenderer:
@@ -105,7 +105,7 @@ MonoBehaviour:
   normalColor: {r: 0, g: 0, b: 0, a: 0}
   id: 0
   despenserType: {fileID: 2750661854189079736, guid: 29cb92db06ec47d43a799f37d42b931c, type: 3}
-  icon: {fileID: 0}
+  icon: {fileID: 3802843821844549318, guid: ace74608e1490bb4d9bd673529a93db1, type: 3}
 --- !u!61 &4092597560675293144
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -32,6 +32,7 @@ public class Controller : MonoBehaviour
     void Awake()
     {
         playerRigidBody = gameObject.GetComponent<Rigidbody2D>();
+        //player = gameObject.GetComponent<Player>();
     }
     // Update is called once per frame
     void Update()
