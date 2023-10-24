@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 259206143}
   - component: {fileID: 259206145}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -221,11 +221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1633267768}
-  counterList:
-  - {fileID: 908678030}
-  - {fileID: 2095518023}
-  - {fileID: 1598976234}
-  - {fileID: 1941617472}
+  counterList1: []
   areas: []
   beef: {fileID: 0}
   pineapple: {fileID: 0}
@@ -322,6 +318,14 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1633267768}
+    - target: {fileID: 240330694017439176, guid: dcc95d013ba0ca944b0511d8600f5d2b, type: 3}
+      propertyPath: inventory.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 240330694017439176, guid: dcc95d013ba0ca944b0511d8600f5d2b, type: 3}
+      propertyPath: inventory.Array.data[0]
+      value: 
+      objectReference: {fileID: 4342449803096499410, guid: 7105b22cbd530ed4f9734d2c80b56362, type: 3}
     - target: {fileID: 727021026149302238, guid: dcc95d013ba0ca944b0511d8600f5d2b, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -666,6 +670,14 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1633267768}
+    - target: {fileID: 240330694017439176, guid: dcc95d013ba0ca944b0511d8600f5d2b, type: 3}
+      propertyPath: inventory.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 240330694017439176, guid: dcc95d013ba0ca944b0511d8600f5d2b, type: 3}
+      propertyPath: inventory.Array.data[0]
+      value: 
+      objectReference: {fileID: 2350102186490058767, guid: 4aa289f2911579742bf8ea0d94b561b1, type: 3}
     - target: {fileID: 727021026149302238, guid: dcc95d013ba0ca944b0511d8600f5d2b, type: 3}
       propertyPath: m_RootOrder
       value: 3
