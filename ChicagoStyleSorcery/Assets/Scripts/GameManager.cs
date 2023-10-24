@@ -249,7 +249,7 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Changes the order of the given tag to the new order
+    /// Changes the order of the given tag to the new order, pulls out that tag
     /// </summary>
     /// <param name="pizza">The pizza order</param>
     /// <param name="station">The station number this is for</param>
@@ -259,12 +259,21 @@ public class GameManager : MonoBehaviour
         {
             case 1:
                 tag1.FillTag(pizza);
+                tag1.toggleOpended();
+                tag2.closeQuick();
+                tag3.closeQuick();
                 break;
             case 2:
                 tag2.FillTag(pizza);
+                tag2.toggleOpended();
+                tag1.closeQuick();
+                tag3.closeQuick();
                 break;
             case 3:
                 tag3.FillTag(pizza);
+                tag3.toggleOpended();
+                tag2.closeQuick();
+                tag1.closeQuick();
                 break;
         }
     }

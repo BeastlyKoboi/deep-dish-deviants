@@ -30,7 +30,10 @@ public class Register : Station
         if(currentCustomer != null)
         {
             if (currentCustomer.TakeOrder())
+            {
                 currentCustomer = null;
+
+            }
         }
     }
 }
