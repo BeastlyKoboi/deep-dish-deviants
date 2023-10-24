@@ -5963,8 +5963,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 153714927}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -2.1, y: 11.16, z: -0}
+  m_LocalScale: {x: 0.098438, y: 0.098438, z: 0.098438}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -10683,6 +10683,7 @@ MonoBehaviour:
   tooltipParent: {fileID: 614740212}
   gameState: 0
   _cash: 0
+  isPaused: 0
   currentDay: 0
   currentHour: 8
   currentTime: 0
@@ -10693,6 +10694,9 @@ MonoBehaviour:
   tag2: {fileID: 1881581121}
   tag3: {fileID: 127316606}
   tooltips: {fileID: 4900000, guid: a22b4de076e803840947a0912ec65167, type: 3}
+  loadingScreen: {fileID: 0}
+  sceneLoader: {fileID: 0}
+  loadingScreenPrefab: {fileID: 0}
 --- !u!4 &791342850
 Transform:
   m_ObjectHideFlags: 0
@@ -22750,6 +22754,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1879705353172266271, guid: 07411d0d522fb8f4fb23d95838f1b85c, type: 3}
+      propertyPath: fire
+      value: 
+      objectReference: {fileID: 153714929}
     - target: {fileID: 1879705353172266271, guid: 07411d0d522fb8f4fb23d95838f1b85c, type: 3}
       propertyPath: icon
       value: 
