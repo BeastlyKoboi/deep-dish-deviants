@@ -325,19 +325,19 @@ public class GameManager : MonoBehaviour
         {
             case 1:
                 tag1.FillTag(pizza);
-                tag1.toggleOpended();
+                tag1.openQuick();
                 tag2.closeQuick();
                 tag3.closeQuick();
                 break;
             case 2:
                 tag2.FillTag(pizza);
-                tag2.toggleOpended();
+                tag2.openQuick();
                 tag1.closeQuick();
                 tag3.closeQuick();
                 break;
             case 3:
                 tag3.FillTag(pizza);
-                tag3.toggleOpended();
+                tag3.openQuick();
                 tag2.closeQuick();
                 tag1.closeQuick();
                 break;
