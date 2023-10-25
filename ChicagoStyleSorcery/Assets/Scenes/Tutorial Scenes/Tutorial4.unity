@@ -377,12 +377,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1222882193}
-  counterList:
-  - {fileID: 60665751}
-  - {fileID: 736119031}
+  counterList1: []
   areas: []
   beef: {fileID: 0}
   pineapple: {fileID: 0}
+  counterList2: []
+  counterList3: []
+  counterList4:
+  - {fileID: 60665751}
+  - {fileID: 736119031}
+  counterList5: []
   sceneSpecificStations:
   - {fileID: 60665751}
   - {fileID: 736119031}

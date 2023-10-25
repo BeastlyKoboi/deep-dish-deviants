@@ -16,7 +16,11 @@ public class Plate : FoodItem
     // Start is called before the first frame update
     void Start()
     {
-        coreFoodlist = new List<FoodItem>();
+        if(coreFoodlist.Count == 0)
+        {
+            coreFoodlist = new List<FoodItem>();
+        }
+        
         id = FoodId.plate;
         this.cutState = CutState.na;
         this.kneadState= KneadState.na;
