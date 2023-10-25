@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviour
         else
             loadingScreenObj.GetComponent<SceneLoader>().fadeFinished.AddListener(ToggleGamePause);
 
-        if(loadingScreenPrefab!= null)
+        if(loadingScreenPrefab != null)
         {
             // saves for use in later methods
             loadingScreenObj = Instantiate(loadingScreenPrefab);
