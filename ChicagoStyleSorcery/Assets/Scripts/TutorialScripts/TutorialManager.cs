@@ -9,6 +9,11 @@ public class TutorialManager : MonoBehaviour
     [SerializeField]
     Player player;
 
+    [SerializeField]
+    Sprite checkedBox;
+    [SerializeField]
+    Sprite uncheckedBox;
+
 
     // Tutorial 1 Objects
     [SerializeField]
@@ -19,6 +24,8 @@ public class TutorialManager : MonoBehaviour
     Topping beef;
     [SerializeField]
     Topping pineapple;
+    [SerializeField]
+    List<SpriteRenderer> toDoListChecks1;
 
     //Tutorial 2 Objects
     [SerializeField]
@@ -36,11 +43,13 @@ public class TutorialManager : MonoBehaviour
     [SerializeField]
     List<Counter> counterList4;
     float timer = 10;
+    bool putToppingOnPizza;
 
     // Tutorial 5 Objects
     [SerializeField]
     List<Counter> counterList5;
-
+    [SerializeField]
+    List<SpriteRenderer> toDoListChecks5;
 
 
     [SerializeField]
@@ -72,7 +81,8 @@ public class TutorialManager : MonoBehaviour
                 
                 break;
             case "Tutorial4":
-                
+                timer = 10;
+                putToppingOnPizza= false;
                 break;
             case "Tutorial5":
                 timer = 5; 
@@ -94,6 +104,7 @@ public class TutorialManager : MonoBehaviour
                     if (areas[i].GetComponent<SpriteRenderer>().color == Color.green)
                     {
                         numAreasReached++;
+                        toDoListChecks1[i].sprite = checkedBox;
                     }
                 }
                 // checks if player has moved food items between counters
@@ -102,6 +113,7 @@ public class TutorialManager : MonoBehaviour
                     && counterList1[0].inventory[0].id == FoodId.pineapple && counterList1[1].inventory[0].id == FoodId.beef)
                 {
                     isFoodMoved = true;
+                    toDoListChecks1[3].sprite = checkedBox;
                 }
 
                 if(numAreasReached == 3 && isFoodMoved)
@@ -148,7 +160,15 @@ public class TutorialManager : MonoBehaviour
                 }
                 break;
             case "Tutorial4":
-                if(timer > 0)
+                if (counterList4[0].inventory[0] != null)
+                {
+                    Plate toppingPlate = (Plate)counterList4[0].inventory[0];
+                    if(toppingPlate.coreFoodlist.Count > 3)
+                    {
+                        putToppingOnPizza = true;
+                    }
+                }
+                if(putToppingOnPizza)
                 {
                     timer -= Time.deltaTime;
                 }
@@ -169,6 +189,7 @@ public class TutorialManager : MonoBehaviour
                     if (tempPlate.coreFoodlist[i].foodState == CookState.cooked)
                     {
                         isFoodCooked = true;
+                        toDoListChecks5[0].sprite = checkedBox;
                     }
                     else
                     {
@@ -178,10 +199,12 @@ public class TutorialManager : MonoBehaviour
                 if (counterList5[1].inventory[0].kneadState == KneadState.kneaded)
                 {
                     isFoodKneaded = true;
+                    toDoListChecks5[1].sprite = checkedBox;
                 }
                 if (counterList5[2].inventory[0].cutState == CutState.cut)
                 {
                     isFoodCut = true;
+                    toDoListChecks5[2].sprite = checkedBox;
                 }
                 if(isFoodCooked && isFoodCut && isFoodKneaded)
                 {
