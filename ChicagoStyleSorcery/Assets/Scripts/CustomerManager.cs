@@ -18,6 +18,8 @@ public class CustomerManager : MonoBehaviour
     List<Customer> customerList;
     List<FoodId> toppings;
 
+    int customerTicker = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -109,6 +111,7 @@ public class CustomerManager : MonoBehaviour
         c.customerManager = gameObject.GetComponent<CustomerManager>();
         c.pickupStations = pickUpStationList;
         c.register = register;
+        c.id = customerTicker; customerTicker++;
         List<FoodId> order = new List<FoodId>() {FoodId.dough, FoodId.cheese, FoodId.sauce };
         // code for generating random pizza orders.
         for(int i = 0; i < 3; i++)
@@ -130,6 +133,15 @@ public class CustomerManager : MonoBehaviour
         }
         c.SetOrder(order);
         customerList.Add(c);
+    }
+
+    public void RemoveCustomer(int id)
+    {
+        for (int i = 0; i < customerList.Count; i++)
+        {
+            if (customerList[i].id == id)
+                customerList.RemoveAt(i);
+        }
     }
 
     /// <summary>

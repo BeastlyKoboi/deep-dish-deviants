@@ -256,13 +256,14 @@ MonoBehaviour:
   customerManager: {fileID: 0}
   maxPatience: 120
   difficultyFloat: 0.3
-  registerPosition: {x: -3.343581, y: -2.087444, z: 0}
+  doorPosition: {x: -8, y: 4, z: 0}
   pickupStations:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  doorPosition: {x: -8, y: 4, z: 0}
+  register: {fileID: 0}
   pickupChosen: 0
+  id: 0
 --- !u!1 &5573301819331442264
 GameObject:
   m_ObjectHideFlags: 0

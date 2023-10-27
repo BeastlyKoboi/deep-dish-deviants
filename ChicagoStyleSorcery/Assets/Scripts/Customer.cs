@@ -18,9 +18,9 @@ public enum AiState
 public class Customer : MonoBehaviour
 {
     [SerializeField]
-    Canvas patienceCanvas;
+    protected Canvas patienceCanvas;
     [SerializeField]
-    private Image trackerImage;
+    protected Image trackerImage;
 
     [SerializeField]
     protected List<FoodId> order;
@@ -39,17 +39,18 @@ public class Customer : MonoBehaviour
     [SerializeField]
     private Vector3 doorPosition;
 
-    private Vector3 lerpAnchor= Vector3.zero;
-    private static float lerpDurration = 3f;
-    private float lerpTimer = 0;
+    protected Vector3 lerpAnchor= Vector3.zero;
+    protected static float lerpDurration = 3f;
+    protected float lerpTimer = 0;
 
     public List<PickUpStation> pickupStations;
     public Register register;
 
     protected float patience;
-    private AiState state;
+    protected AiState state;
     protected bool patienceFreeze;
     public int pickupChosen;
+    public int id;
 
     void Start()
     {
@@ -121,7 +122,9 @@ public class Customer : MonoBehaviour
                     lerpTimer += Time.deltaTime;
                 }
                 else
+                {
                     Destroy(gameObject);
+                }
                 break;
         }
     }
