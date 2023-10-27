@@ -51,6 +51,7 @@ public class TutorialManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        timer = 10;
         currentScene= SceneManager.GetActiveScene().name;
         // will do different things based on which tutorial scene is currently running
         switch(currentScene){
@@ -59,17 +60,22 @@ public class TutorialManager : MonoBehaviour
                 counterList1[1].inventory[0] = Instantiate(pineapple);
                 counterList1[0].SetIcons();
                 counterList1[1].SetIcons();
+               
                 break;
             case "Tutorial2":
+                
                 break;
             case "Tutorial3":
                 gotPlate = false;
                 addedToPlate = false;
                 trashedPlate = false;
+                
                 break;
             case "Tutorial4":
+                
                 break;
             case "Tutorial5":
+                timer = 5; 
                 break;
         }
     }
@@ -100,7 +106,12 @@ public class TutorialManager : MonoBehaviour
 
                 if(numAreasReached == 3 && isFoodMoved)
                 {
-                   SceneManager.LoadScene("Tutorial2");
+                    timer -= Time.deltaTime;
+                    if(timer < 0)
+                    {
+                        SceneManager.LoadScene("Tutorial2");
+                    }
+                   
                 }
                 break;
             case "Tutorial2":
@@ -128,7 +139,12 @@ public class TutorialManager : MonoBehaviour
                 }
                 if(gotPlate && addedToPlate && trashedPlate)
                 {
-                    SceneManager.LoadScene("Tutorial4");
+                    timer -= Time.deltaTime;
+                    if(timer < 0)
+                    {
+                        SceneManager.LoadScene("Tutorial4");
+                    }
+                   
                 }
                 break;
             case "Tutorial4":
@@ -169,7 +185,12 @@ public class TutorialManager : MonoBehaviour
                 }
                 if(isFoodCooked && isFoodCut && isFoodKneaded)
                 {
-                    SceneManager.LoadScene("MainMenu");
+                    timer -= Time.deltaTime;
+                    if (timer < 0)
+                    {
+                        SceneManager.LoadScene("MainMenu");
+                    }
+                    
                 }
                 break;
         }
