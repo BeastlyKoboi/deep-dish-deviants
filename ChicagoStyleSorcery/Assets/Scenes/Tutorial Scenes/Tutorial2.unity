@@ -262,7 +262,7 @@ MonoBehaviour:
   register: {fileID: 1901976872}
   pickUpStationList:
   - {fileID: 195122303}
-  customerDefault: {fileID: 51903936919950092, guid: 79648fae286b58740902c510e5d8a891, type: 3}
+  customerDefault: {fileID: 3126254841571916766, guid: 4365ddb4fa531824886ef11c079da727, type: 3}
 --- !u!1 &284761183
 GameObject:
   m_ObjectHideFlags: 0
