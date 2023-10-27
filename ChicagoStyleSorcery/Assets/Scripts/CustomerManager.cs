@@ -106,7 +106,9 @@ public class CustomerManager : MonoBehaviour
     public void GenerateCustomer()
     {
         Customer c = Instantiate(customerDefault);
-        c.GetComponent<Customer>().customerManager = gameObject.GetComponent<CustomerManager>();
+        c.customerManager = gameObject.GetComponent<CustomerManager>();
+        c.pickupStations = pickUpStationList;
+        c.register = register;
         List<FoodId> order = new List<FoodId>() {FoodId.dough, FoodId.cheese, FoodId.sauce };
         // code for generating random pizza orders.
         for(int i = 0; i < 3; i++)

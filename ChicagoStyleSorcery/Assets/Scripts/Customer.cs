@@ -37,15 +37,14 @@ public class Customer : MonoBehaviour
     private float difficultyFloat;
 
     [SerializeField]
-    private Vector3 registerPosition;
-    [SerializeField]
-    private Vector3[] pickupPositions;
-    [SerializeField]
     private Vector3 doorPosition;
 
     private Vector3 lerpAnchor= Vector3.zero;
     private static float lerpDurration = 3f;
     private float lerpTimer = 0;
+
+    public List<PickUpStation> pickupStations;
+    public Register register;
 
     protected float patience;
     private AiState state;
@@ -88,7 +87,7 @@ public class Customer : MonoBehaviour
                 {
                     float t = lerpTimer / lerpDurration;
                     t = t * t * (3f - 2f * t);
-                    transform.position = Vector3.Lerp(lerpAnchor, registerPosition, t);//Move to destination in an interlopian curve
+                    transform.position = Vector3.Lerp(lerpAnchor, register.transform.position + Vector3.left, t);//Move to destination in an interlopian curve
                     lerpTimer += Time.deltaTime;
                 }
                 else
@@ -105,7 +104,7 @@ public class Customer : MonoBehaviour
                 {
                     float t = lerpTimer / lerpDurration;
                     t = t * t * (3f - 2f * t);
-                    transform.position = Vector3.Lerp(lerpAnchor, pickupPositions[pickupChosen], t);//Move to destination in an interlopian curve
+                    transform.position = Vector3.Lerp(lerpAnchor, pickupStations[pickupChosen].transform.position + Vector3.left, t);//Move to destination in an interlopian curve
                     lerpTimer += Time.deltaTime;
                 }
                 else
@@ -213,7 +212,7 @@ public class Customer : MonoBehaviour
 
     public void MoveToStation(int num)
     {
-        if (num < pickupPositions.Length)
+        if (num < pickupStations.Count)
         {
             pickupChosen = num;
             lerpAnchor = transform.position;
