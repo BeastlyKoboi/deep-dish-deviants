@@ -1069,7 +1069,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2142104231}
-  counterList:
+  counterList1:
   - {fileID: 280704198}
   - {fileID: 648696185}
   areas:

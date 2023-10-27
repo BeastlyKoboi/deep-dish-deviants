@@ -21,6 +21,26 @@ public class TutorialManager : MonoBehaviour
     Topping pineapple;
 
     //Tutorial 2 Objects
+    [SerializeField]
+    List<Counter> counterList2;
+
+
+    //Tutorial 3 Objects
+    [SerializeField]
+    List<Counter> counterList3;
+    bool gotPlate;
+    bool addedToPlate;
+    bool trashedPlate;
+
+    //Tutorial 4 Objects
+    [SerializeField]
+    List<Counter> counterList4;
+    float timer = 10;
+
+    // Tutorial 5 Objects
+    [SerializeField]
+    List<Counter> counterList5;
+
 
 
     [SerializeField]
@@ -43,6 +63,9 @@ public class TutorialManager : MonoBehaviour
             case "Tutorial2":
                 break;
             case "Tutorial3":
+                gotPlate = false;
+                addedToPlate = false;
+                trashedPlate = false;
                 break;
             case "Tutorial4":
                 break;
@@ -83,10 +106,71 @@ public class TutorialManager : MonoBehaviour
             case "Tutorial2":
                 break;
             case "Tutorial3":
+                // if there is a plate on the counter, then the player picked one up and placed it there
+                if (counterList3[0].inventory[0] != null && counterList3[0].inventory[0].id == FoodId.plate)
+                {
+                    gotPlate = true; 
+                }
+                if (!addedToPlate && gotPlate)
+                {
+                    Plate tempPlat =(Plate) counterList3[0].inventory[0];
+                    if(tempPlat.coreFoodlist.Count >= 3)
+                    {
+                        addedToPlate= true;
+                    }
+                }
+                if(gotPlate && addedToPlate)
+                {
+                    if (player.playerInventory[0] == null && counterList3[0].inventory[0] == null) 
+                    {
+                        trashedPlate= true;
+                    }
+                }
+                if(gotPlate && addedToPlate && trashedPlate)
+                {
+                    SceneManager.LoadScene("Tutorial4");
+                }
                 break;
             case "Tutorial4":
+                if(timer > 0)
+                {
+                    timer -= Time.deltaTime;
+                }
+                if (timer < 0)
+                {
+                    SceneManager.LoadScene("Tutorial5");
+                }
                 break;
             case "Tutorial5":
+                // bools for if they have completed the scene's assignment
+                bool isFoodCooked = false;
+                bool isFoodCut = false;
+                bool isFoodKneaded = false;
+
+                Plate tempPlate = (Plate)counterList5[0].inventory[0];
+                for(int i = 0; i < 3; i++)
+                {
+                    if (tempPlate.coreFoodlist[i].foodState == CookState.cooked)
+                    {
+                        isFoodCooked = true;
+                    }
+                    else
+                    {
+                        isFoodCooked = false;
+                    }
+                }
+                if (counterList5[1].inventory[0].kneadState == KneadState.kneaded)
+                {
+                    isFoodKneaded = true;
+                }
+                if (counterList5[2].inventory[0].cutState == CutState.cut)
+                {
+                    isFoodCut = true;
+                }
+                if(isFoodCooked && isFoodCut && isFoodKneaded)
+                {
+                    SceneManager.LoadScene("MainMenu");
+                }
                 break;
         }
         

@@ -23,7 +23,11 @@ public class Counter : Station
     // Start is called before the first frame update
     void Start()
     {
-        inventory = new FoodItem[1];
+        if (inventory.Length == 0) 
+        {
+            inventory = new FoodItem[1];
+        }
+       
         icon7 = Instantiate(icon);
         icon6 = Instantiate(icon);
         icon5 = Instantiate(icon);
@@ -42,6 +46,7 @@ public class Counter : Station
 
         normalColor = Color.blue;
         triggerColor = Color.green;
+        this.SetIcons();
     }
 
     // Update is called once per frame

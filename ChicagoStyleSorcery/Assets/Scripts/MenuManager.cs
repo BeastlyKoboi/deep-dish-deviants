@@ -20,6 +20,11 @@ public class MenuManager : MonoBehaviour
         sceneLoader.LoadScene();
     }
 
+    public void LoadTutorial()
+    {
+        sceneLoader.sceneToLoad = SceneNames.TUTORIAL1;
+        sceneLoader.LoadScene();
+    }
     public void QuitGame()
     {
         // Eventually some sort of save system maybe
