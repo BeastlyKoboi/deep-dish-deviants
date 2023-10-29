@@ -35,6 +35,8 @@ public class TutorialManager : MonoBehaviour
     //Tutorial 3 Objects
     [SerializeField]
     List<Counter> counterList3;
+    [SerializeField]
+    List<SpriteRenderer> toDoListChecks3;
     bool gotPlate;
     bool addedToPlate;
     bool trashedPlate;
@@ -132,7 +134,8 @@ public class TutorialManager : MonoBehaviour
                 // if there is a plate on the counter, then the player picked one up and placed it there
                 if (counterList3[0].inventory[0] != null && counterList3[0].inventory[0].id == FoodId.plate)
                 {
-                    gotPlate = true; 
+                    gotPlate = true;
+                    toDoListChecks3[0].sprite = checkedBox;
                 }
                 if (!addedToPlate && gotPlate)
                 {
@@ -140,6 +143,7 @@ public class TutorialManager : MonoBehaviour
                     if(tempPlat.coreFoodlist.Count >= 3)
                     {
                         addedToPlate= true;
+                        toDoListChecks3[1].sprite = checkedBox;
                     }
                 }
                 if(gotPlate && addedToPlate)
@@ -147,6 +151,7 @@ public class TutorialManager : MonoBehaviour
                     if (player.playerInventory[0] == null && counterList3[0].inventory[0] == null) 
                     {
                         trashedPlate= true;
+                        toDoListChecks3[2].sprite = checkedBox;
                     }
                 }
                 if(gotPlate && addedToPlate && trashedPlate)
