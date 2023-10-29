@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class TutorialManager : MonoBehaviour
@@ -46,6 +47,9 @@ public class TutorialManager : MonoBehaviour
     List<Counter> counterList4;
     float timer = 10;
     bool putToppingOnPizza;
+    float learnTimer = 20;
+    [SerializeField]
+    List<SpriteRenderer> toDoListChecks4;
 
     // Tutorial 5 Objects
     [SerializeField]
@@ -53,6 +57,8 @@ public class TutorialManager : MonoBehaviour
     [SerializeField]
     List<SpriteRenderer> toDoListChecks5;
 
+    [SerializeField]
+    TextMeshProUGUI countdownUI;
 
     [SerializeField]
     List<Station> sceneSpecificStations;
@@ -62,6 +68,7 @@ public class TutorialManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        countdownUI.text = string.Empty;
         timer = 10;
         currentScene= SceneManager.GetActiveScene().name;
         // will do different things based on which tutorial scene is currently running
@@ -120,6 +127,7 @@ public class TutorialManager : MonoBehaviour
 
                 if(numAreasReached == 3 && isFoodMoved)
                 {
+                    countdownUI.text = "Moving to next tutorial in: " + (int) timer;
                     timer -= Time.deltaTime;
                     if(timer < 0)
                     {
@@ -156,6 +164,7 @@ public class TutorialManager : MonoBehaviour
                 }
                 if(gotPlate && addedToPlate && trashedPlate)
                 {
+                    countdownUI.text = "Moving to next tutorial in: " + (int) timer;
                     timer -= Time.deltaTime;
                     if(timer < 0)
                     {
@@ -165,16 +174,23 @@ public class TutorialManager : MonoBehaviour
                 }
                 break;
             case "Tutorial4":
+                learnTimer -= Time.deltaTime;
+                if(learnTimer < 0)
+                {
+                    toDoListChecks4[0].sprite= checkedBox;
+                }
                 if (counterList4[0].inventory[0] != null)
                 {
                     Plate toppingPlate = (Plate)counterList4[0].inventory[0];
                     if(toppingPlate.coreFoodlist.Count > 3)
                     {
                         putToppingOnPizza = true;
+                        toDoListChecks4[1].sprite = checkedBox;
                     }
                 }
-                if(putToppingOnPizza)
+                if (putToppingOnPizza && learnTimer <= 0) 
                 {
+                    countdownUI.text = "Moving to next tutorial in: " + (int)timer;
                     timer -= Time.deltaTime;
                 }
                 if (timer < 0)
@@ -213,6 +229,7 @@ public class TutorialManager : MonoBehaviour
                 }
                 if(isFoodCooked && isFoodCut && isFoodKneaded)
                 {
+                    countdownUI.text = "Returning to Main menu in: " +(int) timer;
                     timer -= Time.deltaTime;
                     if (timer < 0)
                     {
