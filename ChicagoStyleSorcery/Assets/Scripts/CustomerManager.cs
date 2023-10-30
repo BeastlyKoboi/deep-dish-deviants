@@ -113,11 +113,17 @@ public class CustomerManager : MonoBehaviour
         c.register = register;
         c.id = customerTicker; customerTicker++;
         List<FoodId> order = new List<FoodId>() {FoodId.dough, FoodId.cheese, FoodId.sauce };
+        int dayModifier = gameManager.CurrentDay;
+        if(dayModifier >= 8)
+        {
+            dayModifier = 7;
+        }
         // code for generating random pizza orders.
         for(int i = 0; i < 3; i++)
         {
             //for now there is only a 50% chance to get topping which is checked 3 times
-            if(UnityEngine.Random.Range(1,11) > 6)
+            // depending the the number of days player has gone through, chance for toppings increase
+            if(UnityEngine.Random.Range(1,11) > (9 - dayModifier))
             {
                 // gets a random topping
                 FoodId toppingToAdd = toppings[UnityEngine.Random.Range(0, toppings.Count)];
