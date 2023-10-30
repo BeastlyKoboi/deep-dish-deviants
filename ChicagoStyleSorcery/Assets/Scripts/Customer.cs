@@ -114,6 +114,7 @@ public class Customer : MonoBehaviour
                 }
                 break;
             case AiState.Leaving://Go to door and despawn
+                patienceCanvas.enabled = false;
                 if (lerpTimer < lerpDurration)
                 {
                     float t = lerpTimer / lerpDurration;

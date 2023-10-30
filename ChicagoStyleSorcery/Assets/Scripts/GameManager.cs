@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 //using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class GameManager : MonoBehaviour
@@ -31,7 +32,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI cashTotalUI;
     [SerializeField] private TextMeshProUGUI currentDayUI;
     [SerializeField] private TextMeshProUGUI clockUI;
-    [SerializeField] private TextMeshProUGUI order1;
     [SerializeField] private GameObject pausedMenu;
     [SerializeField] private Animator IntroPopupAnimator;
     [SerializeField] private GameObject dayEndPopup;
@@ -163,7 +163,8 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        InteractWithStation();
+        if (SceneManager.GetActiveScene().name == "Gameplay")
+            InteractWithStation();
 
         // This is the beginnings of the day/night cycle
         // I intend to fill out the BeginDay and EndDay methods 
