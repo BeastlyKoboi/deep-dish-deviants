@@ -28,6 +28,11 @@ public class Player : MonoBehaviour
 
     private Vector3 originalPositionCut;
 
+    [SerializeField]
+    private GameObject knead;
+
+    private Vector3 originalPositionKnead;
+
     //Icon stuff
     [SerializeField]
     private Icon icon;
@@ -70,6 +75,7 @@ public class Player : MonoBehaviour
         // store particle's original off-screen position
         originalPositionFire = fire.transform.position;
         originalPositionCut = cut.transform.position;
+        originalPositionKnead = knead.transform.position;
     }
 
     // Update is called once per frame
@@ -255,7 +261,11 @@ public class Player : MonoBehaviour
             {
                 if (counterScripts[i].isInteractable && counterScripts[i].inventory[0] != null && isInteracting)
                 {
-                    
+                    Vector3 targetPosition = counterScripts[i].transform.position;
+                    float duration = 2.0f;
+
+                    MoveToLocation(targetPosition, duration, knead);
+
                     // checks if ID is beef or dough
                     if (counterScripts[i].inventory[0].id == FoodId.dough ||
                         counterScripts[i].inventory[0].id == FoodId.beef)
@@ -290,6 +300,22 @@ public class Player : MonoBehaviour
         StartCoroutine(MoveToLocation(targetPosition, duration, particleSystem));
     }
 
+    //helper methods for particle movement and activation
+    /// <summary>
+    /// Activates the particle system and moves it to target location
+    /// </summary>
+    /// <param name="targetPosition"></param>
+    /// <param name="duration"></param>
+    /// <param name="gameObject"></param>
+    public void MoveParticleToLocation(Vector3 targetPosition, float duration, GameObject gameObject)
+    {
+        // Activate the gameObject
+        gameObject.GetComponent<Animator>().SetTrigger("Knead");
+
+        //Move the particle to the targe location over a specified duration
+        StartCoroutine(MoveToLocation(targetPosition, duration, gameObject));
+    }
+
     /// <summary>
     /// Runs for the duration of time, then stops and moves off-screen
     /// </summary>
@@ -321,5 +347,31 @@ public class Player : MonoBehaviour
 
         // Disable the particle system
         particleSystem.Stop();
+    }
+
+    /// <summary>
+    /// Runs for the duration of time, then stops and moves off-screen
+    /// </summary>
+    /// <param name="targetPosition"></param>
+    /// <param name="duration"></param>
+    /// <param name="gameObject"></param>
+    /// <returns></returns>
+    private IEnumerator MoveToLocation(Vector3 targetPosition, float duration, GameObject gameObject)
+    {
+        float elapsedTime = 0f;
+        Vector3 initialPosition = gameObject.transform.position;
+
+        while (elapsedTime < duration)
+        {
+            gameObject.transform.position = targetPosition;
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // Return the game object to its original position
+        gameObject.transform.position = originalPositionKnead;
+
+        //disable animation
+        gameObject.GetComponent<Animator>().ResetTrigger("Knead");
     }
 }
