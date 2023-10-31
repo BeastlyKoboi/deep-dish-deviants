@@ -102,7 +102,8 @@ public class GameManager : MonoBehaviour
         if(pausedMenu != null)
         {
             pausedMenu.SetActive(false);
-            IntroPopupAnimator.gameObject.SetActive(true);
+            if(IntroPopupAnimator!= null)
+                IntroPopupAnimator.gameObject.SetActive(true);
         }
 
         if (dayEndPopup != null)
@@ -115,6 +116,7 @@ public class GameManager : MonoBehaviour
             ToggleGamePause();
         else
             loadingScreenObj.GetComponent<SceneLoader>().fadeFinished.AddListener(ToggleGamePause);
+            ToggleGamePause();
 
         if(loadingScreenPrefab != null)
         {
