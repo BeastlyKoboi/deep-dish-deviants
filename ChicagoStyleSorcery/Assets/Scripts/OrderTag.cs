@@ -150,4 +150,18 @@ public class OrderTag : MonoBehaviour
             lerpDurration = .125f;
         }
     }
+
+    /// <summary>
+    /// Toggles tag quickly, only if already closed
+    /// </summary>
+    public void openQuick()
+    {
+        if (!opened)
+        {
+            opened = !opened;
+            lerpAnchor = transform.position;
+            lerpTimer = 0;
+            lerpDurration = .125f;
+        }
+    }
 }

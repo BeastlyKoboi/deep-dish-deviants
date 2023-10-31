@@ -109,7 +109,9 @@ MonoBehaviour:
   cutCoolDown: 0
   cutCoolDownActive: 0
   counterScripts: []
-  icon: {fileID: 0}
+  fire: {fileID: 6352929679046319893, guid: 4ff728ecd7a64b94eb7e1074e9a70208, type: 3}
+  cut: {fileID: 3722538077703442233, guid: 0f6a681beb8f21242ad6654648ed467b, type: 3}
+  icon: {fileID: 3802843821844549318, guid: ace74608e1490bb4d9bd673529a93db1, type: 3}
   isInteracting: 0
 --- !u!61 &824235580455297565
 BoxCollider2D:
@@ -232,7 +234,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7877267173493779552}
         m_TargetAssemblyTypeName: Controller, Assembly-CSharp
-        m_MethodName: OnFire
+        m_MethodName: OnInteract
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -285,19 +287,7 @@ MonoBehaviour:
     m_ActionId: 836e4915-b628-4ac1-b853-7f49256986b2
     m_ActionName: UI/TrackedDeviceOrientation
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: TogglePause
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 2954dfe0-0cf2-44fc-b5c6-85311fa460d0
     m_ActionName: Player/Pause[/Keyboard/escape]
   - m_PersistentCalls:

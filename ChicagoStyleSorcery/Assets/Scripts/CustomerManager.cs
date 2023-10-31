@@ -18,6 +18,8 @@ public class CustomerManager : MonoBehaviour
     List<Customer> customerList;
     List<FoodId> toppings;
 
+    int customerTicker = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -106,13 +108,22 @@ public class CustomerManager : MonoBehaviour
     public void GenerateCustomer()
     {
         Customer c = Instantiate(customerDefault);
-        c.GetComponent<Customer>().customerManager = gameObject.GetComponent<CustomerManager>();
+        c.customerManager = gameObject.GetComponent<CustomerManager>();
+        c.pickupStations = pickUpStationList;
+        c.register = register;
+        c.id = customerTicker; customerTicker++;
         List<FoodId> order = new List<FoodId>() {FoodId.dough, FoodId.cheese, FoodId.sauce };
+        int dayModifier = gameManager.CurrentDay;
+        if(dayModifier >= 8)
+        {
+            dayModifier = 7;
+        }
         // code for generating random pizza orders.
         for(int i = 0; i < 3; i++)
         {
             //for now there is only a 50% chance to get topping which is checked 3 times
-            if(UnityEngine.Random.Range(1,11) > 6)
+            // depending the the number of days player has gone through, chance for toppings increase
+            if(UnityEngine.Random.Range(1,11) > (9 - dayModifier))
             {
                 // gets a random topping
                 FoodId toppingToAdd = toppings[UnityEngine.Random.Range(0, toppings.Count)];
@@ -128,6 +139,15 @@ public class CustomerManager : MonoBehaviour
         }
         c.SetOrder(order);
         customerList.Add(c);
+    }
+
+    public void RemoveCustomer(int id)
+    {
+        for (int i = 0; i < customerList.Count; i++)
+        {
+            if (customerList[i].id == id)
+                customerList.RemoveAt(i);
+        }
     }
 
     /// <summary>

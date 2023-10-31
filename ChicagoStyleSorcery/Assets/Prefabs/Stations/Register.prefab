@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 0d93ff58ec469dc4db89d7310b639176, type: 3}
-  m_Color: {r: 0.6415094, g: 0.2521656, b: 0.5624737, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
@@ -103,7 +103,6 @@ MonoBehaviour:
   isInteractable: 0
   triggerColor: {r: 0, g: 0, b: 0, a: 0}
   normalColor: {r: 0, g: 0, b: 0, a: 0}
-  manager: {fileID: 0}
   currentCustomer: {fileID: 0}
 --- !u!60 &4252493099485215883
 PolygonCollider2D:

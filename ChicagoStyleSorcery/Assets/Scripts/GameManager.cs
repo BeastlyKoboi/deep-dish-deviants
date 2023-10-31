@@ -6,14 +6,17 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 //using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class GameManager : MonoBehaviour
 {
     // Player
+    [Header("Player")]
     [SerializeField] private Player player;
 
     // Stations
+    [Header("Station Scripts")]
     [SerializeField] private Register registerScript;
     [SerializeField] private List<Counter> counterScripts;
     [SerializeField] private List<GarbageCan> garbageScripts;
@@ -24,49 +27,72 @@ public class GameManager : MonoBehaviour
     private List<Station> allStations = new List<Station>();
 
     // UI Elements
+    [Header("UI Elements")]
     [SerializeField] private GameObject canvas;
-    [SerializeField] private TextMeshProUGUI cashUI;
+    [SerializeField] private TextMeshProUGUI cashTotalUI;
+    [SerializeField] private TextMeshProUGUI currentDayUI;
     [SerializeField] private TextMeshProUGUI clockUI;
-    [SerializeField] private TextMeshProUGUI order1;
     [SerializeField] private GameObject pausedMenu;
     [SerializeField] private Animator IntroPopupAnimator;
+    [SerializeField] private GameObject dayEndPopup;
+    [SerializeField] private TextMeshProUGUI cashTodayUI;
+    [SerializeField] private TextMeshProUGUI pizzasSoldUI;
     [SerializeField] private GameObject tooltipPrefab;
     [SerializeField] private GameObject tooltipParent; // Used to maintain visible order, Intro may pop up behind w/o
     private TooltipInfo tooltip;
+    public enum GameState { Open, Closed };
 
     // Gameplay Variables 
-    public enum GameState { Open, Closed };
+    [Header("Gameplay Variables")]
     [SerializeField] private GameState gameState;
-    [SerializeField] private float _cash;
+    [SerializeField] private float _cashTotal;
+    [SerializeField] private float cashToday = 0;
+    [SerializeField] private int numPizzaSoldToday = 0;
     [SerializeField] private bool isPaused = false;
-    [SerializeField] private int currentDay = 1;
+    [SerializeField] private int currentDay = 0;
     [SerializeField] private int currentHour = 8;
     [SerializeField] private float currentTime = 0.0f;
-    [SerializeField] private float hourLength = 20.0f;
+    [SerializeField] private float hourLength = 30.0f;
     [SerializeField] private bool hasTutorial = true;
 
+    // Customers and Orders
+    [Header("Customers and Orders")]
     [SerializeField] private List<GameObject> currentCustomers = new List<GameObject>();
-
     [SerializeField] private OrderTag tag1;
     [SerializeField] private OrderTag tag2;
     [SerializeField] private OrderTag tag3;
 
     // Text Assets
+    [Header("Text Assets")]
     public TextAsset tooltips;
     string[] tooltipsJSON;
     int currentTooltipNum = 0;
 
     // Scene Loading 
+    [Header("Scene Loading")]
     [SerializeField] private GameObject loadingScreen;
     [SerializeField] private SceneLoader sceneLoader;
     [SerializeField] private GameObject loadingScreenPrefab;
 
     // Properties 
-    public float Cash
+    public float CashTotal
     {
-        get { return _cash; }
+        get { return _cashTotal; }
         set
-        { _cash = value; }
+        { 
+            _cashTotal = value;
+            cashTotalUI.text = $"${_cashTotal - _cashTotal % .01}";
+        }
+    }
+
+    public int CurrentDay
+    {
+        get { return currentDay; } 
+        set
+        {
+            currentDay = value;
+            currentDayUI.text = $"Day {currentDay}";
+        }
     }
 
     // Start is called before the first frame update
@@ -76,9 +102,12 @@ public class GameManager : MonoBehaviour
         if(pausedMenu != null)
         {
             pausedMenu.SetActive(false);
-            IntroPopupAnimator.gameObject.SetActive(true);
+            if(IntroPopupAnimator!= null)
+                IntroPopupAnimator.gameObject.SetActive(true);
         }
-       
+
+        if (dayEndPopup != null)
+            dayEndPopup.SetActive(false);
 
         // If there a is a loading animation to come, 
         // wait until its over to pause the game
@@ -87,8 +116,9 @@ public class GameManager : MonoBehaviour
             ToggleGamePause();
         else
             loadingScreenObj.GetComponent<SceneLoader>().fadeFinished.AddListener(ToggleGamePause);
+            ToggleGamePause();
 
-        if(loadingScreenPrefab!= null)
+        if(loadingScreenPrefab != null)
         {
             // saves for use in later methods
             loadingScreenObj = Instantiate(loadingScreenPrefab);
@@ -135,7 +165,8 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        InteractWithStation();
+        if (SceneManager.GetActiveScene().name == "Gameplay")
+            InteractWithStation();
 
         // This is the beginnings of the day/night cycle
         // I intend to fill out the BeginDay and EndDay methods 
@@ -153,9 +184,6 @@ public class GameManager : MonoBehaviour
                 break;
         }
 
-        // Update the 
-        if(cashUI!= null)
-            cashUI.text = $"${_cash - _cash % .01}";
     }
 
     public void UpdateClock()
@@ -174,19 +202,34 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void ResetClock()
+    {
+        currentHour = 8;
+        currentTime = 0;
+        clockUI.text = $"{currentHour}:00 {(currentHour < 8 ? "PM" : "AM")}";
+    }
+
     // Eventually will force customers to leave,
     // and pull up a screen to tally the restaurants gains and losses that day.
     private void EndDay()
     {
         gameState = GameState.Closed;
+        dayEndPopup.SetActive(true);
+        cashTodayUI.text = $"Earnings: ${cashToday - cashToday % .01}";
+        pizzasSoldUI.text = $"Pizza's Sold: {numPizzaSoldToday}";
+        cashToday = 0;
+        numPizzaSoldToday = 0;
         // More stuff to come
     }
     // Eventually I hope to have it called on game start
     // and then when prompted after a day has ended.
     // This will restart the customers coming in and in effect allow the clock to work
-    private void BeginDay()
+    public void BeginDay()
     {
         gameState = GameState.Open;
+        ResetClock();
+        CurrentDay++;
+        dayEndPopup.SetActive(false);
         // more stuff to come
     }
 
@@ -195,6 +238,7 @@ public class GameManager : MonoBehaviour
         ToggleGamePause();
         IntroPopupAnimator.SetTrigger("Close");
         IntroPopupAnimator.SetBool("wasClosed", true);
+        BeginDay();
     }
 
     public void OnNextTooltip(InputAction.CallbackContext context)
@@ -311,11 +355,13 @@ public class GameManager : MonoBehaviour
 
     public void addScore(int value, float mult)
     {
-        _cash += value * mult;
+        CashTotal += value * mult;
+        cashToday += value * mult;
+        numPizzaSoldToday++;
     }
 
     /// <summary>
-    /// Changes the order of the given tag to the new order
+    /// Changes the order of the given tag to the new order, pulls out that tag
     /// </summary>
     /// <param name="pizza">The pizza order</param>
     /// <param name="station">The station number this is for</param>
@@ -325,12 +371,21 @@ public class GameManager : MonoBehaviour
         {
             case 1:
                 tag1.FillTag(pizza);
+                tag1.openQuick();
+                tag2.closeQuick();
+                tag3.closeQuick();
                 break;
             case 2:
                 tag2.FillTag(pizza);
+                tag2.openQuick();
+                tag1.closeQuick();
+                tag3.closeQuick();
                 break;
             case 3:
                 tag3.FillTag(pizza);
+                tag3.openQuick();
+                tag2.closeQuick();
+                tag1.closeQuick();
                 break;
         }
     }

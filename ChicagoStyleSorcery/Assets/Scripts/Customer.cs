@@ -5,6 +5,7 @@ using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum AiState
 {
@@ -16,6 +17,10 @@ public enum AiState
 }
 public class Customer : MonoBehaviour
 {
+    [SerializeField]
+    protected Canvas patienceCanvas;
+    [SerializeField]
+    protected Image trackerImage;
 
     [SerializeField]
     protected List<FoodId> order;
@@ -32,21 +37,25 @@ public class Customer : MonoBehaviour
     private float difficultyFloat;
 
     [SerializeField]
-    private Vector3 registerPosition;
-    [SerializeField]
-    private Vector3[] pickupPositions;
-    [SerializeField]
     private Vector3 doorPosition;
 
-    private Vector3 lerpAnchor= Vector3.zero;
-    private static float lerpDurration = 3f;
-    private float lerpTimer = 0;
+    protected Vector3 lerpAnchor= Vector3.zero;
+    protected static float lerpDurration = 3f;
+    protected float lerpTimer = 0;
+
+    public List<PickUpStation> pickupStations;
+    public Register register;
 
     protected float patience;
-    private AiState state;
+    protected AiState state;
     protected bool patienceFreeze;
     public int pickupChosen;
+    public int id;
 
+    public AiState State
+    {
+        get { return state; }
+    }
     void Start()
     {
         state = AiState.Entering;
@@ -58,7 +67,10 @@ public class Customer : MonoBehaviour
     void Update()
     {
         if (!patienceFreeze)
+        {
             patience -= Time.deltaTime;
+            trackerImage.fillAmount = patience / maxPatience;
+        }
         if (patience <= 0 )
         {//TODO: address issue where this can cause problems in a line if this customer is attached to the register
             state = AiState.Leaving;
@@ -80,7 +92,7 @@ public class Customer : MonoBehaviour
                 {
                     float t = lerpTimer / lerpDurration;
                     t = t * t * (3f - 2f * t);
-                    transform.position = Vector3.Lerp(lerpAnchor, registerPosition, t);//Move to destination in an interlopian curve
+                    transform.position = Vector3.Lerp(lerpAnchor, register.transform.position + Vector3.left, t);//Move to destination in an interlopian curve
                     lerpTimer += Time.deltaTime;
                 }
                 else
@@ -97,7 +109,7 @@ public class Customer : MonoBehaviour
                 {
                     float t = lerpTimer / lerpDurration;
                     t = t * t * (3f - 2f * t);
-                    transform.position = Vector3.Lerp(lerpAnchor, pickupPositions[pickupChosen], t);//Move to destination in an interlopian curve
+                    transform.position = Vector3.Lerp(lerpAnchor, pickupStations[pickupChosen].transform.position + Vector3.left, t);//Move to destination in an interlopian curve
                     lerpTimer += Time.deltaTime;
                 }
                 else
@@ -106,6 +118,7 @@ public class Customer : MonoBehaviour
                 }
                 break;
             case AiState.Leaving://Go to door and despawn
+                patienceCanvas.enabled = false;
                 if (lerpTimer < lerpDurration)
                 {
                     float t = lerpTimer / lerpDurration;
@@ -114,7 +127,9 @@ public class Customer : MonoBehaviour
                     lerpTimer += Time.deltaTime;
                 }
                 else
+                {
                     Destroy(gameObject);
+                }
                 break;
         }
     }
@@ -127,33 +142,36 @@ public class Customer : MonoBehaviour
     public float ReviewOrder(Plate pizza)
     {
         float successPercentile = 1;
+        float amountFound = 0;
         for(int i = 0; i < pizza.coreFoodlist.Count; i++)
         {
             bool found = false;
-            //If uncooked or overcooked
-            if (pizza.coreFoodlist[i].foodState == CookState.raw || pizza.coreFoodlist[i].foodState == CookState.burnt)
-            {
-                successPercentile -= (1f / ((float)order.Count / 4f));
-            }
-            if (i > order.Count && pizza.coreFoodlist[i] != null)//extra unexpected toping
-            {
-                //Reduce percentile
-                successPercentile -= 1f / ((float)order.Count / 4f);
-                found = true;
-            }
+            if (pizza.coreFoodlist[i].foodState == CookState.raw || pizza.coreFoodlist[i].foodState == CookState.burnt) //If uncooked or overcooked
+                successPercentile -= (.1f / ((float)order.Count / 3f)); //Reduce percentile
+            if (pizza.coreFoodlist[i].kneadState == KneadState.unkneaded || pizza.coreFoodlist[i].cutState == CutState.uncut) //If uncut or unkneaded
+                successPercentile -= (.1f / ((float)order.Count / 3f)); //Reduce percentile
             for (int j = 0; j < order.Count; j++)
             {
                 if (pizza.coreFoodlist[i].id == order[j])//topping exists on pizza
                 {
+                    if (found)//means this topping was already found once
+                        successPercentile -= .05f;//minor reduction
+                    else//First time found, so note that this topping is good
+                        amountFound++;
                     found = true;
                 }
             }
-            if (!found)
-                successPercentile -= 1f / ((float)order.Count / 2f);
+            for (int k = 0; k < pizza.coreFoodlist.Count; k++)
+            {
+                if (pizza.coreFoodlist[i] == pizza.coreFoodlist[k] && i != k) //Duplicate topping
+                    successPercentile -= .05f;
+            }
+            if (!found)//unneeded topping
+                successPercentile -= .2f / ((float)order.Count / 2f);
         }
-        if (order.Count > pizza.coreFoodlist.Count)//Missing ingredients
+        if (order.Count > amountFound)//Missing ingredients
         {
-            successPercentile -= (1f / (((float)order.Count / 4f)));
+            successPercentile -= .15f * (order.Count - amountFound);
         }
 
         //+- 30 based on difference of patience from max patience. Value modified is based on percent of time taken with leniency based off difficulty
@@ -162,10 +180,8 @@ public class Customer : MonoBehaviour
         if (!pizza.IsSorted())
             successPercentile -= .3f;
 
-        if (successPercentile < .05f)
-        {
-            successPercentile = .05f;
-        }
+        if (successPercentile < .05f) //Gives player a small amount so it doesn't look like it just didn't work
+            successPercentile = UnityEngine.Random.Range(.01f, .05f);
 
         state = AiState.Leaving;
         lerpTimer = 0f;
@@ -204,7 +220,7 @@ public class Customer : MonoBehaviour
 
     public void MoveToStation(int num)
     {
-        if (num < pickupPositions.Length)
+        if (num < pickupStations.Count)
         {
             pickupChosen = num;
             lerpAnchor = transform.position;
@@ -214,5 +230,16 @@ public class Customer : MonoBehaviour
     public void SetOrder(List<FoodId> pizza)
     {
         order = pizza;
+    }
+
+    /// <summary>
+    /// Forces customer to stay patient and resets their patience
+    /// </summary>
+    public void ForcePatient()
+    {
+        patienceFreeze = true;
+        patience = maxPatience;
+        trackerImage.fillAmount = patience / maxPatience;
+        trackerImage.color = Color.cyan;
     }
 }

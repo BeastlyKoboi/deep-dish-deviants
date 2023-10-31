@@ -23,7 +23,11 @@ public class Counter : Station
     // Start is called before the first frame update
     void Start()
     {
-        inventory = new FoodItem[1];
+        if (inventory.Length == 0) 
+        {
+            inventory = new FoodItem[1];
+        }
+       
         icon7 = Instantiate(icon);
         icon6 = Instantiate(icon);
         icon5 = Instantiate(icon);
@@ -41,7 +45,8 @@ public class Counter : Station
         iconList = new List<Icon>();
 
         normalColor = Color.blue;
-        triggerColor = Color.red;
+        triggerColor = Color.green;
+        this.SetIcons();
     }
 
     // Update is called once per frame
@@ -77,7 +82,7 @@ public class Counter : Station
         }
         else if(inventory[0] != null && player.playerInventory[0] != null)
         {
-            CoreIngredient tempIngredient = (CoreIngredient) inventory[0];
+            FoodItem tempIngredient = (FoodItem) inventory[0];
             inventory[0] = player.playerInventory[0];
             player.playerInventory[0] = tempIngredient;
         }
