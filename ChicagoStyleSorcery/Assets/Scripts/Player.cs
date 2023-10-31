@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -14,6 +15,8 @@ public class Player : MonoBehaviour
     public bool kneedCoolDownActive;
     public float cutCoolDown;
     public bool cutCoolDownActive;
+    public float sortCoolDown;
+    public bool sortCoolDownActive;
 
     [SerializeField] private List<Counter> counterScripts;
 
@@ -71,6 +74,8 @@ public class Player : MonoBehaviour
         kneedCoolDownActive = false;
         cutCoolDown = 0;
         cutCoolDownActive = false;
+        sortCoolDown = 0;
+        sortCoolDownActive = false;
 
         // store particle's original off-screen position
         originalPositionFire = fire.transform.position;
@@ -113,6 +118,17 @@ public class Player : MonoBehaviour
         {
             cutCoolDown = 0;
             cutCoolDownActive = false;
+        }
+        //updates if time if cooldown is active
+        if (sortCoolDown > 0 && sortCoolDownActive)
+        {
+            sortCoolDown -= Time.deltaTime;
+        }
+        // stops cooldown if it is below or at 0
+        if (sortCoolDown <= 0)
+        {
+            sortCoolDown = 0;
+            sortCoolDownActive = false;
         }
 
         //Set constructed icons to player position each frame
@@ -279,6 +295,36 @@ public class Player : MonoBehaviour
                     counterScripts[i].SetIcons();
                     kneedCoolDown = 3;
                     kneedCoolDownActive = true;
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Sorts the items on the plate
+    /// </summary>
+    public void SortMagic()
+    {
+        if (!kneedCoolDownActive)
+        {
+            //checks if player is interacting with a counter
+            for (int i = 0; i < counterScripts.Count; i++)
+            {
+                if (counterScripts[i].isInteractable && counterScripts[i].inventory[0] != null && isInteracting)
+                {
+                    // checks if ID is beef or dough
+                    if (counterScripts[i].inventory[0].id == FoodId.plate)
+                    {
+                        Plate plate = (Plate)counterScripts[i].inventory[0];
+                        //if unsorted, sort
+                        if (!plate.IsSorted())
+                        {
+                            
+                        }
+                    }
+                    counterScripts[i].SetIcons();
+                    sortCoolDown = 5;
+                    sortCoolDownActive = true;
                 }
             }
         }
