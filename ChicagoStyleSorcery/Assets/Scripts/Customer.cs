@@ -52,6 +52,10 @@ public class Customer : MonoBehaviour
     public int pickupChosen;
     public int id;
 
+    public AiState State
+    {
+        get { return state; }
+    }
     void Start()
     {
         state = AiState.Entering;

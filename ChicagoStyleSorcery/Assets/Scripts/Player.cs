@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -14,6 +15,8 @@ public class Player : MonoBehaviour
     public bool kneedCoolDownActive;
     public float cutCoolDown;
     public bool cutCoolDownActive;
+    public float sortCoolDown;
+    public bool sortCoolDownActive;
 
     [SerializeField] private List<Counter> counterScripts;
 
@@ -27,6 +30,11 @@ public class Player : MonoBehaviour
     private ParticleSystem cut;
 
     private Vector3 originalPositionCut;
+
+    [SerializeField]
+    private GameObject knead;
+
+    private Vector3 originalPositionKnead;
 
     //Icon stuff
     [SerializeField]
@@ -66,10 +74,13 @@ public class Player : MonoBehaviour
         kneedCoolDownActive = false;
         cutCoolDown = 0;
         cutCoolDownActive = false;
+        sortCoolDown = 0;
+        sortCoolDownActive = false;
 
         // store particle's original off-screen position
         originalPositionFire = fire.transform.position;
         originalPositionCut = cut.transform.position;
+        originalPositionKnead = knead.transform.position;
     }
 
     // Update is called once per frame
@@ -107,6 +118,17 @@ public class Player : MonoBehaviour
         {
             cutCoolDown = 0;
             cutCoolDownActive = false;
+        }
+        //updates if time if cooldown is active
+        if (sortCoolDown > 0 && sortCoolDownActive)
+        {
+            sortCoolDown -= Time.deltaTime;
+        }
+        // stops cooldown if it is below or at 0
+        if (sortCoolDown <= 0)
+        {
+            sortCoolDown = 0;
+            sortCoolDownActive = false;
         }
 
         //Set constructed icons to player position each frame
@@ -255,7 +277,11 @@ public class Player : MonoBehaviour
             {
                 if (counterScripts[i].isInteractable && counterScripts[i].inventory[0] != null && isInteracting)
                 {
-                    
+                    Vector3 targetPosition = counterScripts[i].transform.position;
+                    float duration = 2.0f;
+
+                    MoveParticleToLocation(targetPosition, duration, knead);
+
                     // checks if ID is beef or dough
                     if (counterScripts[i].inventory[0].id == FoodId.dough ||
                         counterScripts[i].inventory[0].id == FoodId.beef)
@@ -269,6 +295,39 @@ public class Player : MonoBehaviour
                     counterScripts[i].SetIcons();
                     kneedCoolDown = 3;
                     kneedCoolDownActive = true;
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Sorts the items on the plate
+    /// </summary>
+    public void SortMagic()
+    {
+        if (!kneedCoolDownActive)
+        {
+            //checks if player is interacting with a counter
+            for (int i = 0; i < counterScripts.Count; i++)
+            {
+                if (counterScripts[i].isInteractable && counterScripts[i].inventory[0] != null && isInteracting)
+                {
+                    // checks if ID is beef or dough
+                    if (counterScripts[i].inventory[0].id == FoodId.plate)
+                    {
+                        Plate tempPlate = (Plate)counterScripts[i].inventory[0];
+                        // sorts core food list of plate based on order of food ids
+                        tempPlate.coreFoodlist.Sort((food1,food2) => food1.id.CompareTo(food2.id));
+                        counterScripts[i].inventory[0] = tempPlate;
+                        //if unsorted, sort
+                       /// if (!tempPlate.IsSorted())
+                       // {
+                            
+                      //  }
+                    }
+                    counterScripts[i].SetIcons();
+                    sortCoolDown = 5;
+                    sortCoolDownActive = true;
                 }
             }
         }
@@ -288,6 +347,19 @@ public class Player : MonoBehaviour
 
         //Move the particle to the targe location over a specified duration
         StartCoroutine(MoveToLocation(targetPosition, duration, particleSystem));
+    }
+
+    //helper methods for particle movement and activation
+    /// <summary>
+    /// Activates the particle system and moves it to target location
+    /// </summary>
+    /// <param name="targetPosition"></param>
+    /// <param name="duration"></param>
+    /// <param name="gameObject"></param>
+    public void MoveParticleToLocation(Vector3 targetPosition, float duration, GameObject gameObject)
+    {
+        //Move the particle to the targe location over a specified duration
+        StartCoroutine(MoveToLocation(targetPosition, duration, gameObject));
     }
 
     /// <summary>
@@ -321,5 +393,28 @@ public class Player : MonoBehaviour
 
         // Disable the particle system
         particleSystem.Stop();
+    }
+
+    /// <summary>
+    /// Runs for the duration of time, then stops and moves off-screen
+    /// </summary>
+    /// <param name="targetPosition"></param>
+    /// <param name="duration"></param>
+    /// <param name="gameObject"></param>
+    /// <returns></returns>
+    private IEnumerator MoveToLocation(Vector3 targetPosition, float duration, GameObject gameObject)
+    {
+        float elapsedTime = 0f;
+        Vector3 initialPosition = gameObject.transform.position;
+
+        while (elapsedTime < duration)
+        {
+            gameObject.transform.position = targetPosition;
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // Return the game object to its original position
+        gameObject.transform.position = originalPositionKnead;
     }
 }

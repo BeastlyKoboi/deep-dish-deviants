@@ -10,12 +10,13 @@ public class TutorialManager : MonoBehaviour
     [SerializeField]
     Player player;
 
+    [Header("CheckBox sprites")]
     [SerializeField]
     Sprite checkedBox;
     [SerializeField]
     Sprite uncheckedBox;
 
-
+    [Header("Tutorial 1 Fields")]
     // Tutorial 1 Objects
     [SerializeField]
     List<Counter> counterList1;
@@ -28,11 +29,14 @@ public class TutorialManager : MonoBehaviour
     [SerializeField]
     List<SpriteRenderer> toDoListChecks1;
 
+    [Header("Tutorial 2 Fields")]
     //Tutorial 2 Objects
     [SerializeField]
     List<Counter> counterList2;
+    [SerializeField]
+    List<SpriteRenderer> toDoListChecks2;
 
-
+    [Header("Tutorial 3 Fields")]
     //Tutorial 3 Objects
     [SerializeField]
     List<Counter> counterList3;
@@ -42,6 +46,7 @@ public class TutorialManager : MonoBehaviour
     bool addedToPlate;
     bool trashedPlate;
 
+    [Header("Tutorial 4 Fields")]
     //Tutorial 4 Objects
     [SerializeField]
     List<Counter> counterList4;
@@ -51,11 +56,15 @@ public class TutorialManager : MonoBehaviour
     [SerializeField]
     List<SpriteRenderer> toDoListChecks4;
 
+    [Header("Tutorial 5 Fields")]
     // Tutorial 5 Objects
     [SerializeField]
     List<Counter> counterList5;
     [SerializeField]
     List<SpriteRenderer> toDoListChecks5;
+    bool pickedUpPizza;
+    bool tookOrder;
+    bool completedOrder;
 
     [SerializeField]
     TextMeshProUGUI countdownUI;
@@ -81,7 +90,9 @@ public class TutorialManager : MonoBehaviour
                
                 break;
             case "Tutorial2":
-                
+                pickedUpPizza = false ;
+                tookOrder = false;
+                completedOrder = false;
                 break;
             case "Tutorial3":
                 gotPlate = false;
@@ -137,6 +148,34 @@ public class TutorialManager : MonoBehaviour
                 }
                 break;
             case "Tutorial2":
+                if (counterList2[0].inventory[0] == null) {
+                    pickedUpPizza = true;
+                    toDoListChecks2[1].sprite= checkedBox;
+                }
+
+               
+                Register tempRegister = (Register)sceneSpecificStations[1];
+                PickUpStation tempPickUpStation = (PickUpStation)sceneSpecificStations[2];
+                
+                if (tempPickUpStation.currentCustomer != null && tempRegister.currentCustomer == null)
+                {
+                    tookOrder = true;
+                    toDoListChecks2[0].sprite = checkedBox;
+                }
+                if(tookOrder && tempPickUpStation.currentCustomer== null)
+                {
+                    completedOrder = true;
+                    toDoListChecks2[2].sprite = checkedBox;
+                }
+                if (pickedUpPizza && tookOrder && completedOrder)
+                {
+                    countdownUI.text = "Moving to next tutorial in: " + (int)timer;
+                    timer -= Time.deltaTime;
+                    if (timer < 0)
+                    {
+                        SceneManager.LoadScene("Tutorial3");
+                    }
+                }
                 break;
             case "Tutorial3":
                 // if there is a plate on the counter, then the player picked one up and placed it there
