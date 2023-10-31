@@ -264,7 +264,7 @@ public class Player : MonoBehaviour
                     Vector3 targetPosition = counterScripts[i].transform.position;
                     float duration = 2.0f;
 
-                    MoveToLocation(targetPosition, duration, knead);
+                    MoveParticleToLocation(targetPosition, duration, knead);
 
                     // checks if ID is beef or dough
                     if (counterScripts[i].inventory[0].id == FoodId.dough ||
@@ -309,9 +309,6 @@ public class Player : MonoBehaviour
     /// <param name="gameObject"></param>
     public void MoveParticleToLocation(Vector3 targetPosition, float duration, GameObject gameObject)
     {
-        // Activate the gameObject
-        gameObject.GetComponent<Animator>().SetTrigger("Knead");
-
         //Move the particle to the targe location over a specified duration
         StartCoroutine(MoveToLocation(targetPosition, duration, gameObject));
     }
@@ -370,8 +367,5 @@ public class Player : MonoBehaviour
 
         // Return the game object to its original position
         gameObject.transform.position = originalPositionKnead;
-
-        //disable animation
-        gameObject.GetComponent<Animator>().ResetTrigger("Knead");
     }
 }
