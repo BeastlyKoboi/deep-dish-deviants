@@ -115,5 +115,15 @@ public class Controller : MonoBehaviour
         }
     }
 
+    public void OnSortMagic(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            player.isInteracting = true;
+            player.SortMagic();
+            player.isInteracting = false;
+        }
+    }
+
 
 }
