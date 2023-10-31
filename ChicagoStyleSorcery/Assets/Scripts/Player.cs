@@ -315,12 +315,15 @@ public class Player : MonoBehaviour
                     // checks if ID is beef or dough
                     if (counterScripts[i].inventory[0].id == FoodId.plate)
                     {
-                        Plate plate = (Plate)counterScripts[i].inventory[0];
+                        Plate tempPlate = (Plate)counterScripts[i].inventory[0];
+                        // sorts core food list of plate based on order of food ids
+                        tempPlate.coreFoodlist.Sort((food1,food2) => food1.id.CompareTo(food2.id));
+                        counterScripts[i].inventory[0] = tempPlate;
                         //if unsorted, sort
-                        if (!plate.IsSorted())
-                        {
+                       /// if (!tempPlate.IsSorted())
+                       // {
                             
-                        }
+                      //  }
                     }
                     counterScripts[i].SetIcons();
                     sortCoolDown = 5;
