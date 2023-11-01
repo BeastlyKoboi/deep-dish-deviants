@@ -35,7 +35,9 @@ public class TutorialManager : MonoBehaviour
     List<Counter> counterList2;
     [SerializeField]
     List<SpriteRenderer> toDoListChecks2;
-
+    bool pickedUpPizza;
+    bool tookOrder;
+    bool completedOrder;
     [Header("Tutorial 3 Fields")]
     //Tutorial 3 Objects
     [SerializeField]
@@ -62,9 +64,7 @@ public class TutorialManager : MonoBehaviour
     List<Counter> counterList5;
     [SerializeField]
     List<SpriteRenderer> toDoListChecks5;
-    bool pickedUpPizza;
-    bool tookOrder;
-    bool completedOrder;
+   
 
     [SerializeField]
     TextMeshProUGUI countdownUI;
@@ -242,6 +242,7 @@ public class TutorialManager : MonoBehaviour
                 bool isFoodCooked = false;
                 bool isFoodCut = false;
                 bool isFoodKneaded = false;
+                bool isFoodSorted = false;
 
                 Plate tempPlate = (Plate)counterList5[0].inventory[0];
                 for(int i = 0; i < 3; i++)
@@ -266,7 +267,17 @@ public class TutorialManager : MonoBehaviour
                     isFoodCut = true;
                     toDoListChecks5[2].sprite = checkedBox;
                 }
-                if(isFoodCooked && isFoodCut && isFoodKneaded)
+
+                if (counterList5[3].inventory[0] != null)
+                {
+                    tempPlate = (Plate)counterList5[3].inventory[0];
+                    if (tempPlate.IsSorted())
+                    {
+                        isFoodSorted= true;
+                        toDoListChecks5[3].sprite= checkedBox;
+                    }
+                }
+                if(isFoodCooked && isFoodCut && isFoodKneaded && isFoodSorted)
                 {
                     countdownUI.text = "Returning to Main menu in: " +(int) timer;
                     timer -= Time.deltaTime;
