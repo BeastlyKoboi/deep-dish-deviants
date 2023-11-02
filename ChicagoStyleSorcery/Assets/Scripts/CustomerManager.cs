@@ -14,6 +14,8 @@ public class CustomerManager : MonoBehaviour
     List<PickUpStation> pickUpStationList;
     [SerializeField]
     Customer customerDefault;
+    [SerializeField]
+    CashPopup popup;
 
     List<Customer> customerList;
     List<FoodId> toppings;
@@ -112,6 +114,7 @@ public class CustomerManager : MonoBehaviour
         c.pickupStations = pickUpStationList;
         c.register = register;
         c.id = customerTicker; customerTicker++;
+        c.popup = popup;
         List<FoodId> order = new List<FoodId>() {FoodId.dough, FoodId.cheese, FoodId.sauce };
         int dayModifier = gameManager.CurrentDay;
         if(dayModifier >= 8)

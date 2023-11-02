@@ -5,6 +5,7 @@ using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 public enum AiState
@@ -22,11 +23,23 @@ public class Customer : MonoBehaviour
     [SerializeField]
     protected Image trackerImage;
 
+    public CashPopup popup;
+
     [SerializeField]
     protected List<FoodId> order;
     
     [SerializeField]
     public CustomerManager customerManager;
+
+    [SerializeField]
+    private Image face;
+
+    [SerializeField]
+    private Sprite happy;
+    [SerializeField]
+    private Sprite neutral;
+    [SerializeField]
+    private Sprite sad;
 
     //In seconds
     [SerializeField]
@@ -118,7 +131,6 @@ public class Customer : MonoBehaviour
                 }
                 break;
             case AiState.Leaving://Go to door and despawn
-                patienceCanvas.enabled = false;
                 if (lerpTimer < lerpDurration)
                 {
                     float t = lerpTimer / lerpDurration;
@@ -191,6 +203,21 @@ public class Customer : MonoBehaviour
         customerManager.GenerateCustomer();
 
         customerManager.AddMoney(successPercentile);
+
+        //Activate result face
+        face.color = Color.white;
+        if (successPercentile < .5f) //Set face based on result
+            face.sprite = sad;
+        else if (successPercentile < .8f)
+            face.sprite = neutral;
+        else
+            face.sprite = happy;
+
+        //Display money popup
+        CashPopup c = Instantiate(popup);
+        c.money = successPercentile * 10;
+        c.transform.position = transform.position + new Vector3(UnityEngine.Random.Range(-.5f, .5f), UnityEngine.Random.Range(.5f, 1f), 0);
+
         return successPercentile * 100;
     }
 

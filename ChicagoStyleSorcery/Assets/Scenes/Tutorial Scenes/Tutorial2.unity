@@ -330,7 +330,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -2.17, y: 0.73}
+  m_AnchoredPosition: {x: -2.165, y: 0.725}
   m_SizeDelta: {x: 2010, y: 1131}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &48579564
@@ -618,6 +618,7 @@ MonoBehaviour:
   pickUpStationList:
   - {fileID: 195122303}
   customerDefault: {fileID: 3126254841571916766, guid: 4365ddb4fa531824886ef11c079da727, type: 3}
+  popup: {fileID: 5003814518828605141, guid: 56d6502012961ce43a86cc1ef8a95213, type: 3}
 --- !u!114 &240653060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1332,11 +1333,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4530935079707459532, guid: 8bac3495f31ab764e845c2d5eb8ad324, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12.37
+      value: -21.26
       objectReference: {fileID: 0}
     - target: {fileID: 4530935079707459532, guid: 8bac3495f31ab764e845c2d5eb8ad324, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.21
+      value: -3.53
       objectReference: {fileID: 0}
     - target: {fileID: 4530935079707459532, guid: 8bac3495f31ab764e845c2d5eb8ad324, type: 3}
       propertyPath: m_LocalPosition.z
