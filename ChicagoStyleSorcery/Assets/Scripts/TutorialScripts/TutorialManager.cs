@@ -44,6 +44,10 @@ public class TutorialManager : MonoBehaviour
     List<Counter> counterList3;
     [SerializeField]
     List<SpriteRenderer> toDoListChecks3;
+    [SerializeField]
+    SpriteRenderer help3screen;
+    [SerializeField]
+    Sprite help3screen2;
     bool gotPlate;
     bool addedToPlate;
     bool trashedPlate;
@@ -64,7 +68,10 @@ public class TutorialManager : MonoBehaviour
     List<Counter> counterList5;
     [SerializeField]
     List<SpriteRenderer> toDoListChecks5;
-   
+    [SerializeField]
+    List<Sprite> helpScreens5;
+    [SerializeField]
+    SpriteRenderer helpSprite5;
 
     [SerializeField]
     TextMeshProUGUI countdownUI;
@@ -191,6 +198,7 @@ public class TutorialManager : MonoBehaviour
                     {
                         addedToPlate= true;
                         toDoListChecks3[1].sprite = checkedBox;
+                        help3screen.sprite = help3screen2;
                     }
                 }
                 if(gotPlate && addedToPlate)
@@ -244,6 +252,7 @@ public class TutorialManager : MonoBehaviour
                 bool isFoodKneaded = false;
                 bool isFoodSorted = false;
 
+                helpSprite5.sprite = helpScreens5[0];
                 Plate tempPlate = (Plate)counterList5[0].inventory[0];
                 for(int i = 0; i < 3; i++)
                 {
@@ -251,6 +260,7 @@ public class TutorialManager : MonoBehaviour
                     {
                         isFoodCooked = true;
                         toDoListChecks5[0].sprite = checkedBox;
+                        helpSprite5.sprite = helpScreens5[1];
                     }
                     else
                     {
@@ -261,11 +271,13 @@ public class TutorialManager : MonoBehaviour
                 {
                     isFoodKneaded = true;
                     toDoListChecks5[1].sprite = checkedBox;
+                    helpSprite5.sprite = helpScreens5[2];
                 }
                 if (counterList5[2].inventory[0].cutState == CutState.cut)
                 {
                     isFoodCut = true;
                     toDoListChecks5[2].sprite = checkedBox;
+                    helpSprite5.sprite = helpScreens5[3];
                 }
 
                 if (counterList5[3].inventory[0] != null)
