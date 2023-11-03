@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -49,6 +51,25 @@ public class Player : MonoBehaviour
     // is true when player fires aka presses E or right click
     public bool isInteracting;
     // Start is called before the first frame update
+
+    // Cooldown Elements
+    private static float maxCooldownFire = 3;
+    private static float maxCooldownCut = 3;
+    private static float maxCooldownKnead = 3;
+    private static float maxCooldownSort = 5;
+
+    [Header("UI Elements")]
+    [SerializeField] private Image fireCooldownMask;
+    [SerializeField] private Image cutCooldownMask;
+    [SerializeField] private Image kneadCooldownMask;
+    [SerializeField] private Image sortCooldownMask;
+    [SerializeField] private TextMeshProUGUI fireTimer;
+    [SerializeField] private TextMeshProUGUI cutTimer;
+    [SerializeField] private TextMeshProUGUI kneadTimer;
+    [SerializeField] private TextMeshProUGUI sortTimer;
+
+
+
     void Start()
     {
         playerInventory = new FoodItem[1] { null };
@@ -86,6 +107,32 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Show progress on cooldowns
+        if (fireCooldownMask != null)
+        {
+            fireCooldownMask.fillAmount = fireCoolDown / maxCooldownFire;
+            cutCooldownMask.fillAmount = cutCoolDown / maxCooldownCut;
+            kneadCooldownMask.fillAmount = kneedCoolDown / maxCooldownKnead;
+            sortCooldownMask.fillAmount = sortCoolDown / maxCooldownSort;
+
+            if (fireCoolDown > 0)
+                fireTimer.text = "" + ((int)fireCoolDown + 1);//plus 1 becuase int casting uses floor
+            else
+                fireTimer.text = "";
+            if (cutCoolDown > 0)
+                cutTimer.text = "" + ((int)cutCoolDown + 1);
+            else
+                cutTimer.text = "";
+            if (kneedCoolDown > 0)
+                kneadTimer.text = "" + ((int)kneedCoolDown + 1);
+            else
+                kneadTimer.text = "";
+            if (sortCoolDown > 0)
+                sortTimer.text = "" + ((int)sortCoolDown + 1);
+            else
+                sortTimer.text = "";
+        }
+
         //updates if time if cooldown is active
         if (fireCoolDown > 0 && fireCoolDownActive)
         {
@@ -219,7 +266,7 @@ public class Player : MonoBehaviour
                         counterScripts[i].inventory[0] = tempPlate;
                         counterScripts[i].SetIcons();
                     }
-                    fireCoolDown = 3;
+                    fireCoolDown = maxCooldownFire;
                     fireCoolDownActive = true;
                 }
             }
@@ -258,7 +305,7 @@ public class Player : MonoBehaviour
                         }
                     }
                     counterScripts[i].SetIcons();
-                    cutCoolDown = 3;
+                    cutCoolDown = maxCooldownCut;
                     cutCoolDownActive = true;
                 }
             }
@@ -293,7 +340,7 @@ public class Player : MonoBehaviour
                         }
                     }
                     counterScripts[i].SetIcons();
-                    kneedCoolDown = 3;
+                    kneedCoolDown = maxCooldownKnead;
                     kneedCoolDownActive = true;
                 }
             }
@@ -326,7 +373,7 @@ public class Player : MonoBehaviour
                       //  }
                     }
                     counterScripts[i].SetIcons();
-                    sortCoolDown = 5;
+                    sortCoolDown = maxCooldownSort;
                     sortCoolDownActive = true;
                 }
             }
