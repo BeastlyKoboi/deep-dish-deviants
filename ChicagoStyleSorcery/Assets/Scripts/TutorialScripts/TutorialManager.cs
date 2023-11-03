@@ -28,6 +28,10 @@ public class TutorialManager : MonoBehaviour
     Topping pineapple;
     [SerializeField]
     List<SpriteRenderer> toDoListChecks1;
+    [SerializeField]
+    SpriteRenderer helpScreen1;
+    [SerializeField]
+    Sprite help1Screen2;
 
     [Header("Tutorial 2 Fields")]
     //Tutorial 2 Objects
@@ -133,6 +137,10 @@ public class TutorialManager : MonoBehaviour
                         numAreasReached++;
                         toDoListChecks1[i].sprite = checkedBox;
                     }
+                }
+                if(numAreasReached == 3)
+                {
+                    helpScreen1.sprite = help1Screen2;
                 }
                 // checks if player has moved food items between counters
                 bool isFoodMoved = false;

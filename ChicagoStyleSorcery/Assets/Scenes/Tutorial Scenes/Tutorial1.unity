@@ -2214,10 +2214,14 @@ MonoBehaviour:
   - {fileID: 224661905}
   - {fileID: 1224894980}
   - {fileID: 1225824417}
+  helpScreen1: {fileID: 694408353}
+  help1Screen2: {fileID: 21300000, guid: 31f3b4e0c6b969d4999859bc3c8d1967, type: 3}
   counterList2: []
   toDoListChecks2: []
   counterList3: []
   toDoListChecks3: []
+  help3screen: {fileID: 0}
+  help3screen2: {fileID: 0}
   counterList4: []
   toDoListChecks4: []
   counterList5: []

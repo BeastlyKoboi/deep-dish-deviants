@@ -44,7 +44,7 @@ public class Counter : Station
         icon7.transform.position = gameObject.transform.position;
         iconList = new List<Icon>();
 
-        normalColor = Color.blue;
+        normalColor = Color.white;
         triggerColor = Color.green;
         this.SetIcons();
     }
