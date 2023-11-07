@@ -43,7 +43,7 @@ public class Customer : MonoBehaviour
 
     //In seconds
     [SerializeField]
-    private float maxPatience;
+    public float maxPatience;
 
     //Value 0 - 1, makes customer more picky at higher values
     [SerializeField]
@@ -59,7 +59,7 @@ public class Customer : MonoBehaviour
     public List<PickUpStation> pickupStations;
     public Register register;
 
-    protected float patience;
+    public float patience;
     protected AiState state;
     protected bool patienceFreeze;
     public int pickupChosen;
