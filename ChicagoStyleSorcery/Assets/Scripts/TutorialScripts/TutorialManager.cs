@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 public class TutorialManager : MonoBehaviour
 { 
 
@@ -362,5 +363,13 @@ public class TutorialManager : MonoBehaviour
                 stationList[i].GetComponent<SpriteRenderer>().color = stationList[i].normalColor;
         }
         return closestStation;
+    }
+
+    public void OnResetScene(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            SceneManager.LoadScene("MainMenu"); 
+        }
     }
 }
