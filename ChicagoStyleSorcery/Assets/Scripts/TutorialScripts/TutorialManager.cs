@@ -60,7 +60,7 @@ public class TutorialManager : MonoBehaviour
     //Tutorial 4 Objects
     [SerializeField]
     List<Counter> counterList4;
-    float timer = 10;
+    float timer = 5;
     bool putToppingOnPizza;
     float learnTimer = 20;
     [SerializeField]
@@ -89,7 +89,7 @@ public class TutorialManager : MonoBehaviour
     void Start()
     {
         countdownUI.text = string.Empty;
-        timer = 10;
+        timer = 5;
         currentScene= SceneManager.GetActiveScene().name;
         // will do different things based on which tutorial scene is currently running
         switch(currentScene){
@@ -112,7 +112,7 @@ public class TutorialManager : MonoBehaviour
                 
                 break;
             case "Tutorial4":
-                timer = 10;
+                timer = 5;
                 putToppingOnPizza= false;
                 break;
             case "Tutorial5":
@@ -332,7 +332,15 @@ public class TutorialManager : MonoBehaviour
             player.isInteracting = false;
         }
 
+        if (closestStation is Counter)
+        {
+            player.nearestCounter = (Counter)closestStation;
+        }
 
+        if (closestStation is PickUpStation)
+        {
+            player.nearestPickUp = (PickUpStation)closestStation;
+        }
         player.isInteracting = false;
     }
 

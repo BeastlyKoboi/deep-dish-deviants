@@ -24,7 +24,14 @@ public class GarbageCan : Station
     {
         if (player.playerInventory[0] != null)
         {
-            Destroy(player.playerInventory[0].gameObject); 
+            if (player.playerInventory[0].id == FoodId.plate) 
+            {
+
+                Plate tempPlate = (Plate)player.playerInventory[0];
+                tempPlate.DestroyFood();
+                player.playerInventory[0] = tempPlate;
+            }
+            Destroy(player.playerInventory[0].gameObject);
             //player.playerInventory[0] = null;
         }
     }
