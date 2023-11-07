@@ -25,10 +25,11 @@ public class Player : MonoBehaviour
     public float mindCoolDown;
     public bool mindCoolDownActive;
 
-    [SerializeField] private List<Counter> counterScripts;
+    //[SerializeField] private List<Counter> counterScripts;
 
-    [SerializeField] private List<PickUpStation> pickUpStationScripts;
+    //[SerializeField] private List<PickUpStation> pickUpStationScripts;
 
+    
     public Counter nearestCounter;
 
     public PickUpStation nearestPickUp;
