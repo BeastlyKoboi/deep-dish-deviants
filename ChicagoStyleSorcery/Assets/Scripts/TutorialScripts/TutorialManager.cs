@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 public class TutorialManager : MonoBehaviour
 { 
 
@@ -28,6 +29,10 @@ public class TutorialManager : MonoBehaviour
     Topping pineapple;
     [SerializeField]
     List<SpriteRenderer> toDoListChecks1;
+    [SerializeField]
+    SpriteRenderer helpScreen1;
+    [SerializeField]
+    Sprite help1Screen2;
 
     [Header("Tutorial 2 Fields")]
     //Tutorial 2 Objects
@@ -56,7 +61,7 @@ public class TutorialManager : MonoBehaviour
     //Tutorial 4 Objects
     [SerializeField]
     List<Counter> counterList4;
-    float timer = 10;
+    float timer = 5;
     bool putToppingOnPizza;
     float learnTimer = 20;
     [SerializeField]
@@ -85,7 +90,7 @@ public class TutorialManager : MonoBehaviour
     void Start()
     {
         countdownUI.text = string.Empty;
-        timer = 10;
+        timer = 5;
         currentScene= SceneManager.GetActiveScene().name;
         // will do different things based on which tutorial scene is currently running
         switch(currentScene){
@@ -108,7 +113,7 @@ public class TutorialManager : MonoBehaviour
                 
                 break;
             case "Tutorial4":
-                timer = 10;
+                timer = 5;
                 putToppingOnPizza= false;
                 break;
             case "Tutorial5":
@@ -133,6 +138,10 @@ public class TutorialManager : MonoBehaviour
                         numAreasReached++;
                         toDoListChecks1[i].sprite = checkedBox;
                     }
+                }
+                if(numAreasReached == 3)
+                {
+                    helpScreen1.sprite = help1Screen2;
                 }
                 // checks if player has moved food items between counters
                 bool isFoodMoved = false;
@@ -324,7 +333,15 @@ public class TutorialManager : MonoBehaviour
             player.isInteracting = false;
         }
 
+        if (closestStation is Counter)
+        {
+            player.nearestCounter = (Counter)closestStation;
+        }
 
+        if (closestStation is PickUpStation)
+        {
+            player.nearestPickUp = (PickUpStation)closestStation;
+        }
         player.isInteracting = false;
     }
 
@@ -346,5 +363,13 @@ public class TutorialManager : MonoBehaviour
                 stationList[i].GetComponent<SpriteRenderer>().color = stationList[i].normalColor;
         }
         return closestStation;
+    }
+
+    public void OnResetScene(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            SceneManager.LoadScene("MainMenu"); 
+        }
     }
 }

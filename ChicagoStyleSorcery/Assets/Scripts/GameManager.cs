@@ -329,6 +329,18 @@ public class GameManager : MonoBehaviour
             player.isInteracting = false; 
         }
 
+        // this is for telling player what the closest counter and pickupstations are
+        // in order to use magic. since this is called in update, might as well put it here
+        // since we already have closest station
+        if(closestStation is Counter)
+        {
+            player.nearestCounter= (Counter)closestStation;
+        }
+
+        if(closestStation is PickUpStation)
+        {
+            player.nearestPickUp = (PickUpStation)closestStation;
+        }
        
         player.isInteracting = false;
     }

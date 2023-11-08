@@ -60,4 +60,12 @@ public class Plate : FoodItem
             return false;
         }
     }
+
+    public void DestroyFood()
+    {
+        for(int i = coreFoodlist.Count-1; i > -1; i--)
+        {
+            Destroy(coreFoodlist[i].gameObject);
+        }
+    }
 }

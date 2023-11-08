@@ -94,6 +94,33 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "TimeMagic",
+                    "type": "Button",
+                    "id": "8bb67126-7118-4740-b80a-e76568839c51",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MindMagic",
+                    "type": "Button",
+                    "id": "96b301d8-69fd-435a-985d-8f1ff50e6140",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ResetScene",
+                    "type": "Button",
+                    "id": "bab3a293-86b8-467b-9dd2-5779451fe125",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -331,7 +358,7 @@
                 {
                     "name": "",
                     "id": "6753b745-def6-4e1d-8b77-3fd584374c9d",
-                    "path": "<Keyboard>/f",
+                    "path": "<Keyboard>/1",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -342,7 +369,7 @@
                 {
                     "name": "",
                     "id": "2dfee96e-ef39-4731-948e-dbbfa679f860",
-                    "path": "<Keyboard>/c",
+                    "path": "<Keyboard>/2",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -353,7 +380,7 @@
                 {
                     "name": "",
                     "id": "119ec0b8-b53a-4c69-9ee8-d6e5c134f690",
-                    "path": "<Keyboard>/x",
+                    "path": "<Keyboard>/3",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -386,11 +413,44 @@
                 {
                     "name": "",
                     "id": "de85bd84-f55a-4b91-87b4-09b95cddb386",
-                    "path": "<Keyboard>/z",
+                    "path": "<Keyboard>/4",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "SortMagic",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "be846b82-8e32-41a8-8f6e-79c2649fd97e",
+                    "path": "<Keyboard>/5",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "TimeMagic",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7f7537dc-0ce5-48c7-b37f-4d38353138f1",
+                    "path": "<Keyboard>/6",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "MindMagic",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "61d4d556-fd1c-4bfe-9ff5-29227499c10c",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ResetScene",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

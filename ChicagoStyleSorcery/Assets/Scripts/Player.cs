@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,8 +20,21 @@ public class Player : MonoBehaviour
     public bool cutCoolDownActive;
     public float sortCoolDown;
     public bool sortCoolDownActive;
+    public float timeCoolDown;
+    public bool timeCoolDownActive;
+    public float mindCoolDown;
+    public bool mindCoolDownActive;
 
-    [SerializeField] private List<Counter> counterScripts;
+    //[SerializeField] private List<Counter> counterScripts;
+
+    //[SerializeField] private List<PickUpStation> pickUpStationScripts;
+
+    
+    public Counter nearestCounter;
+
+    public PickUpStation nearestPickUp;
+
+
 
     // Particle stuff
     [SerializeField]
@@ -37,6 +51,21 @@ public class Player : MonoBehaviour
     private GameObject knead;
 
     private Vector3 originalPositionKnead;
+
+    [SerializeField]
+    private GameObject sort;
+
+    private Vector3 originalPositionSort;
+
+    [SerializeField]
+    private GameObject time;
+
+    private Vector3 originalPositionTime;
+
+    [SerializeField]
+    private GameObject mind;
+
+    private Vector3 originalPositionMind;
 
     //Icon stuff
     [SerializeField]
@@ -57,18 +86,22 @@ public class Player : MonoBehaviour
     private static float maxCooldownCut = 3;
     private static float maxCooldownKnead = 3;
     private static float maxCooldownSort = 5;
+    private static float maxCooldownTime = 7;
+    private static float maxCooldownMind = 7;
 
     [Header("UI Elements")]
     [SerializeField] private Image fireCooldownMask;
     [SerializeField] private Image cutCooldownMask;
     [SerializeField] private Image kneadCooldownMask;
     [SerializeField] private Image sortCooldownMask;
+    //[SerializeField] private Image timeCooldownMask;
+    //[SerializeField] private Image mindCooldownMask;
     [SerializeField] private TextMeshProUGUI fireTimer;
     [SerializeField] private TextMeshProUGUI cutTimer;
     [SerializeField] private TextMeshProUGUI kneadTimer;
     [SerializeField] private TextMeshProUGUI sortTimer;
-
-
+    //[SerializeField] private TextMeshProUGUI timeTimer;
+    //[SerializeField] private TextMeshProUGUI mindTimer;
 
     void Start()
     {
@@ -97,11 +130,18 @@ public class Player : MonoBehaviour
         cutCoolDownActive = false;
         sortCoolDown = 0;
         sortCoolDownActive = false;
+        timeCoolDown = 0;
+        timeCoolDownActive = false;
+        mindCoolDown = 0;
+        mindCoolDownActive = false;
 
         // store particle's original off-screen position
         originalPositionFire = fire.transform.position;
         originalPositionCut = cut.transform.position;
         originalPositionKnead = knead.transform.position;
+        //originalPositionSort = sort.transform.position;
+        //originalPositionTime = time.transform.position;
+        //originalPositionMind = mind.transform.position;
     }
 
     // Update is called once per frame
@@ -114,6 +154,8 @@ public class Player : MonoBehaviour
             cutCooldownMask.fillAmount = cutCoolDown / maxCooldownCut;
             kneadCooldownMask.fillAmount = kneedCoolDown / maxCooldownKnead;
             sortCooldownMask.fillAmount = sortCoolDown / maxCooldownSort;
+            //timeCooldownMask.fillAmount = timeCoolDown / maxCooldownTime;
+            //mindCooldownMask.fillAmount = mindCoolDown / maxCooldownMind;
 
             if (fireCoolDown > 0)
                 fireTimer.text = "" + ((int)fireCoolDown + 1);//plus 1 becuase int casting uses floor
@@ -131,6 +173,16 @@ public class Player : MonoBehaviour
                 sortTimer.text = "" + ((int)sortCoolDown + 1);
             else
                 sortTimer.text = "";
+            /*
+            if (timeCoolDown > 0)
+                timeTimer.text = "" + ((int)timeCoolDown + 1);
+            else
+                timeTimer.text = "";
+            if (mindCoolDown > 0)
+                mindTimer.text = "" + ((int)timeCoolDown + 1);
+            else
+                mindTimer.text = "";
+            */
         }
 
         //updates if time if cooldown is active
@@ -176,6 +228,28 @@ public class Player : MonoBehaviour
         {
             sortCoolDown = 0;
             sortCoolDownActive = false;
+        }
+        //updates if time if cooldown is active
+        if (timeCoolDown > 0 && timeCoolDownActive)
+        {
+            timeCoolDown -= Time.deltaTime;
+        }
+        // stops cooldown if it is below or at 0
+        if (timeCoolDown <= 0)
+        {
+            timeCoolDown = 0;
+            timeCoolDownActive = false;
+        }
+        //updates if time if cooldown is active
+        if (mindCoolDown > 0 && mindCoolDownActive)
+        {
+            mindCoolDown -= Time.deltaTime;
+        }
+        // stops cooldown if it is below or at 0
+        if (mindCoolDown <= 0)
+        {
+            mindCoolDown = 0;
+            mindCoolDownActive = false;
         }
 
         //Set constructed icons to player position each frame
@@ -240,17 +314,17 @@ public class Player : MonoBehaviour
         if (!fireCoolDownActive)
         {
             // cycle through counters and check which one player is trying to interact with
-            for (int i = 0; i < counterScripts.Count; i++)
+            if (nearestCounter != null)
             {
-                if (counterScripts[i].isInteractable && isInteracting && counterScripts[i].inventory[0] != null && counterScripts[i].inventory[0].id == FoodId.plate)
+                if (nearestCounter.isInteractable && isInteracting && nearestCounter.inventory[0] != null && nearestCounter.inventory[0].id == FoodId.plate)
                 {
-                    Vector3 targetPosition = counterScripts[i].transform.position;
+                    Vector3 targetPosition = nearestCounter.transform.position;
                     float duration = 2.0f;
 
                     MoveParticleToLocation(targetPosition, duration, fire);
 
                     //cycle through plate inventory and place new food items in new plate with different cooked states
-                    Plate tempPlate = (Plate)counterScripts[i].inventory[0];
+                    Plate tempPlate = (Plate)nearestCounter.inventory[0];
                     foreach (FoodItem f in tempPlate.coreFoodlist)
                     {
                         // if raw, made cooked
@@ -263,8 +337,8 @@ public class Player : MonoBehaviour
                         {
                             f.foodState = CookState.burnt;
                         }
-                        counterScripts[i].inventory[0] = tempPlate;
-                        counterScripts[i].SetIcons();
+                        nearestCounter.inventory[0] = tempPlate;
+                        nearestCounter.SetIcons();
                     }
                     fireCoolDown = maxCooldownFire;
                     fireCoolDownActive = true;
@@ -280,31 +354,31 @@ public class Player : MonoBehaviour
     {
         if (!cutCoolDownActive)
         {
-            for (int i = 0; i < counterScripts.Count; i++)
+            if(nearestCounter != null)
             {
-                if (counterScripts[i].isInteractable && counterScripts[i].inventory[0] != null && isInteracting)
+                if (nearestCounter.isInteractable && nearestCounter.inventory[0] != null && isInteracting)
                 {
-                    Vector3 targetPosition = counterScripts[i].transform.position;
+                    Vector3 targetPosition = nearestCounter.transform.position;
                     float duration = 2.0f;
 
                     MoveParticleToLocation(targetPosition, duration, cut);
 
                     // while I (liam) am pretty sure this is unnessassary I am going to leave it in for now
-                    if (counterScripts[i].inventory[0].id == FoodId.mushroom || 
-                        counterScripts[i].inventory[0].id == FoodId.onion || 
-                        counterScripts[i].inventory[0].id == FoodId.olive || 
-                        counterScripts[i].inventory[0].id == FoodId.pepper  ||
-                        counterScripts[i].inventory[0].id == FoodId.pepperoni ||
-                        counterScripts[i].inventory[0].id == FoodId.bacon ||
-                        counterScripts[i].inventory[0].id == FoodId.pineapple)
+                    if (nearestCounter.inventory[0].id == FoodId.mushroom || 
+                        nearestCounter.inventory[0].id == FoodId.onion || 
+                        nearestCounter.inventory[0].id == FoodId.olive || 
+                        nearestCounter.inventory[0].id == FoodId.pepper  ||
+                        nearestCounter.inventory[0].id == FoodId.pepperoni ||
+                        nearestCounter.inventory[0].id == FoodId.bacon ||
+                        nearestCounter.inventory[0].id == FoodId.pineapple)
                     {
                         // if uncut, cut
-                        if (counterScripts[i].inventory[0].cutState == CutState.uncut)
+                        if (nearestCounter.inventory[0].cutState == CutState.uncut)
                         {
-                            counterScripts[i].inventory[0].cutState = CutState.cut;
+                            nearestCounter.inventory[0].cutState = CutState.cut;
                         }
                     }
-                    counterScripts[i].SetIcons();
+                    nearestCounter.SetIcons();
                     cutCoolDown = maxCooldownCut;
                     cutCoolDownActive = true;
                 }
@@ -320,26 +394,26 @@ public class Player : MonoBehaviour
         if (!kneedCoolDownActive)
         {
             //checks if player is interacting with a counter
-            for (int i = 0; i < counterScripts.Count; i++)
+            if (nearestCounter != null)
             {
-                if (counterScripts[i].isInteractable && counterScripts[i].inventory[0] != null && isInteracting)
+                if (nearestCounter.isInteractable && nearestCounter.inventory[0] != null && isInteracting)
                 {
-                    Vector3 targetPosition = counterScripts[i].transform.position;
+                    Vector3 targetPosition = nearestCounter.transform.position;
                     float duration = 2.0f;
 
                     MoveParticleToLocation(targetPosition, duration, knead);
 
                     // checks if ID is beef or dough
-                    if (counterScripts[i].inventory[0].id == FoodId.dough ||
-                        counterScripts[i].inventory[0].id == FoodId.beef)
+                    if (nearestCounter.inventory[0].id == FoodId.dough ||
+                        nearestCounter.inventory[0].id == FoodId.beef)
                     {
                         // if unkneeded, kneed
-                        if (counterScripts[i].inventory[0].kneadState == KneadState.unkneaded)
+                        if (nearestCounter.inventory[0].kneadState == KneadState.unkneaded)
                         {
-                            counterScripts[i].inventory[0].kneadState = KneadState.kneaded;
+                            nearestCounter.inventory[0].kneadState = KneadState.kneaded;
                         }
                     }
-                    counterScripts[i].SetIcons();
+                    nearestCounter.SetIcons();
                     kneedCoolDown = maxCooldownKnead;
                     kneedCoolDownActive = true;
                 }
@@ -355,26 +429,93 @@ public class Player : MonoBehaviour
         if (!kneedCoolDownActive)
         {
             //checks if player is interacting with a counter
-            for (int i = 0; i < counterScripts.Count; i++)
+            if (nearestCounter != null)
             {
-                if (counterScripts[i].isInteractable && counterScripts[i].inventory[0] != null && isInteracting)
+                if (nearestCounter.isInteractable && nearestCounter.inventory[0] != null && isInteracting)
                 {
                     // checks if ID is beef or dough
-                    if (counterScripts[i].inventory[0].id == FoodId.plate)
+                    if (nearestCounter.inventory[0].id == FoodId.plate)
                     {
-                        Plate tempPlate = (Plate)counterScripts[i].inventory[0];
+                        Plate tempPlate = (Plate)nearestCounter.inventory[0];
                         // sorts core food list of plate based on order of food ids
                         tempPlate.coreFoodlist.Sort((food1,food2) => food1.id.CompareTo(food2.id));
-                        counterScripts[i].inventory[0] = tempPlate;
-                        //if unsorted, sort
-                       /// if (!tempPlate.IsSorted())
-                       // {
-                            
-                      //  }
+                        nearestCounter.inventory[0] = tempPlate;
                     }
-                    counterScripts[i].SetIcons();
+                    nearestCounter.SetIcons();
                     sortCoolDown = maxCooldownSort;
                     sortCoolDownActive = true;
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Turns time back on specific counter plate element
+    /// </summary>
+    public void TimeMagic()
+    {
+        //check if cooldown is inactive
+        if (!timeCoolDownActive)
+        {
+            // cycle through counters and check which one player is trying to interact with
+            if (nearestCounter != null)
+            {
+                if (nearestCounter.isInteractable && isInteracting && nearestCounter.inventory[0] != null && nearestCounter.inventory[0].id == FoodId.plate)
+                {
+                    Vector3 targetPosition = nearestCounter.transform.position;
+                    float duration = 2.0f;
+
+                    //insert animation movement and activation HERE ------
+
+                    //cycle through plate inventory and place new food items in new plate with different cooked states
+                    Plate tempPlate = (Plate)nearestCounter.inventory[0];
+                    foreach (FoodItem f in tempPlate.coreFoodlist)
+                    {
+                        // if raw, made cooked
+                        if (f.foodState == CookState.cooked)
+                        {
+                            f.foodState = CookState.raw;
+                        }
+                        // if cooked, made burnt
+                        else if (f.foodState == CookState.burnt)
+                        {
+                            f.foodState = CookState.cooked;
+                        }
+                        nearestCounter.inventory[0] = tempPlate;
+                        nearestCounter.SetIcons();
+                    }
+                    timeCoolDown = maxCooldownTime;
+                    timeCoolDownActive = true;
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Turns time back on specific counter plate element
+    /// </summary>
+    public void MindMagic()
+    {
+        //check if cooldown is inactive
+        if (!mindCoolDownActive)
+        {
+            // cycle through counters and check which one player is trying to interact with
+            if (nearestPickUp != null)
+            {
+                if (nearestPickUp.isInteractable && isInteracting && nearestPickUp.currentCustomer != null)
+                {
+                    Vector3 targetPosition = nearestPickUp.transform.position;
+                    float duration = 2.0f;
+
+                    //insert animation movement and activation HERE ------
+
+                    //takes current customer and resets their patience
+                    Customer tempCustomer = nearestPickUp.currentCustomer;
+                    tempCustomer.patience = tempCustomer.maxPatience;
+                    nearestPickUp.currentCustomer = tempCustomer;
+
+                    mindCoolDown = maxCooldownMind;
+                    mindCoolDownActive = true;
                 }
             }
         }

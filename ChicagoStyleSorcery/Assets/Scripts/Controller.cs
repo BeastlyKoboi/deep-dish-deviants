@@ -125,5 +125,25 @@ public class Controller : MonoBehaviour
         }
     }
 
+    public void OnTimeMagic(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            player.isInteracting = true;
+            player.TimeMagic();
+            player.isInteracting = false;
+        }
+    }
+
+    public void OnMindMagic(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            player.isInteracting = true;
+            player.MindMagic();
+            player.isInteracting = false;
+        }
+    }
+
 
 }
