@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 100}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 9213
+  controlID: 12687
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 9214
+  controlID: 12688
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -173,7 +173,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 50}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 9215
+  controlID: 12689
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -237,9 +237,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: cadbffff98dfffffeef5fffff4faffff547100006e7100008c710000ae710000107b00005e7f0000
+      m_SelectedIDs: da1efeff
+      m_LastClickedID: -123174
+      m_ExpandedIDs: 7012ffff8a14ffffd016ffffdc17ffff0619ffffec19ffff321cfffff01cffffaaf5ffffe2f8ffff04770000d2780000d8790000ea790000227b000064900000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -312,7 +312,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 205.6
     y: 73.6
-    width: 671.6
+    width: 674.80005
     height: 474.2
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -380,7 +380,7 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: 0, y: 25}
+      snapOffset: {x: 0, y: 26.399998}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: unity-transform-toolbar
@@ -672,9 +672,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 427.59256, y: 243.48488, z: 0.80936325}
+    m_Target: {x: -7.949839, y: 5.4779086, z: 0.10404932}
     speed: 2
-    m_Value: {x: 427.59256, y: 243.48488, z: 0.80936325}
+    m_Value: {x: -7.934547, y: 5.486739, z: 0.10284317}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -724,9 +724,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 177.05757
+    m_Target: 2.559676
     speed: 2
-    m_Value: 177.05757
+    m_Value: 2.680289
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -883,7 +883,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Art/Textures
+    - Assets/Art/Palettes
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -891,16 +891,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Art/Textures
+  - Assets/Art/Palettes
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\itsal\Documents\GitHub\deep-dish-deviants\ChicagoStyleSorcery
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 159}
-    m_SelectedIDs: 70740000
-    m_LastClickedID: 29808
-    m_ExpandedIDs: 00000000b6730000b8730000ba73000000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 105.400024}
+    m_SelectedIDs: 24760000
+    m_LastClickedID: 30244
+    m_ExpandedIDs: 00000000107600001276000014760000567600007076000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -928,7 +928,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000b6730000b8730000ba73000000ca9a3bffffff7f
+    m_ExpandedIDs: 0000000010760000127600001476000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -953,10 +953,10 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 
-    m_LastClickedInstanceID: 0
+    m_SelectedInstanceIDs: da1efeff
+    m_LastClickedInstanceID: -123174
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: c62300002e7300000c7300000000000042770000
+    m_ExpandedInstanceIDs: c62300002e7300000c730000000000004277000006740000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

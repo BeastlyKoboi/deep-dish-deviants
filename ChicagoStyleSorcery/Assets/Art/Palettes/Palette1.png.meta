@@ -171,7 +171,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a95504d5a16cf494eb5e6a7099674cd3
+      spriteID: 50cd0dcc2df6b964b9eda2816fe5eeb8
       internalID: 1313718882
       vertices: []
       indices: 
@@ -192,7 +192,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9b0f41999ebd6d94e914888674201a7e
+      spriteID: c822449afbe06104dbcad7452b7ace2e
       internalID: -2087928104
       vertices: []
       indices: 
@@ -213,7 +213,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4df28dd7150f1464ab49b267222c8acc
+      spriteID: 88d551f52ef98dd4b9dbaa34748c9816
       internalID: -1071822701
       vertices: []
       indices: 
@@ -234,7 +234,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d6dd9c760a1b4847b8b001a9b24da3c
+      spriteID: 8b9a9258e4ba87341bc189730c268bd1
       internalID: -260468243
       vertices: []
       indices: 
@@ -255,7 +255,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3d6a0e4ef6af7f941a23a107d7e1c839
+      spriteID: 64aac845b68ef8a43902d8fefb4e777f
       internalID: 1439816625
       vertices: []
       indices: 
@@ -276,7 +276,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 14bf45627655934428fc7fd733257271
+      spriteID: c6effcdcbd9e1ed47bc70fbd964bdb5f
       internalID: -1681493832
       vertices: []
       indices: 
@@ -286,8 +286,8 @@ TextureImporter:
       name: Palette1_7
       rect:
         serializedVersion: 2
-        x: 0
-        y: 160
+        x: 96
+        y: 192
         width: 32
         height: 32
       alignment: 0
@@ -297,7 +297,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b8d354e5a7759fd40856610085aad35a
+      spriteID: 90f80ee6231507545b0821e6d05baf44
       internalID: -196046122
       vertices: []
       indices: 
@@ -307,8 +307,8 @@ TextureImporter:
       name: Palette1_8
       rect:
         serializedVersion: 2
-        x: 32
-        y: 160
+        x: 128
+        y: 192
         width: 32
         height: 32
       alignment: 0
@@ -318,7 +318,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 85d75aaae24d4f34b8cf63cfc92ab16e
+      spriteID: a6cab547d84a37548a301cbf1a5d8510
       internalID: 635383501
       vertices: []
       indices: 
@@ -329,6 +329,111 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c94b9d8c4c981604183a80c7a8874d72
+      internalID: 1510876785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Palette1_10
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 603ef58f5a51d7046b3965af3a2e71b3
+      internalID: 343187480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Palette1_11
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3959e130b95528048b14bf340a24b435
+      internalID: -1694203308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Palette1_12
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e20883889195ba47b5d26a73eb5aa37
+      internalID: -174484909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Palette1_13
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd7662012bfa2a444b0616571decd6b1
+      internalID: 1927889454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Palette1_14
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 128
         width: 32
         height: 32
@@ -339,14 +444,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 18bf186b6ae2672479fd0ee692ccc701
-      internalID: 1510876785
+      spriteID: 36b76f5865fe5734992cc6e15ac0c472
+      internalID: -434128623
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Palette1_10
+      name: Palette1_15
       rect:
         serializedVersion: 2
         x: 32
@@ -360,8 +465,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b42331e3d8180a4428e4ad930658a079
-      internalID: 343187480
+      spriteID: 7f2501468afb48e46a770415fa5e2f9e
+      internalID: -531203390
       vertices: []
       indices: 
       edges: []
@@ -380,6 +485,11 @@ TextureImporter:
       Palette1_0: 2022650699
       Palette1_1: 1313718882
       Palette1_10: 343187480
+      Palette1_11: -1694203308
+      Palette1_12: -174484909
+      Palette1_13: 1927889454
+      Palette1_14: -434128623
+      Palette1_15: -531203390
       Palette1_2: -2087928104
       Palette1_3: -1071822701
       Palette1_4: -260468243
