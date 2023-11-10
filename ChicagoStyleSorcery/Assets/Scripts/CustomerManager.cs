@@ -7,15 +7,17 @@ using UnityEngine.Rendering.Universal.Internal;
 public class CustomerManager : MonoBehaviour
 {
     [SerializeField]
-    GameManager gameManager;
+    private GameManager gameManager;
     [SerializeField]
-    Register register;
+    private Register register;
     [SerializeField]
-    List<PickUpStation> pickUpStationList;
+    private List<PickUpStation> pickUpStationList;
     [SerializeField]
-    Customer customerDefault;
+    private Customer customerDefault;
     [SerializeField]
-    CashPopup popup;
+    private CashPopup popup;
+    [SerializeField]
+    private List<Vector3> linePositions;
 
     List<Customer> customerList;
     List<FoodId> toppings;
@@ -67,10 +69,34 @@ public class CustomerManager : MonoBehaviour
         {
             customer.MoveToStation(counter);
             gameManager.ChangeOrder(customer.SeeOrder(), counter + 1);
+            customerList.RemoveAt(0);
+            //Other customers move
+            foreach (Customer c in customerList)
+                c.MoveInLine();
 
             return true;
         }
         return false;
+    }
+
+    /// <summary>
+    /// Shifts line positions of customers, used when one has to leave prematurely
+    /// </summary>
+    public void ShiftLine(int posiitonInLine)
+    {
+        for (int i = 0; i<posiitonInLine; i++)
+        {
+            customerList[i].MoveInLine();
+        }
+    }
+
+    /// <summary>
+    /// Ask for line length of line
+    /// </summary>
+    /// <returns>Number of customers in line</returns>
+    public int GetLineLength()
+    {
+        return customerList.Count;
     }
 
 
@@ -115,6 +141,8 @@ public class CustomerManager : MonoBehaviour
         c.register = register;
         c.id = customerTicker; customerTicker++;
         c.popup = popup;
+        c.linePositions = linePositions;
+        c.linePosition = 0;//customerList.Count; //Since this calls before this customer is added the position will be correct despite using count
         List<FoodId> order = new List<FoodId>() {FoodId.dough, FoodId.cheese, FoodId.sauce };
         int dayModifier = gameManager.CurrentDay;
         if(dayModifier >= 8)
@@ -177,5 +205,16 @@ public class CustomerManager : MonoBehaviour
             }
         }
         return true;
+    }
+
+    /// <summary>
+    /// Method to call when the day ends
+    /// </summary>
+    public void EndDay()
+    {
+        foreach (Customer c in customerList)
+        {
+            c.Leave();
+        }    
     }
 }

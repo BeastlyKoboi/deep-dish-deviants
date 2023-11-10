@@ -24,9 +24,7 @@ public class SnitchCustomer : Customer
 
     public void SnitchOn()
     {
-        state = AiState.Leaving;
-        lerpAnchor = transform.position;
-        lerpTimer = 0;
+        Leave();
 
         //Change visual to exclamation point
         exclamationPoint.enabled = true;

@@ -260,7 +260,7 @@ Transform:
   m_Children:
   - {fileID: 2355757161373857284}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8876344907016882963
 SpriteRenderer:
@@ -328,6 +328,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   patienceCanvas: {fileID: 2580976506234380641}
   trackerImage: {fileID: 7684242448465599857}
+  popup: {fileID: 0}
   order: 000000000100000002000000
   customerManager: {fileID: 0}
   face: {fileID: 5125278478577819556}
@@ -337,11 +338,14 @@ MonoBehaviour:
   maxPatience: 120
   difficultyFloat: 0.3
   doorPosition: {x: -8, y: 4, z: 0}
+  linePositions: []
+  linePosition: 0
   pickupStations:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   register: {fileID: 0}
+  patience: 0
   pickupChosen: 0
   id: 0
 --- !u!1 &5573301819331442264

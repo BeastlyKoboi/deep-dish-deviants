@@ -52,6 +52,9 @@ public class Customer : MonoBehaviour
     [SerializeField]
     private Vector3 doorPosition;
 
+    public List<Vector3> linePositions;
+    public int linePosition;
+
     protected Vector3 lerpAnchor= Vector3.zero;
     protected static float lerpDurration = 3f;
     protected float lerpTimer = 0;
@@ -86,9 +89,7 @@ public class Customer : MonoBehaviour
         }
         if (patience <= 0 )
         {//TODO: address issue where this can cause problems in a line if this customer is attached to the register
-            state = AiState.Leaving;
-            lerpTimer = 0f;
-            lerpAnchor = transform.position;
+            Leave();
         }
 
         //AI
@@ -101,19 +102,7 @@ public class Customer : MonoBehaviour
                 state = AiState.InLine;
                 break;
             case AiState.InLine://Wait in line for register
-                if (lerpTimer < lerpDurration)
-                {
-                    float t = lerpTimer / lerpDurration;
-                    t = t * t * (3f - 2f * t);
-                    transform.position = Vector3.Lerp(lerpAnchor, register.transform.position + Vector3.left, t);//Move to destination in an interlopian curve
-                    lerpTimer += Time.deltaTime;
-                }
-                else
-                {
-                    state = AiState.Ordering;
-                    lerpTimer = 0;
-                    customerManager.SetToRegister(gameObject.GetComponent<Customer>());
-                }
+                WaitInLine();
                 break;
             case AiState.Ordering://Wait at register
                 break;
@@ -144,6 +133,35 @@ public class Customer : MonoBehaviour
                 }
                 break;
         }
+    }
+
+    /// <summary>
+    /// Organization method for line
+    /// </summary>
+    private void WaitInLine()
+    {
+        if (lerpTimer < lerpDurration)
+        {
+            float t = lerpTimer / lerpDurration;
+            transform.position = Vector3.Lerp(lerpAnchor, linePositions[linePosition] + Vector3.left, t);//Move to destination in an interlopian curve
+            lerpTimer += Time.deltaTime;
+        }
+        else if (linePosition == 0 && state == AiState.InLine)
+        {
+            state = AiState.Ordering;
+            lerpTimer = 0;
+            customerManager.SetToRegister(gameObject.GetComponent<Customer>());
+        }
+    }
+
+    /// <summary>
+    /// Make customer check its position and move based on next line position
+    /// </summary>
+    public void MoveInLine()
+    {
+        lerpAnchor = transform.position;
+        lerpTimer = 0;
+        linePosition--;
     }
 
     /// <summary>
@@ -195,9 +213,10 @@ public class Customer : MonoBehaviour
         if (successPercentile < .05f) //Gives player a small amount so it doesn't look like it just didn't work
             successPercentile = UnityEngine.Random.Range(.01f, .05f);
 
-        state = AiState.Leaving;
-        lerpTimer = 0f;
-        lerpAnchor = transform.position;
+        Leave();
+        //state = AiState.Leaving;
+        //lerpTimer = 0f;
+        //lerpAnchor = transform.position;
 
         //For now we make a new customer
         customerManager.GenerateCustomer();
@@ -231,6 +250,7 @@ public class Customer : MonoBehaviour
         {
             state = AiState.Waiting;
             lerpAnchor = transform.position;
+            linePosition = -1;
             return true;
         }
         return false;
@@ -268,5 +288,20 @@ public class Customer : MonoBehaviour
         patience = maxPatience;
         trackerImage.fillAmount = patience / maxPatience;
         trackerImage.color = Color.cyan;
+    }
+
+    /// <summary>
+    /// Makes a customer leave
+    /// </summary>
+    public void Leave()
+    {
+        state = AiState.Leaving;
+        lerpAnchor = transform.position;
+        lerpTimer = 0;
+
+        if (linePosition != -1)//Shifts other customers in line when they're gone
+        {
+            customerManager.ShiftLine(linePosition);
+        }
     }
 }
