@@ -24,6 +24,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PlateDespenser plateDespenser;
     [SerializeField] private List<PickUpStation> pickUpStations;
     [SerializeField] private List<ToppingStation> toppingStations;
+    [SerializeField] private List<Oven> ovenList;
+    [SerializeField] private List<Slicer> slicerList;
+    [SerializeField] private List<Pounder> pounderList;
     private List<Station> allStations = new List<Station>();
 
     // UI Elements
@@ -150,7 +153,12 @@ public class GameManager : MonoBehaviour
             allStations.AddRange(coreStations);
         if (toppingStations != null)
             allStations.AddRange(toppingStations);
-
+        if (ovenList != null)
+            allStations.AddRange(ovenList);
+        if(slicerList!= null)
+            allStations.AddRange(slicerList);
+        if(pounderList!= null) 
+            allStations.AddRange(pounderList);
         // Setting up tooltips
         if (hasTutorial)
         {
