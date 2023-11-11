@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cd5d5eb8896e97a43b34735f84217d83
+guid: 37a6601db95e219408724e283967b2db
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -119,18 +119,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: NUMS
+  - name: box3
     originalName: 
-    pivot: {x: 0.5, y: -0.071428575}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 94
-      height: 14
-    spriteID: 1ba29fcfac3a4a341b1d620745e6f438
+      width: 192
+      height: 192
+    spriteID: be64a6a73c1f0a341ab4d9bcff5fbbfe
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -142,23 +142,23 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 1918204625
-    name: NUMS
+    guid: -1133611604
+    name: box3
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: NUMS
+    - name: box3
       frameIndex: 0
       cellRect:
-        x: 1
-        y: 1
-        width: 94
-        height: 14
-      spriteId: 1ba29fcfac3a4a341b1d620745e6f438
+        x: 0
+        y: 0
+        width: 192
+        height: 192
+      spriteId: be64a6a73c1f0a341ab4d9bcff5fbbfe
     linkedCells: []
     parentIndex: -1
   platformSettings: []
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 96, y: 16}
+  canvasSize: {x: 192, y: 192}
