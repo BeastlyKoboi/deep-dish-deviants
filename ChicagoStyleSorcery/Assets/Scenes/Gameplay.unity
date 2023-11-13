@@ -872,7 +872,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &97754812
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19611,7 +19611,7 @@ GameObject:
   - component: {fileID: 1835845681}
   - component: {fileID: 1835845680}
   m_Layer: 5
-  m_Name: lblContinue
+  m_Name: Continue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19634,8 +19634,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 233, y: -346}
-  m_SizeDelta: {x: 517.4288, y: 50}
+  m_AnchoredPosition: {x: 259, y: -296}
+  m_SizeDelta: {x: 760.694, y: 61.4031}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1835845680
 MonoBehaviour:
@@ -19684,13 +19684,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 5
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
