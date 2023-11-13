@@ -11075,12 +11075,9 @@ MonoBehaviour:
   - {fileID: 175501599}
   - {fileID: 1548018761}
   - {fileID: 1597885380}
-  ovenList:
-  - {fileID: 877439753}
-  slicerList:
-  - {fileID: 36292884}
-  pounderList:
-  - {fileID: 965849337}
+  ovenList: []
+  slicerList: []
+  pounderList: []
   canvas: {fileID: 1254922441}
   cashTotalUI: {fileID: 171499703}
   currentDayUI: {fileID: 370663023}
@@ -13937,6 +13934,18 @@ MonoBehaviour:
   - {fileID: 1237236731}
   customerDefault: {fileID: 51903936919950092, guid: 79648fae286b58740902c510e5d8a891, type: 3}
   popup: {fileID: 5003814518828605141, guid: 56d6502012961ce43a86cc1ef8a95213, type: 3}
+  linePositions:
+  - {x: -2.1, y: -2, z: 0}
+  - {x: -3.1, y: -2, z: 0}
+  - {x: -4.1, y: -2, z: 0}
+  - {x: -5.1, y: -2, z: 0}
+  - {x: -6.1, y: -2, z: 0}
+  - {x: -7.1, y: -2, z: 0}
+  - {x: -7.1, y: -1, z: 0}
+  - {x: -7.1, y: 0, z: 0}
+  - {x: -7.1, y: 1, z: 0}
+  - {x: -7.1, y: 2, z: 0}
+  - {x: -7.1, y: 3, z: 0}
 --- !u!4 &1023365881
 Transform:
   m_ObjectHideFlags: 0

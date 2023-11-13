@@ -84,13 +84,14 @@ public class Customer : MonoBehaviour
     {
         if (!patienceFreeze)
         {
-            patience -= Time.deltaTime;
+            if (state == AiState.InLine || state == AiState.Ordering)//ruduced patience decay while still in line
+                patience -= Time.deltaTime/3 * 10;
+            else
+                patience -= Time.deltaTime;
             trackerImage.fillAmount = patience / maxPatience;
         }
-        if (patience <= 0 )
-        {//TODO: address issue where this can cause problems in a line if this customer is attached to the register
+        if (patience <= 1 && state != AiState.Leaving)
             Leave();
-        }
 
         //AI
         switch ( state )
@@ -219,7 +220,7 @@ public class Customer : MonoBehaviour
         //lerpAnchor = transform.position;
 
         //For now we make a new customer
-        customerManager.GenerateCustomer();
+        //customerManager.GenerateCustomer();
 
         customerManager.AddMoney(successPercentile);
 
@@ -250,7 +251,7 @@ public class Customer : MonoBehaviour
         {
             state = AiState.Waiting;
             lerpAnchor = transform.position;
-            linePosition = -1;
+            linePosition = -1; //No longer consider line
             return true;
         }
         return false;
@@ -298,6 +299,10 @@ public class Customer : MonoBehaviour
         state = AiState.Leaving;
         lerpAnchor = transform.position;
         lerpTimer = 0;
+
+        //Activate result face
+        face.color = Color.white;
+        face.sprite = sad;
 
         if (linePosition != -1)//Shifts other customers in line when they're gone
         {

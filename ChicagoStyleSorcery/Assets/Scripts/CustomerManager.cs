@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Rendering.Universal.Internal;
+using UnityEngine.SceneManagement;
 
 public class CustomerManager : MonoBehaviour
 {
@@ -15,6 +16,12 @@ public class CustomerManager : MonoBehaviour
     [SerializeField]
     private Customer customerDefault;
     [SerializeField]
+    private Customer customerGrump;
+    [SerializeField]
+    private Customer customerChill;
+    [SerializeField]
+    private SnitchCustomer snitch;
+    [SerializeField]
     private CashPopup popup;
     [SerializeField]
     private List<Vector3> linePositions;
@@ -23,6 +30,12 @@ public class CustomerManager : MonoBehaviour
     List<FoodId> toppings;
 
     int customerTicker = 0;
+
+    float difficutlyFloat = 10; //Higher more difficult, 10 is max
+    float customerDelayTime = 3;
+    float spawnTracker = 0;
+    bool loadedCustomer = false;
+    bool warden = false;
 
     // Start is called before the first frame update
     void Start()
@@ -35,13 +48,26 @@ public class CustomerManager : MonoBehaviour
         //List of customers so they can stand in a line
         customerList = new List<Customer>();
 
-        GenerateCustomer();
+        //GenerateCustomer();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //Customer Generation
+        spawnTracker += Time.deltaTime;
+        if (spawnTracker > customerDelayTime)       
+            loadedCustomer = true;
+        if (loadedCustomer)
+        {
+            if (customerList.Count < linePositions.Count)
+            {
+                GenerateCustomer();
+                loadedCustomer = false;
+                spawnTracker = 0;
+                customerDelayTime = UnityEngine.Random.Range(20 - difficutlyFloat * 2, 40 - difficutlyFloat * 4);
+            }
+        }
     }
 
     /// <summary>
@@ -84,10 +110,12 @@ public class CustomerManager : MonoBehaviour
     /// </summary>
     public void ShiftLine(int posiitonInLine)
     {
-        for (int i = 0; i<posiitonInLine; i++)
+        for (int i = linePositions.Count - 1; i > posiitonInLine; i--)
         {
-            customerList[i].MoveInLine();
+            if (customerList.Count > i)
+                customerList[i].MoveInLine();
         }
+        customerList.RemoveAt(posiitonInLine); //Remove the customer who left to trigger this
     }
 
     /// <summary>
@@ -135,14 +163,28 @@ public class CustomerManager : MonoBehaviour
     /// </summary>
     public void GenerateCustomer()
     {
-        Customer c = Instantiate(customerDefault);
+        if (customerList.Count >= linePositions.Count)//Should never happen, just a failsafe
+            return;
+
+        //Randomly choose customer type
+        Customer c;
+        if (SceneManager.GetActiveScene().name != "Gameplay") //Regular customers only in tutorial
+            c = Instantiate(customerDefault);
+        else if (UnityEngine.Random.Range(0, difficutlyFloat) < .5f)
+            c = Instantiate(customerChill);
+        else if (UnityEngine.Random.Range(difficutlyFloat, 11) > 10.5f)
+            c = Instantiate(customerGrump);
+        else if (UnityEngine.Random.Range(1, 10) < 1)
+            c = Instantiate(snitch);
+        else
+            c = Instantiate(customerDefault);
         c.customerManager = gameObject.GetComponent<CustomerManager>();
         c.pickupStations = pickUpStationList;
         c.register = register;
         c.id = customerTicker; customerTicker++;
         c.popup = popup;
         c.linePositions = linePositions;
-        c.linePosition = 0;//customerList.Count; //Since this calls before this customer is added the position will be correct despite using count
+        c.linePosition = customerList.Count; //Since this calls before this customer is added the position will be correct despite using count
         List<FoodId> order = new List<FoodId>() {FoodId.dough, FoodId.cheese, FoodId.sauce };
         int dayModifier = gameManager.CurrentDay;
         if(dayModifier >= 8)
