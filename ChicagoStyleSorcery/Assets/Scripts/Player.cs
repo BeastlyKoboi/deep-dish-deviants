@@ -358,10 +358,6 @@ public class Player : MonoBehaviour
             {
                 if (nearestCounter.isInteractable && nearestCounter.inventory[0] != null && isInteracting)
                 {
-                    Vector3 targetPosition = nearestCounter.transform.position;
-                    float duration = 2.0f;
-
-                    MoveParticleToLocation(targetPosition, duration, cut);
 
                     // while I (liam) am pretty sure this is unnessassary I am going to leave it in for now
                     if (nearestCounter.inventory[0].id == FoodId.mushroom || 
@@ -375,6 +371,11 @@ public class Player : MonoBehaviour
                         // if uncut, cut
                         if (nearestCounter.inventory[0].cutState == CutState.uncut)
                         {
+                            Vector3 targetPosition = nearestCounter.transform.position;
+                            float duration = 2.0f;
+
+                            MoveParticleToLocation(targetPosition, duration, cut);
+
                             nearestCounter.inventory[0].cutState = CutState.cut;
                         }
                     }
