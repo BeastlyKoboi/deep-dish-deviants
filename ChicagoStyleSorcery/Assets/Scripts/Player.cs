@@ -9,6 +9,8 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField]
+    private CustomerManager customerManager;
 
     public FoodItem[] playerInventory;
     private List<Icon> iconList;
@@ -94,14 +96,14 @@ public class Player : MonoBehaviour
     [SerializeField] private Image cutCooldownMask;
     [SerializeField] private Image kneadCooldownMask;
     [SerializeField] private Image sortCooldownMask;
-    //[SerializeField] private Image timeCooldownMask;
-    //[SerializeField] private Image mindCooldownMask;
+    [SerializeField] private Image timeCooldownMask;
+    [SerializeField] private Image mindCooldownMask;
     [SerializeField] private TextMeshProUGUI fireTimer;
     [SerializeField] private TextMeshProUGUI cutTimer;
     [SerializeField] private TextMeshProUGUI kneadTimer;
     [SerializeField] private TextMeshProUGUI sortTimer;
-    //[SerializeField] private TextMeshProUGUI timeTimer;
-    //[SerializeField] private TextMeshProUGUI mindTimer;
+    [SerializeField] private TextMeshProUGUI timeTimer;
+    [SerializeField] private TextMeshProUGUI mindTimer;
 
     void Start()
     {
@@ -154,8 +156,8 @@ public class Player : MonoBehaviour
             cutCooldownMask.fillAmount = cutCoolDown / maxCooldownCut;
             kneadCooldownMask.fillAmount = kneedCoolDown / maxCooldownKnead;
             sortCooldownMask.fillAmount = sortCoolDown / maxCooldownSort;
-            //timeCooldownMask.fillAmount = timeCoolDown / maxCooldownTime;
-            //mindCooldownMask.fillAmount = mindCoolDown / maxCooldownMind;
+            timeCooldownMask.fillAmount = timeCoolDown / maxCooldownTime;
+            mindCooldownMask.fillAmount = mindCoolDown / maxCooldownMind;
 
             if (fireCoolDown > 0)
                 fireTimer.text = "" + ((int)fireCoolDown + 1);//plus 1 becuase int casting uses floor
@@ -173,7 +175,6 @@ public class Player : MonoBehaviour
                 sortTimer.text = "" + ((int)sortCoolDown + 1);
             else
                 sortTimer.text = "";
-            /*
             if (timeCoolDown > 0)
                 timeTimer.text = "" + ((int)timeCoolDown + 1);
             else
@@ -182,7 +183,6 @@ public class Player : MonoBehaviour
                 mindTimer.text = "" + ((int)timeCoolDown + 1);
             else
                 mindTimer.text = "";
-            */
         }
 
         //updates if time if cooldown is active
@@ -486,6 +486,9 @@ public class Player : MonoBehaviour
                     }
                     timeCoolDown = maxCooldownTime;
                     timeCoolDownActive = true;
+
+                    if (customerManager != null)
+                        customerManager.CheckForSnitch();
                 }
             }
         }
@@ -516,6 +519,9 @@ public class Player : MonoBehaviour
 
                     mindCoolDown = maxCooldownMind;
                     mindCoolDownActive = true;
+
+                    if (customerManager != null)
+                        customerManager.CheckForSnitch();
                 }
             }
         }

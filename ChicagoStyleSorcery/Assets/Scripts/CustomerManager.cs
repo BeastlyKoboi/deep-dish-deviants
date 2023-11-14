@@ -35,7 +35,10 @@ public class CustomerManager : MonoBehaviour
     float customerDelayTime = 3;
     float spawnTracker = 0;
     bool loadedCustomer = false;
-    bool warden = false;
+    
+    public bool warden = false;
+    private bool wardenSpawn = false;
+    private float wardenSpawnTimer = 15;
 
     // Start is called before the first frame update
     void Start()
@@ -66,6 +69,18 @@ public class CustomerManager : MonoBehaviour
                 loadedCustomer = false;
                 spawnTracker = 0;
                 customerDelayTime = UnityEngine.Random.Range(20 - difficutlyFloat * 2, 40 - difficutlyFloat * 4);
+            }
+        }
+
+        if (wardenSpawn)
+        {
+            wardenSpawnTimer -= Time.deltaTime;
+            if (wardenSpawnTimer <= 0)
+            {
+                //TODO: Spawn warden
+                wardenSpawnTimer = 15;
+                wardenSpawn = false;
+                warden = true;
             }
         }
     }
@@ -258,5 +273,44 @@ public class CustomerManager : MonoBehaviour
         {
             c.Leave();
         }    
+    }
+
+    public void CheckForSnitch()
+    {
+        if (warden)
+        {
+            //TODO: Game Over
+        }
+
+        bool snitched = false;
+        foreach (Customer c in customerList)
+        {
+            if (c is SnitchCustomer)
+            {
+                snitched = true;
+                SnitchCustomer s = (SnitchCustomer)c;
+                s.SnitchOn();
+            }
+        }
+        foreach (PickUpStation p in pickUpStationList)
+        {
+            if (p.currentCustomer != null && p.currentCustomer is SnitchCustomer)
+            {
+                snitched = true;
+                SnitchCustomer s = (SnitchCustomer)p.currentCustomer;
+                s.SnitchOn();
+            }
+        }
+        if (register.currentCustomer != null && register.currentCustomer is SnitchCustomer)
+        {
+            snitched = true;
+            SnitchCustomer s = (SnitchCustomer)register.currentCustomer;
+            s.SnitchOn();
+        }
+
+        if (snitched)
+        {
+            //TODO: spawn warden
+        }
     }
 }

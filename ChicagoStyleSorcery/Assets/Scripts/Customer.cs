@@ -85,7 +85,7 @@ public class Customer : MonoBehaviour
         if (!patienceFreeze)
         {
             if (state == AiState.InLine || state == AiState.Ordering)//ruduced patience decay while still in line
-                patience -= Time.deltaTime/3 * 10;
+                patience -= Time.deltaTime/3;
             else
                 patience -= Time.deltaTime;
             trackerImage.fillAmount = patience / maxPatience;
