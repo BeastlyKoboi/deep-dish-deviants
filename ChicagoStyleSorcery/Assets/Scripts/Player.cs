@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
     private Vector3 originalPositionFire;
 
     [SerializeField]
-    private ParticleSystem cut;
+    private GameObject cut;
 
     private Vector3 originalPositionCut;
 
@@ -436,6 +436,12 @@ public class Player : MonoBehaviour
                     // checks if ID is beef or dough
                     if (nearestCounter.inventory[0].id == FoodId.plate)
                     {
+                        Vector3 targetPosition = nearestCounter.transform.position;
+                        float duration = 2.0f;
+
+                        //insert animation movement and activation
+                        MoveParticleToLocation(targetPosition, duration, time);
+
                         Plate tempPlate = (Plate)nearestCounter.inventory[0];
                         // sorts core food list of plate based on order of food ids
                         tempPlate.coreFoodlist.Sort((food1,food2) => food1.id.CompareTo(food2.id));
@@ -465,7 +471,8 @@ public class Player : MonoBehaviour
                     Vector3 targetPosition = nearestCounter.transform.position;
                     float duration = 2.0f;
 
-                    //insert animation movement and activation HERE ------
+                    //insert animation movement and activation
+                    MoveParticleToLocation(targetPosition, duration, time);
 
                     //cycle through plate inventory and place new food items in new plate with different cooked states
                     Plate tempPlate = (Plate)nearestCounter.inventory[0];
@@ -492,7 +499,7 @@ public class Player : MonoBehaviour
     }
 
     /// <summary>
-    /// Turns time back on specific counter plate element
+    /// Turns time on patience for customers
     /// </summary>
     public void MindMagic()
     {
@@ -507,7 +514,8 @@ public class Player : MonoBehaviour
                     Vector3 targetPosition = nearestPickUp.transform.position;
                     float duration = 2.0f;
 
-                    //insert animation movement and activation HERE ------
+                    //insert animation movement and activation
+                    MoveParticleToLocation(targetPosition, duration, mind);
 
                     //takes current customer and resets their patience
                     Customer tempCustomer = nearestPickUp.currentCustomer;
@@ -574,10 +582,6 @@ public class Player : MonoBehaviour
         {
             particleSystem.transform.position = originalPositionFire;
         }
-        else if (particleSystem == cut)
-        {
-            particleSystem.transform.position = originalPositionCut;
-        }
 
         // Disable the particle system
         particleSystem.Stop();
@@ -603,6 +607,25 @@ public class Player : MonoBehaviour
         }
 
         // Return the game object to its original position
-        gameObject.transform.position = originalPositionKnead;
+        if (gameObject == knead)
+        {
+            gameObject.transform.position = originalPositionKnead;
+        }
+        else if (gameObject == time)
+        {
+            gameObject.transform.position = originalPositionTime;
+        }
+        else if (gameObject == mind)
+        {
+            gameObject.transform.position = originalPositionMind;
+        }
+        else if (gameObject == sort)
+        {
+            gameObject.transform.position = originalPositionSort;
+        }
+        else if (gameObject == cut)
+        {
+            gameObject.transform.position = originalPositionCut;
+        }
     }
 }
