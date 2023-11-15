@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 1316888032019791230}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.35, y: 1.1525193, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 0.75, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -108,11 +108,30 @@ MonoBehaviour:
   kneedCoolDownActive: 0
   cutCoolDown: 0
   cutCoolDownActive: 0
-  counterScripts: []
-  fire: {fileID: 6352929679046319893, guid: 4ff728ecd7a64b94eb7e1074e9a70208, type: 3}
-  cut: {fileID: 3722538077703442233, guid: 0f6a681beb8f21242ad6654648ed467b, type: 3}
+  sortCoolDown: 0
+  sortCoolDownActive: 0
+  timeCoolDown: 0
+  timeCoolDownActive: 0
+  mindCoolDown: 0
+  mindCoolDownActive: 0
+  nearestCounter: {fileID: 0}
+  nearestPickUp: {fileID: 0}
+  fire: {fileID: 0}
+  cut: {fileID: 0}
+  knead: {fileID: 0}
+  sort: {fileID: 0}
+  time: {fileID: 0}
+  mind: {fileID: 0}
   icon: {fileID: 3802843821844549318, guid: ace74608e1490bb4d9bd673529a93db1, type: 3}
   isInteracting: 0
+  fireCooldownMask: {fileID: 0}
+  cutCooldownMask: {fileID: 0}
+  kneadCooldownMask: {fileID: 0}
+  sortCooldownMask: {fileID: 0}
+  fireTimer: {fileID: 0}
+  cutTimer: {fileID: 0}
+  kneadTimer: {fileID: 0}
+  sortTimer: {fileID: 0}
 --- !u!61 &824235580455297565
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -328,6 +347,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  player: {fileID: 0}
+  player: {fileID: 1879705353172266271}
   cam: {fileID: 0}
   playerRigidBody: {fileID: 7376409106874390517}

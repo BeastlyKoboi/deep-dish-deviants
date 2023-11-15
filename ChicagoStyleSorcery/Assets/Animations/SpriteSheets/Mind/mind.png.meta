@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a7d1ac5fb60989d4bac8f579ad97db93
+guid: d47c2a933752a5e4cab8e1e0eb3e0091
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -110,253 +110,211 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: kneadoption2_0
-      rect:
-        serializedVersion: 2
-        x: 15
-        y: 444
-        width: 44
-        height: 53
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8222edc1e0057884db4f66beb3c10fd9
-      internalID: -806550036
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: kneadoption2_1
-      rect:
-        serializedVersion: 2
-        x: 148
-        y: 439
-        width: 45
-        height: 58
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 73c64f08a012a7a47bca5e8cf495cfe2
-      internalID: -1922577283
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: kneadoption2_2
-      rect:
-        serializedVersion: 2
-        x: 277
-        y: 425
-        width: 62
-        height: 69
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0be1767accc245b4b813aa4972fa49f5
-      internalID: 1720850556
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: kneadoption2_3
-      rect:
-        serializedVersion: 2
-        x: 15
-        y: 280
-        width: 40
-        height: 66
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 32a0a444d6172994cb060eab14786bd2
-      internalID: -1518791609
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: kneadoption2_4
-      rect:
-        serializedVersion: 2
-        x: 151
-        y: 280
-        width: 43
-        height: 60
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e132fc9f58f117642a69e59fdd0d1ed6
-      internalID: 532670236
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: kneadoption2_5
-      rect:
-        serializedVersion: 2
-        x: 272
-        y: 274
-        width: 65
-        height: 59
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 70969d6a74175b64cbdaf4193e03a136
-      internalID: -101323021
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: kneadoption2_6
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 135
-        width: 82
-        height: 62
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8586a32df74f8da44951b8997cf1b293
-      internalID: -716220860
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: kneadoption2_7
-      rect:
-        serializedVersion: 2
-        x: 121
-        y: 134
-        width: 94
-        height: 62
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2d8edc827fcbf084b871b75c2e904341
-      internalID: -1505726488
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: kneadoption2_8
-      rect:
-        serializedVersion: 2
-        x: 257
-        y: 136
-        width: 102
-        height: 68
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8eebcd8dde63f3c409eb509fc30ed961
-      internalID: -921689215
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: kneadoption2_9
+      name: mind_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 7
-        width: 83
-        height: 78
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ae2edc8e69094874c91cc72f20df20f3
-      internalID: 1409344794
+      spriteID: 9164814c51e2bf741bd77b813b6d761c
+      internalID: 341892766
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kneadoption2_10
+      name: mind_1
       rect:
         serializedVersion: 2
-        x: 120
-        y: 20
-        width: 114
-        height: 70
+        x: 32
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 49c68b3776f2f834d987dbfb5aa0dadd
-      internalID: -798667145
+      spriteID: bfbb23987cc39a641a29ba14e869510b
+      internalID: -947024661
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kneadoption2_11
+      name: mind_2
       rect:
         serializedVersion: 2
-        x: 271
-        y: 39
-        width: 72
-        height: 52
+        x: 64
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 971ab12d2f4e0624592f6ea1f2b2d4cc
-      internalID: 1337587785
+      spriteID: 12e93c76c337878469e6bc4b71c7cd45
+      internalID: -1117636392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mind_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d1182bc8d5491340a027d4213886d7d
+      internalID: -1766889376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mind_4
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28d7ca3ffd39f2046bc8cd849c06a199
+      internalID: 1602866946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mind_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9eb26c1cfa40ac1498e010fb701f282b
+      internalID: 234666360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mind_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e0597b9e050b1a40b8d90456ca463ca
+      internalID: -139408271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mind_7
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a8f5fa7ae7788045b9f0b8045388038
+      internalID: 496344885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mind_8
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5f73d05c91d062478de4de6873f7191
+      internalID: -1854837015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mind_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3119413dce09a0d4b9958a66a98f369b
+      internalID: 1659553390
       vertices: []
       indices: 
       edges: []
@@ -372,18 +330,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      kneadoption2_0: -806550036
-      kneadoption2_1: -1922577283
-      kneadoption2_10: -798667145
-      kneadoption2_11: 1337587785
-      kneadoption2_2: 1720850556
-      kneadoption2_3: -1518791609
-      kneadoption2_4: 532670236
-      kneadoption2_5: -101323021
-      kneadoption2_6: -716220860
-      kneadoption2_7: -1505726488
-      kneadoption2_8: -921689215
-      kneadoption2_9: 1409344794
+      mind_0: 341892766
+      mind_1: -947024661
+      mind_2: -1117636392
+      mind_3: -1766889376
+      mind_4: 1602866946
+      mind_5: 234666360
+      mind_6: -139408271
+      mind_7: 496344885
+      mind_8: -1854837015
+      mind_9: 1659553390
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

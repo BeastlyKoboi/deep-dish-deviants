@@ -24,9 +24,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PlateDespenser plateDespenser;
     [SerializeField] private List<PickUpStation> pickUpStations;
     [SerializeField] private List<ToppingStation> toppingStations;
-    [SerializeField] private List<Oven> ovenList;
-    [SerializeField] private List<Slicer> slicerList;
-    [SerializeField] private List<Pounder> pounderList;
+    [SerializeField] public List<Oven> ovenList;
+    [SerializeField] public List<Slicer> slicerList;
+    [SerializeField] public List<Pounder> pounderList;
     private List<Station> allStations = new List<Station>();
 
     // UI Elements
@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
 
     // Gameplay Variables 
     [Header("Gameplay Variables")]
-    [SerializeField] private GameState gameState;
+    [SerializeField] public GameState gameState;
     [SerializeField] private float _cashTotal;
     [SerializeField] private float cashToday = 0;
     [SerializeField] private int numPizzaSoldToday = 0;
@@ -97,6 +97,7 @@ public class GameManager : MonoBehaviour
             currentDayUI.text = $"Day {currentDay}";
         }
     }
+
 
     // Start is called before the first frame update
     void Start()
