@@ -183,9 +183,7 @@ public class CustomerManager : MonoBehaviour
 
         //Randomly choose customer type
         Customer c;
-        if (UnityEngine.Random.value < .5f)
-            c = Instantiate(snitch);
-        else if (SceneManager.GetActiveScene().name != "Gameplay") //Regular customers only in tutorial
+        if (SceneManager.GetActiveScene().name != "Gameplay") //Regular customers only in tutorial
             c = Instantiate(customerDefault);
         else if (UnityEngine.Random.Range(0, difficutlyFloat) < .5f)
             c = Instantiate(customerChill);
