@@ -68,7 +68,7 @@ public class Warden : MonoBehaviour
         }
 
         timeLeft -= Time.deltaTime;
-        if (timeLeft <= maxTime)
+        if (timeLeft <= 0)
         {
             state = AiState.Leaving;
             transform.position = doorPosition;
@@ -79,6 +79,6 @@ public class Warden : MonoBehaviour
 
     public void Leave()
     {
-
+        timeLeft = 0;
     }
 }
