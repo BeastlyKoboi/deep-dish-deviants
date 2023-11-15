@@ -61,19 +61,24 @@ public class Warden : MonoBehaviour
                 }
                 else
                 {
-                    customerManager.warden = false;
+                    customerManager.wardenActive = false;
                     Destroy(gameObject);
                 }
                 break;
         }
 
         timeLeft -= Time.deltaTime;
-        if (timeLeft <= maxTime)
+        if (timeLeft <= 0)
         {
             state = AiState.Leaving;
             transform.position = doorPosition;
             lerpAnchor = transform.position;
             lerpTimer = 0;
         }
+    }
+
+    public void Leave()
+    {
+        timeLeft = 0;
     }
 }
