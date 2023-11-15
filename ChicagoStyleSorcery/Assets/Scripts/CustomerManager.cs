@@ -35,10 +35,13 @@ public class CustomerManager : MonoBehaviour
     float customerDelayTime = 3;
     float spawnTracker = 0;
     bool loadedCustomer = false;
-    
-    public bool warden = false;
+
+    private Warden warden;
+    public bool wardenActive = false;
     private bool wardenSpawn = false;
     private float wardenSpawnTimer = 15;
+
+    private bool endOfDay = false;
 
     // Start is called before the first frame update
     void Start()
@@ -57,30 +60,33 @@ public class CustomerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Customer Generation
-        spawnTracker += Time.deltaTime;
-        if (spawnTracker > customerDelayTime)       
-            loadedCustomer = true;
-        if (loadedCustomer)
+        //Customer
+        if (!endOfDay)
         {
-            if (customerList.Count < linePositions.Count)
+            spawnTracker += Time.deltaTime;
+            if (spawnTracker > customerDelayTime)
+                loadedCustomer = true;
+            if (loadedCustomer)
             {
-                GenerateCustomer();
-                loadedCustomer = false;
-                spawnTracker = 0;
-                customerDelayTime = UnityEngine.Random.Range(20 - difficutlyFloat * 2, 40 - difficutlyFloat * 4);
+                if (customerList.Count < linePositions.Count)
+                {
+                    GenerateCustomer();
+                    loadedCustomer = false;
+                    spawnTracker = 0;
+                    customerDelayTime = UnityEngine.Random.Range(20 - difficutlyFloat * 2, 40 - difficutlyFloat * 4);
+                }
             }
-        }
 
-        if (wardenSpawn)
-        {
-            wardenSpawnTimer -= Time.deltaTime;
-            if (wardenSpawnTimer <= 0)
+            if (wardenSpawn)
             {
-                //TODO: Spawn warden
-                wardenSpawnTimer = 15;
-                wardenSpawn = false;
-                warden = true;
+                wardenSpawnTimer -= Time.deltaTime;
+                if (wardenSpawnTimer <= 0)
+                {
+                    //TODO: Spawn warden
+                    wardenSpawnTimer = 15;
+                    wardenSpawn = false;
+                    wardenActive = true;
+                }
             }
         }
     }
@@ -272,12 +278,21 @@ public class CustomerManager : MonoBehaviour
         foreach (Customer c in customerList)
         {
             c.Leave();
-        }    
+            register.currentCustomer.Leave();
+        }
+        endOfDay = true;
+        spawnTracker = 0;
+        warden.Leave();
+    }
+
+    public void StartDay()
+    {
+        endOfDay = false;
     }
 
     public void CheckForSnitch()
     {
-        if (warden)
+        if (wardenActive)
         {
             //TODO: Game Over
         }

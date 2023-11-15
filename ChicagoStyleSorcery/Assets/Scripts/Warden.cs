@@ -61,7 +61,7 @@ public class Warden : MonoBehaviour
                 }
                 else
                 {
-                    customerManager.warden = false;
+                    customerManager.wardenActive = false;
                     Destroy(gameObject);
                 }
                 break;
@@ -75,5 +75,10 @@ public class Warden : MonoBehaviour
             lerpAnchor = transform.position;
             lerpTimer = 0;
         }
+    }
+
+    public void Leave()
+    {
+
     }
 }
