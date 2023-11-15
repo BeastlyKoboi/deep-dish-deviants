@@ -180,7 +180,7 @@ public class Player : MonoBehaviour
             else
                 timeTimer.text = "";
             if (mindCoolDown > 0)
-                mindTimer.text = "" + ((int)timeCoolDown + 1);
+                mindTimer.text = "" + ((int)mindCoolDown + 1);
             else
                 mindTimer.text = "";
         }

@@ -183,7 +183,9 @@ public class CustomerManager : MonoBehaviour
 
         //Randomly choose customer type
         Customer c;
-        if (SceneManager.GetActiveScene().name != "Gameplay") //Regular customers only in tutorial
+        if (UnityEngine.Random.value < .5f)
+            c = Instantiate(snitch);
+        else if (SceneManager.GetActiveScene().name != "Gameplay") //Regular customers only in tutorial
             c = Instantiate(customerDefault);
         else if (UnityEngine.Random.Range(0, difficutlyFloat) < .5f)
             c = Instantiate(customerChill);
@@ -283,29 +285,28 @@ public class CustomerManager : MonoBehaviour
         }
 
         bool snitched = false;
-        foreach (Customer c in customerList)
+        for (int i = customerList.Count - 1; i >= 0; i--)
         {
-            if (c is SnitchCustomer)
+            Customer c = customerList[i];
+            if (c.GetComponent<SnitchCustomer>() != null)
             {
                 snitched = true;
-                SnitchCustomer s = (SnitchCustomer)c;
-                s.SnitchOn();
+                c.GetComponent<SnitchCustomer>().SnitchOn();
             }
         }
-        foreach (PickUpStation p in pickUpStationList)
+        for (int i = pickUpStationList.Count - 1; i >= 0; i--)
         {
-            if (p.currentCustomer != null && p.currentCustomer is SnitchCustomer)
+            PickUpStation p = pickUpStationList[i];
+            if (p.currentCustomer != null && p.currentCustomer.GetComponent<SnitchCustomer>() != null)
             {
                 snitched = true;
-                SnitchCustomer s = (SnitchCustomer)p.currentCustomer;
-                s.SnitchOn();
+                p.currentCustomer.GetComponent<SnitchCustomer>().SnitchOn();
             }
         }
-        if (register.currentCustomer != null && register.currentCustomer is SnitchCustomer)
+        if (register.currentCustomer != null && register.currentCustomer.GetComponent<SnitchCustomer>() != null)
         {
             snitched = true;
-            SnitchCustomer s = (SnitchCustomer)register.currentCustomer;
-            s.SnitchOn();
+            register.currentCustomer.GetComponent<SnitchCustomer>().SnitchOn();
         }
 
         if (snitched)

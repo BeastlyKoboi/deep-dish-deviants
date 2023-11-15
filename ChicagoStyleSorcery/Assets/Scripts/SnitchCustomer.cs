@@ -11,15 +11,17 @@ public class SnitchCustomer : Customer
     [SerializeField]
     private Image circle;
     // Start is called before the first frame update
-    void Start()
+    new void Start()
     {
         exclamationPoint.enabled = false;
+        base.Start();
     }
 
     // Update is called once per frame
-    void Update()
+    new void Update()
     {
         exclamationPoint.transform.position = transform.position + Vector3.up;
+        base.Update();
     }
 
     public void SnitchOn()
@@ -30,5 +32,6 @@ public class SnitchCustomer : Customer
         exclamationPoint.enabled = true;
         circle.enabled = false;
         trackerImage.enabled = false;
+        face.enabled = false;
     }
 }

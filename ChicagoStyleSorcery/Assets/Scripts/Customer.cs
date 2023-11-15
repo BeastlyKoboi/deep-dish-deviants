@@ -32,7 +32,7 @@ public class Customer : MonoBehaviour
     public CustomerManager customerManager;
 
     [SerializeField]
-    private Image face;
+    protected Image face;
 
     [SerializeField]
     private Sprite happy;
@@ -72,7 +72,8 @@ public class Customer : MonoBehaviour
     {
         get { return state; }
     }
-    void Start()
+
+    protected void Start()
     {
         state = AiState.Entering;
         patience = maxPatience;
@@ -80,7 +81,7 @@ public class Customer : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected void Update()
     {
         if (!patienceFreeze)
         {
