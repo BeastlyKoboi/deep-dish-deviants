@@ -141,9 +141,9 @@ public class Player : MonoBehaviour
         originalPositionFire = fire.transform.position;
         originalPositionCut = cut.transform.position;
         originalPositionKnead = knead.transform.position;
-        //originalPositionSort = sort.transform.position;
-        //originalPositionTime = time.transform.position;
-        //originalPositionMind = mind.transform.position;
+        originalPositionSort = sort.transform.position;
+        originalPositionTime = time.transform.position;
+        originalPositionMind = mind.transform.position;
     }
 
     // Update is called once per frame
@@ -354,7 +354,7 @@ public class Player : MonoBehaviour
     {
         if (!cutCoolDownActive)
         {
-            if(nearestCounter != null)
+            if (nearestCounter != null)
             {
                 if (nearestCounter.isInteractable && nearestCounter.inventory[0] != null && isInteracting)
                 {
@@ -427,27 +427,25 @@ public class Player : MonoBehaviour
     /// </summary>
     public void SortMagic()
     {
-        if (!kneedCoolDownActive)
+        if (!sortCoolDownActive)
         {
             //checks if player is interacting with a counter
             if (nearestCounter != null)
             {
-                if (nearestCounter.isInteractable && nearestCounter.inventory[0] != null && isInteracting)
+                if (nearestCounter.isInteractable && nearestCounter.inventory[0] != null && isInteracting && nearestCounter.inventory[0].id == FoodId.plate)
                 {
-                    // checks if ID is beef or dough
-                    if (nearestCounter.inventory[0].id == FoodId.plate)
-                    {
-                        Vector3 targetPosition = nearestCounter.transform.position;
-                        float duration = 2.0f;
+                    // food id checks if meat or dough
+                    Vector3 targetPosition = nearestCounter.transform.position;
+                    float duration = 2.0f;
 
-                        //insert animation movement and activation
-                        MoveParticleToLocation(targetPosition, duration, time);
+                    //insert animation movement and activation
+                    MoveParticleToLocation(targetPosition, duration, sort);
 
-                        Plate tempPlate = (Plate)nearestCounter.inventory[0];
-                        // sorts core food list of plate based on order of food ids
-                        tempPlate.coreFoodlist.Sort((food1,food2) => food1.id.CompareTo(food2.id));
-                        nearestCounter.inventory[0] = tempPlate;
-                    }
+                    Plate tempPlate = (Plate)nearestCounter.inventory[0];
+                    // sorts core food list of plate based on order of food ids
+                    tempPlate.coreFoodlist.Sort((food1,food2) => food1.id.CompareTo(food2.id));
+                    nearestCounter.inventory[0] = tempPlate;
+
                     nearestCounter.SetIcons();
                     sortCoolDown = maxCooldownSort;
                     sortCoolDownActive = true;
@@ -604,7 +602,6 @@ public class Player : MonoBehaviour
     private IEnumerator MoveToLocation(Vector3 targetPosition, float duration, GameObject gameObject)
     {
         float elapsedTime = 0f;
-        Vector3 initialPosition = gameObject.transform.position;
 
         while (elapsedTime < duration)
         {
