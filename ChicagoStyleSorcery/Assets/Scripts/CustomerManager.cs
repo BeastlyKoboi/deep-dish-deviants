@@ -195,7 +195,7 @@ public class CustomerManager : MonoBehaviour
             c = Instantiate(customerChill);
         else if (UnityEngine.Random.Range(difficutlyFloat, 11) > 10.5f)
             c = Instantiate(customerGrump);
-        else if (UnityEngine.Random.Range(1, 10) < 1)
+        else if (UnityEngine.Random.Range(0, 9) < 1)
             c = Instantiate(snitch);
         else
             c = Instantiate(customerDefault);
