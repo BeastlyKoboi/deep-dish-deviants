@@ -762,7 +762,14 @@ MonoBehaviour:
   pickUpStationList:
   - {fileID: 195122303}
   customerDefault: {fileID: 3126254841571916766, guid: 4365ddb4fa531824886ef11c079da727, type: 3}
+  customerGrump: {fileID: 6329551316086573096, guid: 1dbdab3015409e3428c10c31bbfa8d20, type: 3}
+  customerChill: {fileID: 5692783964673658113, guid: b30a2b85c04f95c47a1e1f5a71c9928c, type: 3}
+  snitch: {fileID: 4431860841592312613, guid: 98b32ad3c055fb645be5cb0239653b5c, type: 3}
   popup: {fileID: 5003814518828605141, guid: 56d6502012961ce43a86cc1ef8a95213, type: 3}
+  linePositions:
+  - {x: 0, y: -3.5, z: 0}
+  wardenActive: 0
+  endOfDay: 0
 --- !u!114 &240653060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -785,6 +792,9 @@ MonoBehaviour:
   pickUpStations:
   - {fileID: 195122303}
   toppingStations: []
+  ovenList: []
+  slicerList: []
+  pounderList: []
   canvas: {fileID: 20828642}
   cashTotalUI: {fileID: 273834540}
   currentDayUI: {fileID: 273834540}
@@ -806,6 +816,7 @@ MonoBehaviour:
   currentTime: 0
   hourLength: 30
   hasTutorial: 0
+  customerManager: {fileID: 0}
   currentCustomers: []
   tag1: {fileID: 1819360570}
   tag2: {fileID: 645377333}

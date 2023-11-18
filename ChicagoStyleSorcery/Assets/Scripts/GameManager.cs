@@ -60,6 +60,7 @@ public class GameManager : MonoBehaviour
 
     // Customers and Orders
     [Header("Customers and Orders")]
+    [SerializeField] CustomerManager customerManager;
     [SerializeField] private List<GameObject> currentCustomers = new List<GameObject>();
     [SerializeField] private OrderTag tag1;
     [SerializeField] private OrderTag tag2;
@@ -203,11 +204,12 @@ public class GameManager : MonoBehaviour
             currentHour++;
             if (currentHour > 12)
                 currentHour = 1;
-            if (currentHour == 5)
-                EndDay();
 
             currentTime -= hourLength;
-            clockUI.text = $"{currentHour}:00 {(currentHour < 8 ? "PM" : "AM")}";
+            clockUI.text = $"{currentHour}:00 {(currentHour == 12 || currentHour < 8? "PM" : "AM")}";
+            
+            if (currentHour == 5)
+                EndDay();
         }
     }
 
@@ -228,6 +230,8 @@ public class GameManager : MonoBehaviour
         pizzasSoldUI.text = $"Pizza's Sold: {numPizzaSoldToday}";
         cashToday = 0;
         numPizzaSoldToday = 0;
+
+        // customerManager.EndDay();
         // More stuff to come
     }
     // Eventually I hope to have it called on game start
@@ -239,6 +243,8 @@ public class GameManager : MonoBehaviour
         ResetClock();
         CurrentDay++;
         dayEndPopup.SetActive(false);
+
+        // customerManager.StartDay();
         // more stuff to come
     }
 
