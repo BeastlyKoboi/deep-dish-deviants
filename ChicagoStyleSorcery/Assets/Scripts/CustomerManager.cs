@@ -275,11 +275,12 @@ public class CustomerManager : MonoBehaviour
     /// </summary>
     public void EndDay()
     {
-        foreach (Customer c in customerList)
+        for (int i = customerList.Count - 1; i >= 0; i--)
         {
-            c.Leave();
-            register.currentCustomer.Leave();
+            customerList[i].Leave();
         }
+        register.currentCustomer.Leave();
+
         endOfDay = true;
         spawnTracker = 0;
         warden.Leave();
