@@ -231,7 +231,7 @@ public class GameManager : MonoBehaviour
         cashToday = 0;
         numPizzaSoldToday = 0;
 
-        // customerManager.EndDay();
+        customerManager.EndDay();
         // More stuff to come
     }
     // Eventually I hope to have it called on game start
@@ -244,7 +244,7 @@ public class GameManager : MonoBehaviour
         CurrentDay++;
         dayEndPopup.SetActive(false);
 
-        // customerManager.StartDay();
+        customerManager.StartDay();
         // more stuff to come
     }
 
