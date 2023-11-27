@@ -84,12 +84,12 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
 
     // Cooldown Elements
-    private static float maxCooldownFire = 3;
-    private static float maxCooldownCut = 3;
-    private static float maxCooldownKnead = 3;
-    private static float maxCooldownSort = 5;
-    private static float maxCooldownTime = 7;
-    private static float maxCooldownMind = 7;
+    public float maxCooldownFire = 10;
+    public float maxCooldownCut = 3;
+    public float maxCooldownKnead = 3;
+    public float maxCooldownSort = 5;
+    public float maxCooldownTime = 7;
+    public float maxCooldownMind = 7;
 
     [Header("UI Elements")]
     [SerializeField] private Image fireCooldownMask;
