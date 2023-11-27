@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2141529295, guid: c692344e723e5eb40aac4d4320d75bf8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fece7c869aa529a4b8fc189f3f415945, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48bca09ee2f25474891e361415e59ed1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  customerManager: {fileID: 0}
   playerInventory: []
   fireCoolDown: 0
   fireCoolDownActive: 0
@@ -128,10 +129,14 @@ MonoBehaviour:
   cutCooldownMask: {fileID: 0}
   kneadCooldownMask: {fileID: 0}
   sortCooldownMask: {fileID: 0}
+  timeCooldownMask: {fileID: 0}
+  mindCooldownMask: {fileID: 0}
   fireTimer: {fileID: 0}
   cutTimer: {fileID: 0}
   kneadTimer: {fileID: 0}
   sortTimer: {fileID: 0}
+  timeTimer: {fileID: 0}
+  mindTimer: {fileID: 0}
 --- !u!61 &824235580455297565
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -166,9 +171,9 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0.03, y: 0, z: 0, w: 0}
+    border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.84, y: 1.39}
+    oldSize: {x: 0.9, y: 0.9}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -329,6 +334,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: db22686e-32e3-40e6-9907-ec156b9a898e
     m_ActionName: Player/HideTooltips[/Keyboard/backspace]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 50a7128a-3cd7-41d6-84d6-1b68ec12a269
+    m_ActionName: Player/SortMagic[/Keyboard/4]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8bb67126-7118-4740-b80a-e76568839c51
+    m_ActionName: Player/TimeMagic[/Keyboard/5]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 96b301d8-69fd-435a-985d-8f1ff50e6140
+    m_ActionName: Player/MindMagic[/Keyboard/6]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bab3a293-86b8-467b-9dd2-5779451fe125
+    m_ActionName: Player/ResetScene[/Keyboard/r]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
