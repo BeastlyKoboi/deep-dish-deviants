@@ -12306,7 +12306,7 @@ MonoBehaviour:
   currentDay: 0
   currentHour: 8
   currentTime: 0
-  hourLength: 1
+  hourLength: 10
   hasTutorial: 0
   customerManager: {fileID: 1023365880}
   currentCustomers: []

@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int currentDay = 0;
     [SerializeField] private int currentHour = 8;
     [SerializeField] private float currentTime = 0.0f;
-    [SerializeField] private float hourLength = 30.0f;
+    [SerializeField] private float hourLength = 30.0f; // is overwritten by inspector
     [SerializeField] private bool hasTutorial = true;
 
     // Customers and Orders
