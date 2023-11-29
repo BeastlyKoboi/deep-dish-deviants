@@ -137,7 +137,11 @@ public class CustomerManager : MonoBehaviour
             if (customerList.Count > i)
                 customerList[i].MoveInLine();
         }
-        customerList.RemoveAt(posiitonInLine); //Remove the customer who left to trigger this
+        if(customerList.Count > 0)
+        {
+            customerList.RemoveAt(posiitonInLine); //Remove the customer who left to trigger this
+        }
+        //customerList.RemoveAt(posiitonInLine); //Remove the customer who left to trigger this
     }
 
     /// <summary>
@@ -280,7 +284,17 @@ public class CustomerManager : MonoBehaviour
         {
             customerList[i].Leave();
         }
-        register.currentCustomer.Leave();
+        if(register.currentCustomer!= null)
+        {
+            register.currentCustomer.Leave();
+        }
+        for(int i = 0; i < pickUpStationList.Count; i++)
+        {
+            if (pickUpStationList[i].currentCustomer != null)
+            {
+                pickUpStationList[i].currentCustomer.Leave();
+            }
+        }
 
         endOfDay = true;
         spawnTracker = 0;

@@ -233,6 +233,17 @@ public class GameManager : MonoBehaviour
 
         customerManager.EndDay();
         // More stuff to come
+        // when the day ends all of the counters are wiped, 
+        foreach(Counter counter in counterScripts)
+        {
+            if (counter.inventory[0] != null)
+            {
+                Destroy(counter.inventory[0].gameObject);
+                counter.inventory[0] = null;
+                counter.SetIcons();
+            }
+            
+        }
     }
     // Eventually I hope to have it called on game start
     // and then when prompted after a day has ended.
