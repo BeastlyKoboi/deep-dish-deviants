@@ -198,6 +198,8 @@ public class UpgradeManager : MonoBehaviour
         {
             hasBoughtOven = true;
             gameOven.gameObject.SetActive(true);
+            playerMoney -= ovenPrice;
+            gameManager.CashTotal = playerMoney;
             
         }
     }
@@ -207,6 +209,8 @@ public class UpgradeManager : MonoBehaviour
         {
             hasBoughtSlicer = true;
             gameCutter.gameObject.SetActive(true);
+            playerMoney -= slicerPrice;
+            gameManager.CashTotal = playerMoney;
 
         }
     }
@@ -217,6 +221,8 @@ public class UpgradeManager : MonoBehaviour
         {
             hasBoughtPounder = true;
             gameKneader.gameObject.SetActive(true);
+            playerMoney -= pounderPrice;
+            gameManager.CashTotal = playerMoney;
 
         }
     }
