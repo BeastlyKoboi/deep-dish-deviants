@@ -12,6 +12,7 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField]
     GameManager gameManager;
 
+    // keeps track of the levels of the spells and if player has bought the stations
    [SerializeField] int fireLevel;
    [SerializeField] int cutLevel;
    [SerializeField] int kneadLevel;
@@ -25,6 +26,7 @@ public class UpgradeManager : MonoBehaviour
    [SerializeField] Slicer gameCutter;
    [SerializeField] Pounder gameKneader;
 
+    // keeps track of price of each item in the store
     [SerializeField] float firePrice;
     [SerializeField] float cutPrice;
     [SerializeField] float kneadPrice;
@@ -35,6 +37,7 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] float slicerPrice;
     [SerializeField] float pounderPrice;
 
+    // lets game update prices as the player buys upgrades
     [SerializeField] TextMeshProUGUI fireLevelText;
     [SerializeField] TextMeshProUGUI firePriceText;
     [SerializeField] TextMeshProUGUI cutLevelText;
@@ -50,6 +53,7 @@ public class UpgradeManager : MonoBehaviour
 
     float playerMoney;
 
+    // since the player has to buy the non magic station, start method deactivates them until they are bought
     // Start is called before the first frame update
     void Start()
     {
@@ -61,10 +65,12 @@ public class UpgradeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // checks to update the player money variable when the gamestate is close (which is when the store is accessable)
         if(gameManager.gameState == GameManager.GameState.Closed)
         {
             playerMoney = gameManager.CashTotal;
         }
+        // if the player has bought the max level of the spell this will change text to reflect that
         if (fireLevel == 5)
         {
             firePriceText.text = "Spell Maxed Out";
@@ -97,7 +103,10 @@ public class UpgradeManager : MonoBehaviour
         }
     }
 
-
+    // all of the following buy methods are the same, they check if the player has not already maxed out the spell,
+    // and if they have the money to buy the upgrade
+    // if they can, then it buys the upgrade, updates the players money, the level of the spell, the price of the next upgrade
+    // the cooldown of the spell, and the gamemanagers money variable
     public void BuyFireUpgrade()
     {
         if (fireLevel < 5 && playerMoney >= firePrice)
@@ -182,6 +191,7 @@ public class UpgradeManager : MonoBehaviour
         }
     }
 
+    // these all do the same thing, if the player buys the item, then it activates the station in the scene allowing the player to use them
     public void BuyOven()
     {
         if(!hasBoughtOven && playerMoney>= ovenPrice)

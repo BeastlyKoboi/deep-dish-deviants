@@ -80,7 +80,6 @@ public class CustomerManager : MonoBehaviour
                     loadedCustomer = false;
                     spawnTracker = 0;
                     customerDelayTime = UnityEngine.Random.Range(20 - difficutlyFloat * 2, 40 - difficutlyFloat * 4);
-                    Debug.Log(customerDelayTime);
                 }
             }
 
@@ -144,8 +143,11 @@ public class CustomerManager : MonoBehaviour
             if (customerList.Count > i)
                 customerList[i].MoveInLine();
         }
-        Debug.Log($"Will attemptto remove customer at {posiitonInLine}");
-        customerList.RemoveAt(posiitonInLine); //Remove the customer who left to trigger this
+        if(customerList.Count > 0)
+        {
+            customerList.RemoveAt(posiitonInLine); //Remove the customer who left to trigger this
+        }
+        //customerList.RemoveAt(posiitonInLine); //Remove the customer who left to trigger this
     }
 
     /// <summary>
@@ -199,8 +201,6 @@ public class CustomerManager : MonoBehaviour
     /// </summary>
     public void GenerateCustomer()
     {
-        Debug.Log("Attempted Customer Generation");
-
         if (customerList.Count >= linePositions.Count)//Should never happen, just a failsafe
             return;
 
@@ -296,10 +296,21 @@ public class CustomerManager : MonoBehaviour
         {
             customerList[i].Leave();
         }
-        register.currentCustomer.Leave();
+        if(register.currentCustomer!= null)
+        {
+            register.currentCustomer.Leave();
+        }
+        for(int i = 0; i < pickUpStationList.Count; i++)
+        {
+            if (pickUpStationList[i].currentCustomer != null)
+            {
+                pickUpStationList[i].currentCustomer.Leave();
+            }
+        }
 
         endOfDay = true;
         spawnTracker = 0;
+        //warden.Leave();
         currentWarden.Leave();
 
         Debug.Log("Customer End Day called");
@@ -308,7 +319,6 @@ public class CustomerManager : MonoBehaviour
     public void StartDay()
     {
         endOfDay = false; 
-        Debug.Log("Customer Start Day called");
     }
 
     public void CheckForSnitch()

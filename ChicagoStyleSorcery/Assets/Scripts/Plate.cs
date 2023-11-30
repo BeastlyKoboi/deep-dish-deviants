@@ -68,4 +68,19 @@ public class Plate : FoodItem
             Destroy(coreFoodlist[i].gameObject);
         }
     }
+
+    // checks if a given food id is present on the plate.
+    // returns the index of the food item on the plate
+    public int ContainsFoodItem(FoodId item)
+    {
+        for(int i = 0; i < coreFoodlist.Count; i++)
+        {
+            if (coreFoodlist[i].id == item)
+            {
+                return i;
+            }
+        }
+
+        return -1;
+    }
 }

@@ -414,6 +414,15 @@ public class Player : MonoBehaviour
                             nearestCounter.inventory[0].kneadState = KneadState.kneaded;
                         }
                     }
+                    // lets player knead dough even if it is on a plate
+                    else if (nearestCounter.inventory[0].id == FoodId.plate)
+                    {
+                        Plate tempPlate = (Plate)nearestCounter.inventory[0];
+                        if(tempPlate.ContainsFoodItem(FoodId.dough) != -1)
+                        {
+                            tempPlate.coreFoodlist[tempPlate.ContainsFoodItem(FoodId.dough)].kneadState = KneadState.kneaded;
+                        }
+                    }
                     nearestCounter.SetIcons();
                     kneedCoolDown = maxCooldownKnead;
                     kneedCoolDownActive = true;
