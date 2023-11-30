@@ -175,19 +175,51 @@ public class Customer : MonoBehaviour
     {
         float successPercentile = 1;
         float amountFound = 0;
+
+        //variables for tracking mistakes
+        MistakeType mistake = MistakeType.None;
+        int mistakeWeight = 0; //Measures severity of mistake so more important ones can be prioritized
+        int multiMistake = 0;
+
         for(int i = 0; i < pizza.coreFoodlist.Count; i++)
         {
             bool found = false;
             if (pizza.coreFoodlist[i].foodState == CookState.raw || pizza.coreFoodlist[i].foodState == CookState.burnt) //If uncooked or overcooked
+            {
                 successPercentile -= (.1f / ((float)order.Count / 3f)); //Reduce percentile
+                if (mistakeWeight == 0)
+                {
+                    if (pizza.coreFoodlist[i].foodState == CookState.raw)
+                        mistake = MistakeType.Uncooked;
+                    else
+                        mistake = MistakeType.Burnt;
+
+                    mistakeWeight = 3;
+                }
+            }
             if (pizza.coreFoodlist[i].kneadState == KneadState.unkneaded || pizza.coreFoodlist[i].cutState == CutState.uncut) //If uncut or unkneaded
+            {
                 successPercentile -= (.1f / ((float)order.Count / 3f)); //Reduce percentile
+                if (mistakeWeight == 0)
+                {
+                    mistake = MistakeType.UncutToppings;
+                    mistakeWeight = 3;
+                }
+            }
             for (int j = 0; j < order.Count; j++)
             {
                 if (pizza.coreFoodlist[i].id == order[j])//topping exists on pizza
                 {
                     if (found)//means this topping was already found once
-                        successPercentile -= .05f;//minor reduction
+                    {
+                        successPercentile -= .05f;
+                        if (mistakeWeight <= 1)
+                        {
+                            mistake = MistakeType.ExtraToppings;//minor reduction
+                            mistakeWeight = 1;
+                        }
+                    }
+
                     else//First time found, so note that this topping is good
                         amountFound++;
                     found = true;
@@ -199,21 +231,49 @@ public class Customer : MonoBehaviour
                     successPercentile -= .05f;
             }
             if (!found)//unneeded topping
+            {
                 successPercentile -= .2f / ((float)order.Count / 2f);
+
+                if (mistakeWeight <= 1)
+                {
+                    mistake = MistakeType.ExtraToppings;//minor reduction
+                    mistakeWeight = 2;
+                }
+            }
         }
         if (order.Count > amountFound)//Missing ingredients
         {
             successPercentile -= .15f * (order.Count - amountFound);
+            if (mistakeWeight <= 2)
+            {
+                mistake = MistakeType.MissingToppings;//minor reduction
+                mistakeWeight = 2;
+            }
         }
 
         //+- 30 based on difference of patience from max patience. Value modified is based on percent of time taken with leniency based off difficulty
         successPercentile += .3f * ((patience + (maxPatience / 2f * (1f - difficultyFloat))) - maxPatience) / maxPatience;
 
         if (!pizza.IsSorted())
+        {
             successPercentile -= .3f;
 
+            if (mistakeWeight <= 2)
+            {
+                mistake = MistakeType.Order;//minor reduction
+                mistakeWeight = 3;
+            }
+        }
+
         if (successPercentile < .05f) //Gives player a small amount so it doesn't look like it just didn't work
+        {
             successPercentile = UnityEngine.Random.Range(.01f, .05f);
+            mistake = MistakeType.Catastrophe;
+            mistakeWeight = 10;
+        }
+
+        if (multiMistake >= 3)
+            mistake = MistakeType.Catastrophe;
 
         Leave();
         //state = AiState.Leaving;
@@ -223,7 +283,7 @@ public class Customer : MonoBehaviour
         //For now we make a new customer
         //customerManager.GenerateCustomer();
 
-        customerManager.AddMoney(successPercentile);
+        customerManager.AddMoney(successPercentile, mistake);
 
         //Activate result face
         face.color = Color.white;

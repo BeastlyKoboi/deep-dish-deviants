@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-// using UnityEditor.Overlays;
+using UnityEditor.Overlays;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Warden : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class Warden : MonoBehaviour
     private Vector3 standingPosition;
     [SerializeField]
     private Vector3 doorPosition;
+    [SerializeField]
+    private Image exclamation;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +34,8 @@ public class Warden : MonoBehaviour
         timeLeft = maxTime;
 
         state = AiState.Entering;
+
+        exclamation.enabled = false;
     }
 
     // Update is called once per frame
@@ -77,8 +82,20 @@ public class Warden : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Makes the warden leave
+    /// </summary>
     public void Leave()
     {
         timeLeft = 0;
+    }
+
+    /// <summary>
+    /// Effects to trigger for catching the player
+    /// </summary>
+    public void CatchPlayer()
+    {
+        exclamation.enabled = true;
+        timeLeft = float.MaxValue; //Never leave
     }
 }

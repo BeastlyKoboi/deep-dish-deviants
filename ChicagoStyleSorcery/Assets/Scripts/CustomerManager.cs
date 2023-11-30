@@ -25,6 +25,8 @@ public class CustomerManager : MonoBehaviour
     [SerializeField]
     private CashPopup popup;
     [SerializeField]
+    private MistakePopup mistakePopup;
+    [SerializeField]
     private List<Vector3> linePositions;
 
     List<Customer> customerList;
@@ -37,7 +39,10 @@ public class CustomerManager : MonoBehaviour
     float spawnTracker = 0;
     bool loadedCustomer = false;
 
+    [SerializeField]
     private Warden warden;
+
+    private Warden currentWarden;
     public bool wardenActive = false;
     private bool wardenSpawn = false;
     private float wardenSpawnTimer = 15;
@@ -84,7 +89,8 @@ public class CustomerManager : MonoBehaviour
                 wardenSpawnTimer -= Time.deltaTime;
                 if (wardenSpawnTimer <= 0)
                 {
-                    //TODO: Spawn warden
+                    Warden w = Instantiate(warden);
+                    w.transform.position = new Vector3(-20, -20, 0);
                     wardenSpawnTimer = 15;
                     wardenSpawn = false;
                     wardenActive = true;
@@ -176,10 +182,16 @@ public class CustomerManager : MonoBehaviour
     /// Add money based on order
     /// </summary>
     /// <param name="mult">Multiplier for money gained</param>
-    public void AddMoney(float mult)
+    public void AddMoney(float mult, MistakeType mistake)
     {
         //hardcoded to $10 for now
         gameManager.addScore(10, mult);
+
+        if (mistake != MistakeType.None) //Create and set the mistake popup
+        {
+            MistakePopup m = Instantiate(mistakePopup);
+            m.mistakeType = mistake;
+        }
     }
 
     /// <summary>
@@ -288,7 +300,7 @@ public class CustomerManager : MonoBehaviour
 
         endOfDay = true;
         spawnTracker = 0;
-        //warden.Leave();
+        currentWarden.Leave();
 
         Debug.Log("Customer End Day called");
     }
@@ -333,7 +345,7 @@ public class CustomerManager : MonoBehaviour
 
         if (snitched)
         {
-            //TODO: spawn warden
+            wardenSpawn = true;
         }
     }
 }
