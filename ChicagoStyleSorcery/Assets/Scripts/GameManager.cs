@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public List<Oven> ovenList;
     [SerializeField] public List<Slicer> slicerList;
     [SerializeField] public List<Pounder> pounderList;
-    private List<Station> allStations = new List<Station>();
+    private List<Station> allStations = new List<Station>();    
 
     // UI Elements
     [Header("UI Elements")]
