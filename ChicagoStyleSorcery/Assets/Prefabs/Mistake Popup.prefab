@@ -181,7 +181,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2862713055642418494}
-  - component: {fileID: 3188884463762852155}
   - component: {fileID: 1204148425224677116}
   m_Layer: 0
   m_Name: Mistake Popup
@@ -198,29 +197,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5181797203773684425}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.49642783, y: -10.728861, z: -0.06946248}
+  m_LocalPosition: {x: 0, y: 0, z: -0.06946248}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5554637209149660956}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3188884463762852155
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5181797203773684425}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a8dc0058833f284aa68bd2df0ddb19f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moneyText: {fileID: 6321818443117624383}
-  bill: {fileID: 6766786841732978389}
-  money: 0
 --- !u!114 &1204148425224677116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,7 +219,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 6321818443117624383}
   bar: {fileID: 6766786841732978389}
-  startPos: {x: -0.5, y: -10.5, z: 0}
+  startPos: {x: 5.3, y: 7.6, z: 0}
   mistakeType: 0
 --- !u!1 &6890121283083684159
 GameObject:
@@ -351,7 +335,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 5.79, y: 18.44}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 13.1645, y: 0.8857}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &7363540468241190700

@@ -49,6 +49,8 @@ public class CustomerManager : MonoBehaviour
 
     [SerializeField] private bool endOfDay = false;
 
+    private MistakePopup currentMistakePopup;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -59,8 +61,6 @@ public class CustomerManager : MonoBehaviour
 
         //List of customers so they can stand in a line
         customerList = new List<Customer>();
-
-        //GenerateCustomer();
     }
 
     // Update is called once per frame
@@ -193,6 +193,11 @@ public class CustomerManager : MonoBehaviour
         {
             MistakePopup m = Instantiate(mistakePopup);
             m.mistakeType = mistake;
+
+            if (currentMistakePopup != null)
+                currentMistakePopup.RemoveQuick();
+
+            currentMistakePopup = m;
         }
     }
 

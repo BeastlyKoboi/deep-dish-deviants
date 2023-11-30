@@ -32,7 +32,7 @@ public class MistakePopup : MonoBehaviour
 
     private float fade = 0;
     private float fadeTimer = 0;
-    private static float fadeMax = 120;
+    private static float fadeMax = 2;
     private bool fadeQuick = false;
 
     protected Vector3 lerpAnchor = Vector3.zero;
@@ -98,8 +98,19 @@ public class MistakePopup : MonoBehaviour
 
             float t = lerpTimer / lerpDurration;
             t = t * t * (3f - 2f * t);
-            transform.position = Vector3.Lerp(lerpAnchor, startPos + Vector3.down * 2, t);//Move to destination in an interlopian curve
+            transform.position = Vector3.Lerp(lerpAnchor, startPos + Vector3.down * 9f, t);//Move to destination in an interlopian curve
             lerpTimer += Time.deltaTime;
+        }
+        else if (fade >= 1 && fadeTimer < fadeMax)
+        {
+            lerpAnchor = transform.position;
+            lerpTimer = 0;
+
+            fadeTimer+= Time.deltaTime;
+            if (fadeQuick)
+            {
+                fadeTimer = fadeMax;
+            }
         }
         else if (fadeTimer >= fadeMax) 
         {
@@ -110,8 +121,11 @@ public class MistakePopup : MonoBehaviour
 
             float t = lerpTimer / lerpDurration;
             t = t * t * (3f - 2f * t);
-            transform.position = Vector3.Lerp(lerpAnchor, startPos, t);//Move to destination in an interlopian curve
+            transform.position = Vector3.Lerp(lerpAnchor, startPos + Vector3.up * 9f, t);//Move to destination in an interlopian curve
             lerpTimer += Time.deltaTime;
+
+            if (lerpTimer >= lerpDurration)
+                Destroy(gameObject);
         }
     }
 

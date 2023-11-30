@@ -33,8 +33,7 @@ public class CashPopup : MonoBehaviour
         }
         else
         {
-
-        }
             Destroy(gameObject);
+        }
     }
 }

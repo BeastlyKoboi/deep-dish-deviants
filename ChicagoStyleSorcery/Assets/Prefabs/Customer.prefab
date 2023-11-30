@@ -328,7 +328,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   patienceCanvas: {fileID: 2580976506234380641}
   trackerImage: {fileID: 7684242448465599857}
-  popup: {fileID: 0}
+  popup: {fileID: 5003814518828605141, guid: 56d6502012961ce43a86cc1ef8a95213, type: 3}
   order: 000000000100000002000000
   customerManager: {fileID: 0}
   face: {fileID: 5125278478577819556}
