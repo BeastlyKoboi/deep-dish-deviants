@@ -27,11 +27,19 @@ public class Player : MonoBehaviour
     public float mindCoolDown;
     public bool mindCoolDownActive;
 
+    //AUDIO SOUNDS
+    public AudioSource cutAudio;
+    public AudioSource fireAudio;
+    public AudioSource kneadAudio;
+    public AudioSource mindAudio;
+    public AudioSource sortAudio;
+    public AudioSource timeAudio;
+
     //[SerializeField] private List<Counter> counterScripts;
 
     //[SerializeField] private List<PickUpStation> pickUpStationScripts;
 
-    
+
     public Counter nearestCounter;
 
     public PickUpStation nearestPickUp;
@@ -136,6 +144,13 @@ public class Player : MonoBehaviour
         timeCoolDownActive = false;
         mindCoolDown = 0;
         mindCoolDownActive = false;
+
+        cutAudio.Stop();
+        fireAudio.Stop();
+        kneadAudio.Stop();
+        mindAudio.Stop();
+        sortAudio.Stop();
+        timeAudio.Stop();
 
         // store particle's original off-screen position
         originalPositionFire = fire.transform.position;
@@ -318,6 +333,7 @@ public class Player : MonoBehaviour
             {
                 if (nearestCounter.isInteractable && isInteracting && nearestCounter.inventory[0] != null && nearestCounter.inventory[0].id == FoodId.plate)
                 {
+                    StartCoroutine(PlaySound(fireAudio));
                     Vector3 targetPosition = nearestCounter.transform.position;
                     float duration = 2.0f;
 
@@ -371,6 +387,7 @@ public class Player : MonoBehaviour
                         // if uncut, cut
                         if (nearestCounter.inventory[0].cutState == CutState.uncut)
                         {
+                            StartCoroutine(PlaySound(cutAudio));
                             Vector3 targetPosition = nearestCounter.transform.position;
                             float duration = 2.0f;
 
@@ -399,6 +416,7 @@ public class Player : MonoBehaviour
             {
                 if (nearestCounter.isInteractable && nearestCounter.inventory[0] != null && isInteracting)
                 {
+                    StartCoroutine(PlaySound(kneadAudio));
                     Vector3 targetPosition = nearestCounter.transform.position;
                     float duration = 2.0f;
 
@@ -443,6 +461,7 @@ public class Player : MonoBehaviour
             {
                 if (nearestCounter.isInteractable && nearestCounter.inventory[0] != null && isInteracting && nearestCounter.inventory[0].id == FoodId.plate)
                 {
+                    StartCoroutine(PlaySound(sortAudio));
                     // food id checks if meat or dough
                     Vector3 targetPosition = nearestCounter.transform.position;
                     float duration = 2.0f;
@@ -476,6 +495,7 @@ public class Player : MonoBehaviour
             {
                 if (nearestCounter.isInteractable && isInteracting && nearestCounter.inventory[0] != null && nearestCounter.inventory[0].id == FoodId.plate)
                 {
+                    StartCoroutine(PlaySound(timeAudio));
                     Vector3 targetPosition = nearestCounter.transform.position;
                     float duration = 2.0f;
 
@@ -522,6 +542,7 @@ public class Player : MonoBehaviour
             {
                 if (nearestPickUp.isInteractable && isInteracting && nearestPickUp.currentCustomer != null)
                 {
+                    StartCoroutine(PlaySound(mindAudio));
                     Vector3 targetPosition = nearestPickUp.transform.position;
                     float duration = 2.0f;
 
@@ -570,6 +591,25 @@ public class Player : MonoBehaviour
     {
         //Move the particle to the targe location over a specified duration
         StartCoroutine(MoveToLocation(targetPosition, duration, gameObject));
+    }
+
+    /// <summary>
+    /// plays sound for specific time
+    /// </summary>
+    /// <param name="sound"></param>
+    public IEnumerator PlaySound(AudioSource sound)
+    {
+        float elapsedTime = 0f;
+        float duration = 5f;
+
+        sound.Play();
+        while (elapsedTime < duration)
+        {
+            
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        sound.Stop();
     }
 
     /// <summary>

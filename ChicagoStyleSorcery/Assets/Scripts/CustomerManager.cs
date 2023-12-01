@@ -28,6 +28,10 @@ public class CustomerManager : MonoBehaviour
     private MistakePopup mistakePopup;
     [SerializeField]
     private List<Vector3> linePositions;
+    [SerializeField]
+    private AudioSource doorbellAudio;
+    [SerializeField]
+    private AudioSource orderReceivedAudio;
 
     List<Customer> customerList;
     List<FoodId> toppings;
@@ -61,6 +65,10 @@ public class CustomerManager : MonoBehaviour
 
         //List of customers so they can stand in a line
         customerList = new List<Customer>();
+
+        //No audio should play upon start
+        doorbellAudio.Stop();
+        orderReceivedAudio.Stop();
     }
 
     // Update is called once per frame
@@ -76,6 +84,7 @@ public class CustomerManager : MonoBehaviour
             {
                 if (customerList.Count < linePositions.Count)
                 {
+                    StartCoroutine(PlaySound(doorbellAudio));
                     GenerateCustomer();
                     loadedCustomer = false;
                     spawnTracker = 0;
@@ -105,6 +114,7 @@ public class CustomerManager : MonoBehaviour
     /// <returns>If it is possible to find an open counter</returns>
     public bool FindPickupCounter(Customer customer)
     {
+        StartCoroutine(PlaySound(orderReceivedAudio));
         int counter = -1;
         //Find an open register, will choose last open one
         for (int i = pickUpStationList.Count - 1; i >= 0; i--) 
@@ -127,7 +137,6 @@ public class CustomerManager : MonoBehaviour
             //Other customers move
             foreach (Customer c in customerList)
                 c.MoveInLine();
-
             return true;
         }
         return false;
@@ -362,5 +371,24 @@ public class CustomerManager : MonoBehaviour
         {
             wardenSpawn = true;
         }
+    }
+
+    /// <summary>
+    /// plays sound for specific time
+    /// </summary>
+    /// <param name="sound"></param>
+    public IEnumerator PlaySound(AudioSource sound)
+    {
+        float elapsedTime = 0f;
+        float duration = 5f;
+
+        sound.Play();
+        while (elapsedTime < duration)
+        {
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        sound.Stop();
     }
 }
