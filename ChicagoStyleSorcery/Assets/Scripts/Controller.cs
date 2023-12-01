@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -68,13 +69,15 @@ public class Controller : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        playerRigidBody.MovePosition(transform.position + direction * speed * Time.deltaTime);
+        velocity = direction * speed * Time.deltaTime;
+        playerRigidBody.MovePosition(transform.position + velocity);
     }
     public void OnMove(InputAction.CallbackContext context)
     {
+       
         direction = context.ReadValue<Vector2>();
 
-        transform.rotation = Quaternion.LookRotation(Vector3.forward, direction);
+       // transform.rotation = Quaternion.LookRotation(Vector3.forward, direction);
     }
 
     public void OnInteract(InputAction.CallbackContext context)

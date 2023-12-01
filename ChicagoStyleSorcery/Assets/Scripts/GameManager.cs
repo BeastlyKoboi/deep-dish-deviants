@@ -255,7 +255,7 @@ public class GameManager : MonoBehaviour
         CurrentDay++;
         dayEndPopup.SetActive(false);
 
-        customerManager.StartDay();
+        customerManager.DayStart(currentDay);
         // more stuff to come
     }
 
@@ -501,7 +501,7 @@ public class GameManager : MonoBehaviour
     {
         for(int i =0; i < allStations.Count; i++)
         {
-            Gizmos.DrawLine(player.transform.position, GetStationClosestToPlayer().transform.position);
+           // Gizmos.DrawLine(player.transform.position, GetStationClosestToPlayer().transform.position);
         }
     }
 }
