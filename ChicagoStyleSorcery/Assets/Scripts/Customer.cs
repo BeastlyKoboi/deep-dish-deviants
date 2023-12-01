@@ -195,6 +195,7 @@ public class Customer : MonoBehaviour
                         mistake = MistakeType.Burnt;
 
                     mistakeWeight = 3;
+                    multiMistake++;
                 }
             }
             if (pizza.coreFoodlist[i].kneadState == KneadState.unkneaded || pizza.coreFoodlist[i].cutState == CutState.uncut) //If uncut or unkneaded
@@ -204,6 +205,7 @@ public class Customer : MonoBehaviour
                 {
                     mistake = MistakeType.UncutToppings;
                     mistakeWeight = 3;
+                    multiMistake++;
                 }
             }
             for (int j = 0; j < order.Count; j++)
@@ -238,6 +240,7 @@ public class Customer : MonoBehaviour
                 {
                     mistake = MistakeType.ExtraToppings;//minor reduction
                     mistakeWeight = 2;
+                    multiMistake++;
                 }
             }
         }
@@ -248,6 +251,7 @@ public class Customer : MonoBehaviour
             {
                 mistake = MistakeType.MissingToppings;//minor reduction
                 mistakeWeight = 2;
+                multiMistake++;
             }
         }
 
@@ -262,6 +266,7 @@ public class Customer : MonoBehaviour
             {
                 mistake = MistakeType.Order;//minor reduction
                 mistakeWeight = 3;
+                multiMistake++;
             }
         }
 
