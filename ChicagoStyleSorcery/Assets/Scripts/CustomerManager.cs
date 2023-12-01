@@ -38,7 +38,7 @@ public class CustomerManager : MonoBehaviour
 
     int customerTicker = 0;
 
-    float difficutlyFloat = 1; //Higher more difficult, 10 is max
+    float difficutlyFloat = 10; //Higher more difficult, 10 is max
     float customerDelayTime = 3;
     float spawnTracker = 0;
     bool loadedCustomer = false;
@@ -222,12 +222,12 @@ public class CustomerManager : MonoBehaviour
         Customer c;
         if (SceneManager.GetActiveScene().name != "Gameplay") //Regular customers only in tutorial
             c = Instantiate(customerDefault);
+        else if (UnityEngine.Random.Range(0, 9) < 1)
+            c = Instantiate(snitch);
         else if (UnityEngine.Random.Range(0, difficutlyFloat) < .5f)
             c = Instantiate(customerChill);
         else if (UnityEngine.Random.Range(difficutlyFloat, 11) > 10.5f)
             c = Instantiate(customerGrump);
-        else if (UnityEngine.Random.Range(0, 9) < 1)
-            c = Instantiate(snitch);
         else
             c = Instantiate(customerDefault);
         c.customerManager = gameObject.GetComponent<CustomerManager>();
@@ -302,7 +302,7 @@ public class CustomerManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Method to call when the day ends
+    /// Method to call when the day ends, makes CustomerManager inactive until DayStart is called
     /// </summary>
     public void EndDay()
     {
@@ -310,6 +310,7 @@ public class CustomerManager : MonoBehaviour
         {
             customerList[i].Leave();
         }
+        /*
         if(register.currentCustomer!= null)
         {
             register.currentCustomer.Leave();
@@ -320,19 +321,22 @@ public class CustomerManager : MonoBehaviour
             {
                 pickUpStationList[i].currentCustomer.Leave();
             }
-        }
+        }*/
 
         endOfDay = true;
         spawnTracker = 0;
-        //warden.Leave();
+        warden.Leave();
+        wardenSpawn = false;
+        wardenSpawnTimer = 15;
         currentWarden.Leave();
 
         Debug.Log("Customer End Day called");
     }
 
-    public void StartDay()
+    public void DayStart(int day)
     {
-        endOfDay = false; 
+        endOfDay = false;
+        difficutlyFloat = math.sqrt(math.min(day * 2, 10));//set difficulty based on day
     }
 
     public void CheckForSnitch()
