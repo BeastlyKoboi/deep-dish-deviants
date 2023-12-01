@@ -255,7 +255,7 @@ public class GameManager : MonoBehaviour
         CurrentDay++;
         dayEndPopup.SetActive(false);
 
-        customerManager.StartDay();
+        customerManager.DayStart(currentDay);
         // more stuff to come
     }
 
