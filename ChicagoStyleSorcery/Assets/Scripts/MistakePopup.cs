@@ -15,7 +15,8 @@ public enum MistakeType
     UncutToppings,
     Burnt,
     Uncooked,
-    Catastrophe
+    Catastrophe,
+    PlateFunny
 }
 
 public class MistakePopup : MonoBehaviour
@@ -64,7 +65,7 @@ public class MistakePopup : MonoBehaviour
                     text.text = "That pizza had some wrong toppings!";
                     break;
                 case MistakeType.Order:
-                    text.text = "The order of ingredients was wrong, remember, this is Chicago stype!";
+                    text.text = "The order of ingredients was wrong, remember, this is Chicago style!";
                     break;
                 case MistakeType.MissingToppings:
                     text.text = "Some toppings were missing from that pizza!";
@@ -83,6 +84,9 @@ public class MistakePopup : MonoBehaviour
                     break;
                 case MistakeType.Catastrophe:
                     text.text = "That pizza was a mess! Did you give them the wrong order?";
+                    break;
+                case MistakeType.PlateFunny:
+                    text.text = "Dude, this is just a plate.";
                     break;
             }
         }

@@ -280,6 +280,12 @@ public class Customer : MonoBehaviour
         if (multiMistake >= 3)
             mistake = MistakeType.Catastrophe;
 
+        if (pizza.coreFoodlist.Count == 0)
+        {
+            mistake = MistakeType.PlateFunny;
+            mistakeWeight = 10;
+        }
+
         Leave();
         //state = AiState.Leaving;
         //lerpTimer = 0f;
