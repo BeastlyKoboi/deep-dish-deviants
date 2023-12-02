@@ -328,7 +328,7 @@ public class CustomerManager : MonoBehaviour
         warden.Leave();
         wardenSpawn = false;
         wardenSpawnTimer = 15;
-        currentWarden.Leave();
+        // currentWarden.Leave();
 
         Debug.Log("Customer End Day called");
     }

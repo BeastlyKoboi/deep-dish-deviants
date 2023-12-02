@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject tooltipPrefab;
     [SerializeField] private GameObject tooltipParent; // Used to maintain visible order, Intro may pop up behind w/o
     private TooltipInfo tooltip;
-    public enum GameState { Open, Closed };
+    public enum GameState { Open, Overtime, Closed };
 
     // Gameplay Variables 
     [Header("Gameplay Variables")]
@@ -190,6 +190,25 @@ public class GameManager : MonoBehaviour
             case GameState.Open:
                 UpdateClock();
                 break;
+            case GameState.Overtime:
+                bool customersLeft = false;
+                for (int i = 0; i < pickUpStations.Count; i++)
+                {
+                    if (pickUpStations[i].currentCustomer != null)
+                    {
+                        customersLeft = true;
+                    }
+                }
+                if (!customersLeft)
+                {
+                    EndDay();
+                    //for (int i = 0; i < pickUpStations.Count; i++)
+                    //{
+                    //    if (pickUpStations[i].currentCustomer != null) 
+                    //        pickUpStations[i].currentCustomer.Leave();
+                    //}
+                }
+                break;
             case GameState.Closed:
                 break;
         }
@@ -209,7 +228,10 @@ public class GameManager : MonoBehaviour
             clockUI.text = $"{currentHour}:00 {(currentHour == 12 || currentHour < 8? "PM" : "AM")}";
             
             if (currentHour == 5)
-                EndDay();
+            {
+                customerManager.EndDay();
+                gameState = GameState.Overtime;
+            }
         }
     }
 
@@ -231,7 +253,7 @@ public class GameManager : MonoBehaviour
         cashToday = 0;
         numPizzaSoldToday = 0;
 
-        customerManager.EndDay();
+        
         // More stuff to come
         // when the day ends all of the counters are wiped, 
         foreach(Counter counter in counterScripts)
