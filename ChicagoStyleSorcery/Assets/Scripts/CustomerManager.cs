@@ -102,6 +102,7 @@ public class CustomerManager : MonoBehaviour
                     wardenSpawnTimer = 15;
                     wardenSpawn = false;
                     wardenActive = true;
+                    currentWarden = w;
                 }
             }
         }
@@ -328,7 +329,8 @@ public class CustomerManager : MonoBehaviour
         warden.Leave();
         wardenSpawn = false;
         wardenSpawnTimer = 15;
-        currentWarden.Leave();
+        if (warden == true)
+            currentWarden.Leave();
 
         Debug.Log("Customer End Day called");
     }
@@ -336,7 +338,7 @@ public class CustomerManager : MonoBehaviour
     public void DayStart(int day)
     {
         endOfDay = false;
-        difficutlyFloat = math.sqrt(math.min(day * 2, 10));//set difficulty based on day
+        //ssdifficutlyFloat = math.sqrt(math.min(day * 2, 10));//set difficulty based on day
     }
 
     public void CheckForSnitch()
@@ -363,6 +365,7 @@ public class CustomerManager : MonoBehaviour
             {
                 snitched = true;
                 p.currentCustomer.GetComponent<SnitchCustomer>().SnitchOn();
+                gameManager.EmptyOrder(i);
             }
         }
         if (register.currentCustomer != null && register.currentCustomer.GetComponent<SnitchCustomer>() != null)

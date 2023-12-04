@@ -10,7 +10,7 @@ public class Warden : MonoBehaviour
 
     public CustomerManager customerManager;
 
-    public float maxTime = 1200;
+    public float maxTime = 60;
     private float timeLeft;
 
     protected Vector3 lerpAnchor = Vector3.zero;
