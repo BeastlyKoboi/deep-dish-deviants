@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Oven : Station
@@ -13,13 +14,20 @@ public class Oven : Station
     [SerializeField]
     float timer;
 
+    [SerializeField]
+    GameObject timerBackground;
+
+    [SerializeField]
+    TextMeshProUGUI timerText;
 
     // Start is called before the first frame update
     void Start()
     {
         timer = 10;
         triggerColor = Color.green;
-        normalColor = Color.red;
+        normalColor = Color.white;
+        timerBackground.SetActive(false);
+        timerText.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -28,10 +36,15 @@ public class Oven : Station
         if (inventory == null)
         {
             timer = 10;
+            timerBackground.SetActive(false);
+            timerText.gameObject.SetActive(false);
         }
-        else if(inventory != null)
+        else if(inventory != null && timer > 0)
         {
             timer -= Time.deltaTime;
+            timerBackground.SetActive(true);
+            timerText.gameObject.SetActive(true);
+            timerText.text = ((int)timer).ToString();
         }
         // will cook pizza after 9 seconds
         if(timer < 1 && inventory != null)
@@ -42,14 +55,6 @@ public class Oven : Station
                 {
                     inventory.coreFoodlist[0].foodState = CookState.cooked;
                 }
-            }
-        }
-        // if timer is less than -15, pizza has been in over for to long and will be burnt
-        if(timer < -15 && inventory != null)
-        {
-            for (int i = 0; i < inventory.coreFoodlist.Count; i++)
-            {
-                inventory.coreFoodlist[i].foodState = CookState.burnt;
             }
         }
 
