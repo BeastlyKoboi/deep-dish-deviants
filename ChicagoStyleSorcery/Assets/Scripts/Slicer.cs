@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Slicer : Station
 {
@@ -13,13 +14,21 @@ public class Slicer : Station
     [SerializeField]
     float timer;
 
+    [SerializeField]
+    GameObject timerBackground;
+
+    [SerializeField]
+    TextMeshProUGUI timerText;
+
+
     // Start is called before the first frame update
     void Start()
     {
         timer = 5;
         triggerColor = Color.green;
-        normalColor = Color.grey;
-
+        normalColor = Color.cyan;
+        timerBackground.SetActive(false);
+        timerText.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -28,10 +37,15 @@ public class Slicer : Station
         if (inventory == null)
         {
             timer = 5;
+            timerBackground.SetActive(false);
+            timerText.gameObject.SetActive(false);
         }
         else if (inventory != null)
         {
             timer -= Time.deltaTime;
+            timerBackground.SetActive(true);
+            timerText.gameObject.SetActive(true);
+            timerText.text = ((int)timer).ToString();
         }
         // will cut item after 4 seconds
         if (timer < 1 && inventory != null)
