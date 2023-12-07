@@ -43,7 +43,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject tooltipPrefab;
     [SerializeField] private GameObject tooltipParent; // Used to maintain visible order, Intro may pop up behind w/o
     private TooltipInfo tooltip;
-    public enum GameState { Open, Overtime, Closed };
+    [SerializeField] private Animator gameOverPopupAnimator;
+    public enum GameState { Open, Overtime, Closed, GameOver};
 
     // Gameplay Variables 
     [Header("Gameplay Variables")]
@@ -202,14 +203,12 @@ public class GameManager : MonoBehaviour
                 if (!customersLeft)
                 {
                     EndDay();
-                    //for (int i = 0; i < pickUpStations.Count; i++)
-                    //{
-                    //    if (pickUpStations[i].currentCustomer != null) 
-                    //        pickUpStations[i].currentCustomer.Leave();
-                    //}
                 }
                 break;
             case GameState.Closed:
+                break;
+            case GameState.GameOver: 
+
                 break;
         }
 
@@ -281,6 +280,14 @@ public class GameManager : MonoBehaviour
         // more stuff to come
     }
 
+    public void GameOver()
+    {
+        gameState = GameState.GameOver;
+        gameOverPopupAnimator.gameObject.SetActive(true);
+        gameOverPopupAnimator.SetBool("BarsDown", true);
+
+    }
+
     public void AnimateIntroPopup()
     {
         ToggleGamePause();
@@ -329,6 +336,10 @@ public class GameManager : MonoBehaviour
         {
             AnimateIntroPopup();
             return;
+        }
+        if (gameOverPopupAnimator.GetBool("BarsDown"))
+        {
+            LoadMainMenu();
         }
 
         ToggleGamePause();
