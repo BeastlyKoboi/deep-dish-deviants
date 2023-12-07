@@ -345,7 +345,8 @@ public class CustomerManager : MonoBehaviour
     {
         if (wardenActive)
         {
-            gameManager.GameOver();
+            currentWarden.CatchPlayer();
+            //gameManager.gameState = gamest
         }
 
         bool snitched = false;
