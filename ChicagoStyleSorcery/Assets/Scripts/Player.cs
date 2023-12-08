@@ -5,12 +5,14 @@ using TMPro;
 using Unity.VisualScripting;
 // using UnityEditorInternal;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
     [SerializeField]
     private CustomerManager customerManager;
+    [SerializeField] private Controller controller;
 
     public FoodItem[] playerInventory;
     private List<Icon> iconList;
@@ -113,8 +115,12 @@ public class Player : MonoBehaviour
     [SerializeField] private TextMeshProUGUI timeTimer;
     [SerializeField] private TextMeshProUGUI mindTimer;
 
+    
+
     void Start()
     {
+        controller = GetComponent<Controller>();
+
         playerInventory = new FoodItem[1] { null };
         isInteracting = false;
         icon7 = Instantiate(icon);
@@ -318,6 +324,9 @@ public class Player : MonoBehaviour
         }
 
         GetComponent<SpriteRenderer>().color = Color.white;
+
+        GetComponent<Animator>().SetFloat("X blend", controller.Direction.x);
+        GetComponent<Animator>().SetFloat("Y blend", controller.Direction.y);
     }
 
     /// <summary>

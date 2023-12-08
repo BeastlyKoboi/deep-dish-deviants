@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -22,6 +23,15 @@ public class Controller : MonoBehaviour
 
     Vector3 direction = new Vector3(0, 0, 0);
     Vector3 velocity = Vector3.zero;
+
+    public Vector3 Direction 
+    {
+        get
+        {
+            return direction;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
