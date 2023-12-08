@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 // using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.UI;
@@ -113,6 +114,25 @@ public class Player : MonoBehaviour
     [SerializeField] private TextMeshProUGUI timeTimer;
     [SerializeField] private TextMeshProUGUI mindTimer;
 
+    [Header("Walking / Standing Sprites")]
+    [SerializeField] private Sprite[] frontWalking;
+    [SerializeField] private Sprite[] backWalking;
+    [SerializeField] private Sprite[] rightWalking;
+    [SerializeField] private Sprite[] leftWalking;
+    [SerializeField] private Texture2D frontStanding;
+    [SerializeField] private Texture2D backStanding;
+    [SerializeField] private Texture2D rightStanding;
+    [SerializeField] private Texture2D leftStanding;
+    private Sprite frontStill;
+    private Sprite backStill;
+    private Sprite rightStill;
+    private Sprite leftStill;
+    //Tracks where the sprite is in the array
+    int currentSpriteElement = 0;
+    Controller controller;
+    //Needed to check to see what direction the player stopped moving in
+    Vector3 previousInput;
+
     void Start()
     {
         playerInventory = new FoodItem[1] { null };
@@ -159,6 +179,19 @@ public class Player : MonoBehaviour
         originalPositionSort = sort.transform.position;
         originalPositionTime = time.transform.position;
         originalPositionMind = mind.transform.position;
+
+        //Make the Texture2Ds into sprites
+        frontStill = Sprite.Create(frontStanding, new Rect(0.0f, 0.0f, frontStanding.width, 
+            frontStanding.height), new Vector2(0.5f, 0.5f), 100.0f);
+        backStill = Sprite.Create(backStanding, new Rect(0.0f, 0.0f, backStanding.width,
+            backStanding.height), new Vector2(0.5f, 0.5f), 100.0f);
+        rightStill = Sprite.Create(rightStanding, new Rect(0.0f, 0.0f, rightStanding.width,
+            rightStanding.height), new Vector2(0.5f, 0.5f), 100.0f);
+        leftStill = Sprite.Create(leftStanding, new Rect(0.0f, 0.0f, leftStanding.width,
+            leftStanding.height), new Vector2(0.5f, 0.5f), 100.0f);
+        //Start with the standing sprite facing the player
+        gameObject.GetComponent<SpriteRenderer>().sprite = frontStill;
+
     }
 
     // Update is called once per frame
@@ -318,6 +351,10 @@ public class Player : MonoBehaviour
         }
 
         GetComponent<SpriteRenderer>().color = Color.white;
+
+        //Change sprite according to how it's moving
+        //updateMovementAnimations();
+        //previousInput = controller.Direction;
     }
 
     /// <summary>
@@ -680,5 +717,92 @@ public class Player : MonoBehaviour
         {
             gameObject.transform.position = originalPositionCut;
         }
+    }
+
+    //Change sprite depending on how it's moving
+    private void updateMovementAnimations()
+    {
+         //Player's moving down
+        if(controller.Direction.x == 0 && controller.Direction.y == -1)
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = frontWalking[currentSpriteElement];
+            if (currentSpriteElement == frontWalking.Count() - 1)
+            {
+                currentSpriteElement = 0;
+            }
+            else
+            {
+                currentSpriteElement++;
+            }
+        }
+        //Player's moving up
+        else if (controller.Direction.x == 0 && controller.Direction.y == 1)
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = backWalking[currentSpriteElement];
+            if (currentSpriteElement == frontWalking.Count() - 1)
+            {
+                currentSpriteElement = 0;
+            }
+            else
+            {
+                currentSpriteElement++;
+            }
+        }
+        //Player's moving right
+        else if (controller.Direction.x == 1 && controller.Direction.y == 0)
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = rightWalking[currentSpriteElement];
+            if (currentSpriteElement == frontWalking.Count() - 1)
+            {
+                currentSpriteElement = 0;
+            }
+            else
+            {
+                currentSpriteElement++;
+            }
+        }
+        //Player's moving left
+        else if (controller.Direction.x == -1 && controller.Direction.y == 0)
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = leftWalking[currentSpriteElement];
+            if (currentSpriteElement == frontWalking.Count() - 1)
+            {
+                currentSpriteElement = 0;
+            }
+            else
+            {
+                currentSpriteElement++;
+            }
+        }
+
+        //Player just moved down, stopped moving
+        else if (previousInput.x == 0 && previousInput.y == -1 && 
+        controller.Direction.x == 0 && controller.Direction.y == 0)
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = frontStill;
+            currentSpriteElement = 0;
+        }
+        //Player just moved up, stopped moving
+        else if (previousInput.x == 0 && previousInput.y == 1 && 
+        controller.Direction.x == 0 && controller.Direction.y == 0)
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = backStill;
+            currentSpriteElement = 0;
+        }
+        //Player just moved right, stopped moving
+        else if (previousInput.x == 1 && previousInput.y == 0 && 
+        controller.Direction.x == 0 && controller.Direction.y == 0)
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = rightStill;
+            currentSpriteElement = 0;
+        }
+        //Player just moved left, stopped moving
+        else if (previousInput.x == -1 && previousInput.y == 0 && 
+        controller.Direction.x == 0 && controller.Direction.y == 0)
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = leftStill;
+            currentSpriteElement = 0;
+        }
+
     }
 }

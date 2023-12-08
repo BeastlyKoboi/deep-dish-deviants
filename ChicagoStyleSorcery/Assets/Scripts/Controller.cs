@@ -148,5 +148,10 @@ public class Controller : MonoBehaviour
         }
     }
 
+    public Vector3 Direction
+    {
+        get { return direction; }
+    }
+
 
 }
