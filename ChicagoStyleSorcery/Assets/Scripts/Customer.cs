@@ -381,4 +381,22 @@ public class Customer : MonoBehaviour
             customerManager.ShiftLine(linePosition);
         }
     }
+
+    /// <summary>
+    /// Makes a customer leave without fail visuals
+    /// </summary>
+    public void LeaveQuiet()
+    {
+        state = AiState.Leaving;
+        lerpAnchor = transform.position;
+        lerpTimer = 0;
+
+        //remove face visual
+        patienceCanvas.enabled = false;
+
+        if (linePosition != -1)//Shifts other customers in line when they're gone
+        {
+            customerManager.ShiftLine(linePosition);
+        }
+    }
 }

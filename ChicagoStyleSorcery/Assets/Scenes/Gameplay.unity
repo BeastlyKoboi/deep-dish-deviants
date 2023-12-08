@@ -34044,6 +34044,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1879705353172266271, guid: 07411d0d522fb8f4fb23d95838f1b85c, type: 3}
+      propertyPath: maxCooldownCut
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879705353172266271, guid: 07411d0d522fb8f4fb23d95838f1b85c, type: 3}
       propertyPath: customerManager
       value: 
       objectReference: {fileID: 1023365880}
@@ -34053,12 +34057,28 @@ PrefabInstance:
       objectReference: {fileID: 1496834111}
     - target: {fileID: 1879705353172266271, guid: 07411d0d522fb8f4fb23d95838f1b85c, type: 3}
       propertyPath: maxCooldownFire
-      value: 3
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879705353172266271, guid: 07411d0d522fb8f4fb23d95838f1b85c, type: 3}
+      propertyPath: maxCooldownMind
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879705353172266271, guid: 07411d0d522fb8f4fb23d95838f1b85c, type: 3}
+      propertyPath: maxCooldownSort
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879705353172266271, guid: 07411d0d522fb8f4fb23d95838f1b85c, type: 3}
+      propertyPath: maxCooldownTime
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1879705353172266271, guid: 07411d0d522fb8f4fb23d95838f1b85c, type: 3}
       propertyPath: fireCooldownMask
       value: 
       objectReference: {fileID: 595732369}
+    - target: {fileID: 1879705353172266271, guid: 07411d0d522fb8f4fb23d95838f1b85c, type: 3}
+      propertyPath: maxCooldownKnead
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1879705353172266271, guid: 07411d0d522fb8f4fb23d95838f1b85c, type: 3}
       propertyPath: mindCooldownMask
       value: 

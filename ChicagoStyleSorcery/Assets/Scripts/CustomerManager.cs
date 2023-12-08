@@ -309,7 +309,7 @@ public class CustomerManager : MonoBehaviour
     {
         for (int i = customerList.Count - 1; i >= 0; i--)
         {
-            customerList[i].Leave();
+            customerList[i].LeaveQuiet();
         }
         /*
         if(register.currentCustomer!= null)
@@ -329,7 +329,7 @@ public class CustomerManager : MonoBehaviour
         warden.Leave();
         wardenSpawn = false;
         wardenSpawnTimer = 15;
-        if (warden == true)
+        if (wardenActive == true)
             currentWarden.Leave();
 
         Debug.Log("Customer End Day called");
@@ -338,7 +338,7 @@ public class CustomerManager : MonoBehaviour
     public void DayStart(int day)
     {
         endOfDay = false;
-        //ssdifficutlyFloat = math.sqrt(math.min(day * 2, 10));//set difficulty based on day
+        difficutlyFloat = math.sqrt(math.min(day * 2, 10));//set difficulty based on day
     }
 
     public void CheckForSnitch()

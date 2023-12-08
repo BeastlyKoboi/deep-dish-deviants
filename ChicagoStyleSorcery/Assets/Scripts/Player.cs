@@ -93,11 +93,11 @@ public class Player : MonoBehaviour
 
     // Cooldown Elements
     public float maxCooldownFire = 10;
-    public float maxCooldownCut = 3;
-    public float maxCooldownKnead = 3;
-    public float maxCooldownSort = 5;
-    public float maxCooldownTime = 7;
-    public float maxCooldownMind = 7;
+    public float maxCooldownCut = 5;
+    public float maxCooldownKnead = 7;
+    public float maxCooldownSort = 20;
+    public float maxCooldownTime = 60;
+    public float maxCooldownMind = 15;
 
     [Header("UI Elements")]
     [SerializeField] private Image fireCooldownMask;
