@@ -23,7 +23,7 @@ public class Pounder : Station
     void Start()
     {
         triggerColor = Color.green;
-        normalColor = Color.blue;
+        normalColor = Color.white;
         timer = 5;
         timerBackground.SetActive(false);
         timerText.gameObject.SetActive(false);

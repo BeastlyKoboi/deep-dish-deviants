@@ -139,26 +139,6 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: Warden_Frame_0
-    originalName: 
-    pivot: {x: 0.3888889, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 60
-      y: 4
-      width: 36
-      height: 62
-    spriteID: fc527280b5c70dc40b989cb9d87a1b06
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 60, y: 4}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
@@ -168,22 +148,14 @@ ScriptedImporter:
     layerType: 0
     blendMode: 0
     cells:
-    - name: Warden_Frame_1
-      frameIndex: 1
+    - name: Warden
+      frameIndex: 0
       cellRect:
         x: 10
         y: 0
         width: 48
         height: 64
       spriteId: 4d4e8c27465e58240bd103c2c358bf11
-    - name: Warden_Frame_0
-      frameIndex: 0
-      cellRect:
-        x: 18
-        y: 0
-        width: 36
-        height: 62
-      spriteId: fc527280b5c70dc40b989cb9d87a1b06
     linkedCells: []
     parentIndex: -1
   platformSettings: []

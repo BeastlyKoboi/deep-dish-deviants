@@ -1,0 +1,37 @@
+12/07/2023
+Deep Dish Deviants
+Game: Slice of Sorcery
+Sprint 6 Changelog
+
+Additions: 
+
+Tutorial
+ - minor fixes to errors
+
+Game loop 
+ - You can now go into overtime to complete orders you have already taken 
+ - There is now an Game over screen that can be reached if you use forbidden magic (rewind or mind) near a snitch 3 times and then in front of the warden that appears. It sends you back to the main menu. 
+
+Upgrade System
+ - Added full system to upgrade both spells and the restaurant
+ - You can purchase non-magical slicer, oven, and kneader stations
+ - You can purchase decreased cooldowns on spells
+
+Customer Management 
+ - Customer spawn rate is increased
+ - Added to the snitch behavior 
+ - Warden to provide game over has been implemented.
+
+UI Improvements
+ - Added UI element to describe your mistakes in making a pizza.
+
+Sound Design
+ -  Added sounds for customer interactions and all the magic spells
+
+Animation
+ - Added blinking animation to the title sign
+ - implemented basic player walk animations
+
+Art Additions
+ - reworked floor tiles 
+ - replaced more placeholder sprites

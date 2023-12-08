@@ -26,7 +26,7 @@ public class Slicer : Station
     {
         timer = 5;
         triggerColor = Color.green;
-        normalColor = Color.cyan;
+        normalColor = Color.white;
         timerBackground.SetActive(false);
         timerText.gameObject.SetActive(false);
     }
