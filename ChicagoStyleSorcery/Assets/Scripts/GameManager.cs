@@ -340,6 +340,7 @@ public class GameManager : MonoBehaviour
         if (gameOverPopupAnimator.GetBool("BarsDown"))
         {
             LoadMainMenu();
+            return; 
         }
 
         ToggleGamePause();
@@ -357,7 +358,9 @@ public class GameManager : MonoBehaviour
 
     public void LoadMainMenu()
     {
-        ToggleGamePause();
+        if (isPaused)
+            ToggleGamePause();
+
         sceneLoader.sceneToLoad = SceneNames.MAINMENU;
         sceneLoader.LoadScene();
     }
