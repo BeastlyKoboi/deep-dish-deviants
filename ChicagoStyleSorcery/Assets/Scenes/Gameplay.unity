@@ -12031,7 +12031,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Escape or Tab to Continue...
+  m_text: Press Escape to Continue...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -13030,6 +13030,7 @@ MonoBehaviour:
   pizzasSoldUI: {fileID: 1665196427}
   tooltipPrefab: {fileID: 4385745634720861381, guid: 2ba0c4f6141aaeb43bc70229c166ad8e, type: 3}
   tooltipParent: {fileID: 614740212}
+  gameOverPopupAnimator: {fileID: 2107939302}
   gameState: 0
   _cashTotal: 0
   cashToday: 0
@@ -21924,7 +21925,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -14, y: -28}
+  m_AnchoredPosition: {x: -14, y: 70}
   m_SizeDelta: {x: 533.9047, y: 308.1461}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1348232335
@@ -30559,7 +30560,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -60}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &2107939302
@@ -30572,7 +30573,7 @@ Animator:
   m_GameObject: {fileID: 2107939300}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 99097626c821f3445b6c066052ed101d, type: 2}
+  m_Controller: {fileID: 9100000, guid: 6d38220c9bf022a4e93f27cf61e198a9, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
