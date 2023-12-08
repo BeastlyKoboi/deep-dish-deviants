@@ -129,7 +129,7 @@ public class Player : MonoBehaviour
     private Sprite leftStill;
     //Tracks where the sprite is in the array
     int currentSpriteElement = 0;
-    Controller controller;
+    [SerializeField] private Controller controller;
     //Needed to check to see what direction the player stopped moving in
     Vector3 previousInput;
 
@@ -352,9 +352,16 @@ public class Player : MonoBehaviour
 
         GetComponent<SpriteRenderer>().color = Color.white;
 
+        //GetComponent<Animator>().SetFloat("X blend", controller.playerRigidBody.velocity.x);
+        //GetComponent<Animator>().SetFloat("Y blend", controller.playerRigidBody.velocity.y);
+
+        GetComponent<Animator>().SetFloat("X blend", controller.Direction.x);
+        GetComponent<Animator>().SetFloat("Y blend", controller.Direction.y);
+        // Debug.Log("x: " + controller.Direction.x + " y: " + controller.Direction.y);
+
         //Change sprite according to how it's moving
         //updateMovementAnimations();
-        //previousInput = controller.Direction;
+        // previousInput = controller.Direction;
     }
 
     /// <summary>

@@ -34031,6 +34031,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 388705691}
     - target: {fileID: 1879705353172266271, guid: 07411d0d522fb8f4fb23d95838f1b85c, type: 3}
+      propertyPath: controller
+      value: 
+      objectReference: {fileID: 1473673525}
+    - target: {fileID: 1879705353172266271, guid: 07411d0d522fb8f4fb23d95838f1b85c, type: 3}
       propertyPath: kneadAudio
       value: 
       objectReference: {fileID: 27840935}
