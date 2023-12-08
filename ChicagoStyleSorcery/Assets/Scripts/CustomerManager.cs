@@ -38,7 +38,7 @@ public class CustomerManager : MonoBehaviour
 
     int customerTicker = 0;
 
-    float difficutlyFloat = 10; //Higher more difficult, 10 is max
+    float difficutlyFloat = 1; //Higher more difficult, 10 is max
     float customerDelayTime = 3;
     float spawnTracker = 0;
     bool loadedCustomer = false;
@@ -88,7 +88,7 @@ public class CustomerManager : MonoBehaviour
                     GenerateCustomer();
                     loadedCustomer = false;
                     spawnTracker = 0;
-                    customerDelayTime = UnityEngine.Random.Range(20 - difficutlyFloat * 2, 40 - difficutlyFloat * 4);
+                    customerDelayTime = UnityEngine.Random.Range(15 - difficutlyFloat * 1.5f, 25 - difficutlyFloat * 2.5f);
                 }
             }
 

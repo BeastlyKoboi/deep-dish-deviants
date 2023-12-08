@@ -150,8 +150,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.009, y: 1.154}
-  m_SizeDelta: {x: 0.9343, y: 0.8589}
+  m_AnchoredPosition: {x: 0.061, y: 0.998}
+  m_SizeDelta: {x: 0.6515, y: 0.5989}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &3435006703058700484
 Canvas:
@@ -228,7 +228,7 @@ GameObject:
   - component: {fileID: 3285238624991988930}
   - component: {fileID: 6039641265609209126}
   m_Layer: 0
-  m_Name: WardenPlaceholder
+  m_Name: Warden
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -248,7 +248,7 @@ Transform:
   m_Children:
   - {fileID: 76173081393223034}
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3285238624991988930
 SpriteRenderer:
@@ -291,7 +291,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0339a1bf570902d4684658aaa95c17f1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 15d9c56543db26a4b879f67e094c1d91, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
